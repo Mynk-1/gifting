@@ -7,11 +7,13 @@ import PhotoUploader from "./PhotoUploader";
 import ProductInfo from "./ProductInfo";
 import ProductSections from "./ProductSections";
 import Button from "./Button";
-import { getItemById } from "../../../Data/Caricature";
+import { getItemByCaricatureId } from "../../../Data/Caricature";
+import { getItemByAcrylicsId } from "../../../Data/acrylics";
 
 const CustomProductDetail = () => {
   const { category, id } = useParams();
   const navigate = useNavigate();
+  
   const [product, setProduct] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
@@ -20,28 +22,83 @@ const CustomProductDetail = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const [customText, setCustomText] = useState("");
   const [hoverImage, setHoverImage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Initialize product and initial selections
   useEffect(() => {
-    // Check if we have a valid category and id
+    let foundProduct = null;
+
     if (category === "caricature") {
-      const foundProduct = getItemById(id);
-      if (foundProduct) {
-        setProduct(foundProduct);
-        // Initialize selectedType and selectedSize after product is loaded
-        const initialType = foundProduct.customizationOptions.types?.[0];
-        setSelectedType(initialType);
-        setSelectedSize(initialType?.sizes?.[0] || null);
-      } else {
-        // Redirect to home if product not found
-        navigate("/");
-      }
+      foundProduct = getItemByCaricatureId(id);
+    } else if (category === "acrylics") {
+      foundProduct = getItemByAcrylicsId(id);
+    }
+
+    if (foundProduct) {
+      setProduct(foundProduct);
+      const initialType = foundProduct.customizationOptions.types?.[0];
+      setSelectedType(initialType);
+      setSelectedSize(initialType?.sizes?.[0] || null);
     } else {
-      // Redirect to home if category doesn't match
       navigate("/");
     }
   }, [category, id, navigate]);
 
-  // Show loading state while checking product
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const formData = new FormData();
+      
+      // Add product details
+      formData.append('productId', id);
+      formData.append('productCategory', category);
+      formData.append('productName', product.name);
+      
+      // Add selected options
+      if (selectedType) {
+        formData.append('selectedType', selectedType.id);
+        formData.append('selectedTypeName', selectedType.name);
+      }
+      
+      if (selectedSize) {
+        formData.append('selectedSize', selectedSize.id);
+        formData.append('selectedSizeName', selectedSize.name);
+        formData.append('price', selectedSize.price.toString());
+      } else {
+        formData.append('price', product.price.toString());
+      }
+
+      // Add custom text if enabled and provided
+      if (product.customizationOptions.allowText && customText.trim()) {
+        formData.append('customText', customText.trim());
+      }
+
+      // Add uploaded images and their descriptions
+      uploadedImages.forEach((image, index) => {
+        formData.append(`image-${index}`, image.file);
+        if (image.text) {
+          formData.append(`image-${index}-description`, image.text);
+        }
+      });
+
+      // Log form data only when submitting
+      console.log('Submitting Form Data:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: `, value);
+      }
+
+      // Here you would typically submit the form data to your backend
+      // await submitFormData(formData);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   if (!product) {
     return (
       <div className="container mx-auto p-4 text-center">
@@ -63,7 +120,7 @@ const CustomProductDetail = () => {
         />
       )}
 
-      <div className="flex flex-col md:flex-row">
+      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row">
         <div className="md:w-1/2">
           <ImageGallery
             selectedType={selectedType}
@@ -82,26 +139,34 @@ const CustomProductDetail = () => {
             currentPrice={currentPrice}
           />
 
-          <ProductOptions
-            product={product}
-            selectedType={selectedType}
-            setSelectedType={setSelectedType}
-            selectedSize={selectedSize}
-            setSelectedSize={setSelectedSize}
-            setMainImage={setMainImage}
-            setHoverImage={setHoverImage}
-          />
+          <fieldset>
+            <ProductOptions
+              product={product}
+              selectedType={selectedType}
+              setSelectedType={setSelectedType}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+              setMainImage={setMainImage}
+              setHoverImage={setHoverImage}
+            />
+          </fieldset>
 
-          <PhotoUploader
-            product={product}
-            uploadedImages={uploadedImages}
-            setUploadedImages={setUploadedImages}
-          />
+          <fieldset>
+            <PhotoUploader
+              product={product}
+              uploadedImages={uploadedImages}
+              setUploadedImages={setUploadedImages}
+            />
+          </fieldset>
 
           {product.customizationOptions.allowText && (
-            <div className="mt-6">
-              <p className="font-semibold mb-2">ADD CUSTOM TEXT (Optional)</p>
+            <fieldset className="mt-6">
+              <label htmlFor="customText" className="font-semibold mb-2 block">
+                ADD CUSTOM TEXT (Optional)
+              </label>
               <textarea
+                id="customText"
+                name="customText"
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
                 placeholder={product.customizationOptions.textPlaceholder}
@@ -109,21 +174,21 @@ const CustomProductDetail = () => {
                 rows={2}
                 maxLength={product.customizationOptions.maxTextLength}
               />
-            </div>
+            </fieldset>
           )}
 
           <Button
-            disabled={uploadedImages.length === 0}
+            type="submit"
+            disabled={uploadedImages.length === 0 || isSubmitting}
             className="w-full mt-6"
           >
-            {uploadedImages.length === 0 
-              ? "UPLOAD PHOTOS TO CONTINUE" 
-              : "ADD TO CART"}
+            {uploadedImages.length === 0 ? "UPLOAD PHOTOS TO CONTINUE" : 
+             isSubmitting ? "ADDING TO CART..." : "ADD TO CART"}
           </Button>
 
           <ProductSections sections={product.sections} />
         </div>
-      </div>
+      </form>
     </div>
   );
 };

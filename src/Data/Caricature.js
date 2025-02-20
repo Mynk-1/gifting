@@ -788,7 +788,7 @@ export const  caricature= [
       ]
     }
 ]
-export const getItemById = (id) => {
+export const getItemByCaricatureId = (id) => {
   
   return caricature.find(item => item.id === id);
 };

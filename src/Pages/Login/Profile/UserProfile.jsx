@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import {
-  User,
-  MapPin,
-  ShoppingBag,
-  Wallet,
-  Gift,
-  Heart,
-  Clock,
-  Users,
-  Lock,
-  LogOut,
-  ChevronLeft,
-  ChevronRight,
+  
   Edit,
-  PowerIcon,
   Save,
   X
 } from "lucide-react";

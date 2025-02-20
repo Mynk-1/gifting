@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import ImageGallery from "./ImageGallery";
 import PhotoGalleryModal from "./PhotoGalleryModal";
 import ProductOptions from "./ProductOptions";
 import PhotoUploader from "./PhotoUploader";
 import ProductInfo from "./ProductInfo";
 import ProductSections from "./ProductSections";
-import { getProductByCategory } from '../../../Data/CustumProductDetails';
 import Button from "./Button";
-import { useParams } from "react-router-dom";
+import { getProductByCategory } from '../../../Data/CustumProductDetails';
 
 const CustomProductDetail = () => {
-  const {category,id} = useParams()
-  console.log(id)
+  const { category, id } = useParams();
   const product = getProductByCategory(category);
   const [selectedType, setSelectedType] = useState(product.customizationOptions.types?.[0]);
   const [selectedSize, setSelectedSize] = useState(selectedType?.sizes?.[0] || null);
@@ -20,8 +19,57 @@ const CustomProductDetail = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const [customText, setCustomText] = useState("");
   const [hoverImage, setHoverImage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const currentPrice = selectedSize?.price || product.price;
+
+  const handleSubmit = () => {
+    setIsSubmitting(true);
+    try {
+      const formData = new FormData();
+      
+      // Add product details
+      formData.append('productId', id);
+      formData.append('productCategory', category);
+      formData.append('productName', product.name);
+      
+      // Add selected options
+      formData.append('selectedType', selectedType.id);
+      formData.append('selectedTypeName', selectedType.name);
+      
+      if (selectedSize) {
+        formData.append('selectedSize', selectedSize.id);
+        formData.append('selectedSizeName', selectedSize.name);
+        formData.append('price', selectedSize.price.toString());
+      } else {
+        formData.append('price', product.price.toString());
+      }
+  
+      // Add custom text if enabled and provided
+      if (product.customizationOptions.allowText && customText.trim()) {
+        formData.append('customText', customText.trim());
+      }
+  
+      // Add uploaded images and their descriptions
+      uploadedImages.forEach((image, index) => {
+        formData.append(`image-${index}`, image.file);
+        if (image.text) {
+          formData.append(`image-${index}-description`, image.text);
+        }
+      });
+  
+      // Log all form data entries
+      console.log('Form Data Contents:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: `, value);
+      }
+      
+    } catch (error) {
+      console.error('Error creating form data:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="container mx-auto p-4 font-sans">
@@ -84,10 +132,12 @@ const CustomProductDetail = () => {
           )}
 
           <Button 
-            disabled={uploadedImages.length === 0}
+            disabled={uploadedImages.length === 0 || isSubmitting}
             className="w-full mt-6"
+            onClick={handleSubmit}
           >
-            {uploadedImages.length === 0 ? "UPLOAD PHOTOS TO CONTINUE" : "ADD TO CART"}
+            {uploadedImages.length === 0 ? "UPLOAD PHOTOS TO CONTINUE" : 
+             isSubmitting ? "ADDING TO CART..." : "ADD TO CART"}
           </Button>
 
           <ProductSections sections={product.sections} />

@@ -6,13 +6,28 @@ const PhotoUploader = ({ product, uploadedImages, setUploadedImages }) => {
     const files = Array.from(event.target.files);
     if (files.length > 0) {
       const remainingSlots = product.maxUploads - uploadedImages.length;
-      const newImages = files.slice(0, remainingSlots).map(file => URL.createObjectURL(file));
+      const newImages = files.slice(0, remainingSlots).map(file => ({
+        url: URL.createObjectURL(file),
+        text: "",
+        file: file // Store the actual file
+      }));
       setUploadedImages(prev => [...prev, ...newImages].slice(0, product.maxUploads));
     }
   };
 
   const removeUploadedImage = (index) => {
     setUploadedImages(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleTextChange = (index, text) => {
+    setUploadedImages(prev => {
+      const newImages = [...prev];
+      newImages[index] = {
+        ...newImages[index],
+        text: text
+      };
+      return newImages;
+    });
   };
 
   return (
@@ -39,23 +54,32 @@ const PhotoUploader = ({ product, uploadedImages, setUploadedImages }) => {
             </p>
           </>
         )}
-        
+
         {uploadedImages.length > 0 && (
           <div className="w-full mt-4">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {uploadedImages.map((img, index) => (
-                <div key={index} className="relative aspect-square w-full md:w-20">
-                  <img
-                    src={img}
-                    alt={`Uploaded ${index + 1}`}
-                    className="w-full h-full object-cover rounded-md"
+                <div key={index} className="flex flex-col gap-2">
+                  <div className="relative aspect-square w-full">
+                    <img
+                      src={img.url}
+                      alt={`Uploaded ${index + 1}`}
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                    <button
+                      onClick={() => removeUploadedImage(index)}
+                      className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-1"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    value={img.text || ""}
+                    onChange={(e) => handleTextChange(index, e.target.value)}
+                    placeholder="Add description"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <button
-                    onClick={() => removeUploadedImage(index)}
-                    className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-1"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
                 </div>
               ))}
             </div>

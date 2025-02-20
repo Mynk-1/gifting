@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { caricature } from "../../Data/Caricature";
+import { acrylics } from "../../Data/acrylics";
 import {
   ChevronDown,
   ChevronRight,
@@ -164,6 +165,9 @@ const ProductCatalog = () => {
     
     if (category === "caricature") {
       products = caricature;
+    }
+    if (category === "acrylics") {
+      products = acrylics;
     }
     
     return products;

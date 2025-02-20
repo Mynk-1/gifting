@@ -6,6 +6,7 @@ import ProductSlider from "../ProductSlider/ProductSlider";
 import ProductCategory from "../ProductCategory/ProductCategory";
 import Banner from "../Banner/Banner";
 import {caricature} from "../../../Data/Caricature.js"
+import {acrylics} from "../../../Data/acrylics.js"
 
 const HomePage = () => {
 
@@ -19,7 +20,7 @@ const HomePage = () => {
 
       <ProductSlider data={caricature} category="caricature"/>
       <ProductCategory />
-      <ProductSlider data={caricature} category="caricature"/>
+      <ProductSlider data={acrylics} category="acrylics"/>
       <Banner/>
     </div>
   );

@@ -27,6 +27,7 @@ const ProductSlider = ({data , category}) => {
 
   return (
     <div>
+      
       <div className="flex justify-center items-center px-4 py-2">
         <button
           className={`px-4 py-2 rounded-full ${

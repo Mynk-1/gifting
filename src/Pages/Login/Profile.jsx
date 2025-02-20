@@ -3,17 +3,13 @@ import {
   User,
   MapPin,
   ShoppingBag,
-  Wallet,
-  Gift,
-  Heart,
-  Clock,
+ 
   Users,
   Lock,
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Edit,
-  PowerIcon
+ 
 } from "lucide-react";
 
 import UserProfile from "./Profile/UserProfile";
