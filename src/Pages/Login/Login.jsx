@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown, Mail } from "lucide-react";
+import { useAuth } from "../../auth/AuthProvider";
+import {  useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -7,6 +9,8 @@ const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {login,user}= useAuth()
+  const navigate=useNavigate()
   
   const requestOTP = async (e) => {
     e.preventDefault();
@@ -18,29 +22,66 @@ const Login = () => {
       if (phoneNumber.length !== 10) {
         throw new Error("Please enter a valid 10-digit phone number");
       }
-    
-      setTimeout(() => {
-        console.log("OTP sent to: ", phoneNumber);
-        setIsOtpSent(true);
-        setLoading(false);
-      }, 1000); 
+
+      const response = await fetch("http://localhost:3001/api/auth/send-otp",{
+        method:"POST",
+        credentials: 'include',
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify({phone:String(phoneNumber)})  
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json()
+      console.log(data)
+      
+      
+      setIsOtpSent(true);
+      setLoading(false);
+     
     } catch (err) {
       setError(err.message || "Error sending OTP. Please try again.");
       setLoading(false);
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      console.log(user)
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const verifyOTP = async () => {
     setLoading(true);
     setError(null);
 
     try {
-     
-      if (otp === "123456") {
-        console.log("OTP Verified. User logged in!");
-        
+      const response = await fetch("http://localhost:3001/api/auth/verify-otp", {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phone: String(phoneNumber), otp: String(otp) })    
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Update context with user data
+      if (data.user) {
+        login(data.user);
+        // Navigation will happen automatically through the useEffect
       } else {
-        throw new Error("Invalid OTP. Please try again.");
+        throw new Error("No user data received");
       }
     } catch (err) {
       setError(err.message || "Error verifying OTP. Please try again.");
@@ -58,7 +99,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+    <div className=" flex items-center justify-center bg-gray-50 p-4 lg:py-16 ">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6">
         <div className="text-center space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">LOGIN WITH OTP</h1>

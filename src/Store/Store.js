@@ -10,7 +10,7 @@ const store = configureStore({
   reducer: {
     product: productReducer,
     productList: productListReducer,
-    cartItems:cartItemReducer,
+    cart:cartItemReducer,
     wishlistItems: wishlistReducer
   }
 });

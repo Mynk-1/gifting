@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setClickedProduct } from "../../Store/Slices/productSlice";
 
-const ProductCard = ({ product ,category,id}) => {
+const ProductCard = ({ product, category, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +17,24 @@ const ProductCard = ({ product ,category,id}) => {
     navigate(`/${category}/${id}`);
   };
 
+  // Get the starting price (smallest size price)
+  const getStartingPrice = (product) => {
+    const sizes = product.customizationOptions.types[0].sizes;
+    if (sizes && sizes.length > 0) {
+      return sizes[0].price; // Price of the smallest size
+    }
+    return product.price; // Fallback to base price if no sizes are available
+  };
 
+  const startingPrice = getStartingPrice(product);
+
+  // Format price
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(price);
+  };
 
   return (
     <div
@@ -27,7 +44,7 @@ const ProductCard = ({ product ,category,id}) => {
       <div className="p-0">
         <div className="aspect-[3/3.5] sm:aspect-[3/4] bg-gray-100 mb-2 overflow-hidden">
           <img
-            src={product.images[0]}
+            src={product.customizationOptions.types[0].previewImages[0]}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
           />
@@ -36,10 +53,7 @@ const ProductCard = ({ product ,category,id}) => {
           {product.name}
         </h3>
         <p className="text-xs sm:text-sm md:text-base font-normal text-gray-900 mb-2">
-          {typeof product.price === 'number'
-            ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)
-            : product.price
-          }
+          {formatPrice(startingPrice)}
         </p>
       </div>
     </div>

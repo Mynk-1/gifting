@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, User, Search, Heart, ShoppingBag } from "lucide-react";
+import { Menu, X, User, ShoppingBag } from "lucide-react";
 import { Instagram, Facebook, Youtube, Twitter, Linkedin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BagSlider from "../CheckoutPages/cartItemSlider";
-import WishlistSlider from "../CheckoutPages/wishlistSlider"; // Make sure to update the import path
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCart } from "../../Store/Slices/cartitemSlice"; // Import the fetchCart action
+import { useAuth } from "../../auth/AuthProvider";
 
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBagOpen, setIsBagOpen] = useState(false);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [showDelayedContent, setShowDelayedContent] = useState(false);
+  const { user } = useAuth();
   
+  const dispatch = useDispatch();
   
-  const cartItems = useSelector((state) => state.cartItems);
-  const wishlist = useSelector((state) => state.wishlistItems);
+  // Get cart from the cart slice
+  const { cart, loading } = useSelector((state) => state.cart);
   
   const [cartItemQuantity, setCartItemQuantity] = useState(0);
-  const [wishlistQuantity, setWishlistQuantity] = useState(0);
   
+  // Fetch cart on component mount AND when authentication state changes
   useEffect(() => {
-    setCartItemQuantity(cartItems.length);
-  }, [cartItems]); // Runs only when cartItems change
+    dispatch(fetchCart());
+  }, [dispatch, user]); // Add user as a dependency
   
+  // Update cart quantity when cart changes
   useEffect(() => {
-    setWishlistQuantity(wishlist.length);
-  }, [wishlist]); // Runs only when wishlist changes
+    if (cart && cart.items) {
+      setCartItemQuantity(cart.items.length);
+    } else {
+      setCartItemQuantity(0);
+    }
+  }, [cart]);
   
   useEffect(() => {
     if (isDrawerOpen) {
@@ -34,7 +42,6 @@ const NavBar = () => {
     } else {
       setShowDelayedContent(false);
     }
-    
   }, [isDrawerOpen]);
   
   const navigate = useNavigate();
@@ -44,7 +51,11 @@ const NavBar = () => {
   };
   
   const handleLogin = () => {
-    navigate("/login");
+    if (user) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
     setIsDrawerOpen(false);
   };
   
@@ -53,16 +64,22 @@ const NavBar = () => {
     setIsDrawerOpen(false);
   };
   
+  // Handle bag open - fetch latest cart data
+  const handleBagOpen = () => {
+    dispatch(fetchCart()); // Fetch latest cart data before opening
+    setIsBagOpen(true);
+  };
+  
   const navItems = [
-    "NEW ARRIVALS",
-    "BEST SELLING",
-    "SNITCH LUXE",
-    "SNITCH PLUS",
-    { name: "SHOP", hasSubmenu: true },
+    // "NEW ARRIVALS",
+    // "BEST SELLING",
+    // "SNITCH LUXE",
+    // "SNITCH PLUS",
+    // { name: "SHOP", hasSubmenu: true },
     "TRACK ORDER",
-    "PLACE A RETURN/EXCHANGE REQUEST",
+    // "PLACE A RETURN/EXCHANGE REQUEST",
     "CUSTOMER SUPPORT",
-    "VISIT STORE",
+    // "VISIT STORE",
   ];
 
   const socialIcons = [
@@ -70,7 +87,7 @@ const NavBar = () => {
     { name: "Facebook", Icon: Facebook },
     { name: "YouTube", Icon: Youtube },
     { name: "Twitter", Icon: Twitter },
-    { name: "Pinterest", Icon: Heart },
+    { name: "Pinterest", Icon: ShoppingBag },
     { name: "LinkedIn", Icon: Linkedin },
   ];
 
@@ -88,20 +105,14 @@ const NavBar = () => {
           <button onClick={handleLogin} className="text-gray-600">
             <User size={24} />
           </button>
-          <Search size={24} className="text-gray-600 max-[700px]:hidden" />
-          <button 
-            onClick={() => setIsWishlistOpen(true)} 
-            className="text-gray-600 max-[700px]:hidden relative"
-          >
-            <Heart size={24} />
-            <div className="flex absolute text-sm bottom-3 left-4 font-semibold bg-gray-600 w-4 h-4 items-center justify-center text-white rounded-full " >{wishlistQuantity}</div>
-          </button>
           <button
-            onClick={() => setIsBagOpen(true)}
+            onClick={handleBagOpen}
             className="text-gray-600 relative"
           >
             <ShoppingBag size={24} />
-            <div className="flex absolute text-sm bottom-3 left-3 font-semibold bg-gray-600 w-4 h-4 items-center justify-center text-white rounded-full " >{cartItemQuantity}</div>
+            <div className="flex absolute text-sm bottom-3 left-3 font-semibold bg-gray-600 w-4 h-4 items-center justify-center text-white rounded-full">
+              {cartItemQuantity}
+            </div>
           </button>
         </div>
       </header>
@@ -126,7 +137,7 @@ const NavBar = () => {
             className="flex items-center space-x-2 text-gray-600"
           >
             <User size={24} />
-            <span className="text-sm font-semibold">LOG IN</span>
+            <span className="text-sm font-semibold">{user ? "PROFILE" : "LOG IN"}</span>
           </button>
           <button onClick={toggleDrawer} className="text-gray-600">
             <X size={24} />
@@ -177,18 +188,14 @@ const NavBar = () => {
       </div>
 
       {/* Bag Slider */}
-      <BagSlider isOpen={isBagOpen} setToggle={setIsBagOpen} quantity={setCartItemQuantity}/>
+      {isBagOpen && <BagSlider isOpen={isBagOpen} setToggle={setIsBagOpen} cartData={cart} />}
 
-      {/* Wishlist Slider */}
-      <WishlistSlider isOpen={isWishlistOpen} setToggle={setIsWishlistOpen} />
-
-      {/* Overlay for bag and wishlist */}
-      {(isBagOpen || isWishlistOpen) && (
+      {/* Overlay for bag */}
+      {isBagOpen && (
         <div
           className="fixed inset-0 bg-slate-400 bg-opacity-50 z-40"
           onClick={() => {
             setIsBagOpen(false);
-            setIsWishlistOpen(false);
           }}
         ></div>
       )}

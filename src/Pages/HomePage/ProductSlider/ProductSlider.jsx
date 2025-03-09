@@ -5,49 +5,21 @@ import { useNavigate } from "react-router-dom";
 
 
 const ProductSlider = ({data , category}) => {
-  const [isNewDropsSelected, setIsNewDropsSelected] = useState(true);
-  const [isMostTrendingSelected, setIsMostTrendingSelected] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleScroll = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleButtonClick = (buttonValue) => {
-    if (buttonValue === "NEW DROPS") {
-      setIsNewDropsSelected(true);
-      setIsMostTrendingSelected(false);
-    } else {
-      setIsNewDropsSelected(false);
-      setIsMostTrendingSelected(true);
-    }
-  };
+
 
   
 
   return (
     <div>
       
-      <div className="flex justify-center items-center px-4 py-2">
-        <button
-          className={`px-4 py-2 rounded-full ${
-            isNewDropsSelected ? "bg-black text-white" : "bg-white text-black"
-          }`}
-          onClick={() => handleButtonClick("NEW DROPS")}
-        >
-          NEW DROPS
-        </button>
-        <button
-          className={`px-4 py-2 rounded-full ${
-            isMostTrendingSelected
-              ? "bg-black text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={() => handleButtonClick("MOST TRENDING")}
-        >
-          MOST TRENDING
-        </button>
-      </div>
+      
       <div className="w-full max-w-full px-2 sm:px-4 font-titillium">
         <div className="relative">
           <div 

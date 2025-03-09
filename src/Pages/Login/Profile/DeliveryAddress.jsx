@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, Edit, Trash2, MapPin, X } from "lucide-react";
+import axios from "axios";
 
 const AddressModal = ({ isOpen, onClose, address, onSave }) => {
   const [formData, setFormData] = useState(
     address || {
       type: "Home",
       name: "",
-      address: "",
+      street: "",
       city: "",
       state: "",
-      pincode: "",
+      postalCode: "",
+      country: "",
       phone: "",
       isDefault: false,
     }
@@ -21,10 +23,11 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
       address || {
         type: "Home",
         name: "",
-        address: "",
+        street: "",
         city: "",
         state: "",
-        pincode: "",
+        postalCode: "",
+        country: "",
         phone: "",
         isDefault: false,
       }
@@ -48,8 +51,8 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">
             {address ? "Edit Address" : "Add New Address"}
@@ -90,15 +93,15 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
             <label className="block text-sm text-gray-600">Street Address</label>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="street"
+              value={formData.street}
               onChange={handleChange}
               className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="block text-sm text-gray-600">City</label>
               <input
@@ -123,13 +126,25 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="block text-sm text-gray-600">Country</label>
+            <input
+              type="text"
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="block text-sm text-gray-600">PIN Code</label>
               <input
                 type="text"
-                name="pincode"
-                value={formData.pincode}
+                name="postalCode"
+                value={formData.postalCode}
                 onChange={handleChange}
                 className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 required
@@ -165,17 +180,17 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
             </label>
           </div>
 
-          <div className="flex justify-end gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row sm:justify-end gap-2 sm:gap-4 mt-6">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              className="px-4 py-2 text-gray-600 hover:text-gray-800 order-2 sm:order-1"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 order-1 sm:order-2"
             >
               {address ? "Save Changes" : "Add Address"}
             </button>
@@ -187,33 +202,23 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
 };
 
 const DeliveryAddress = () => {
-  const [addresses, setAddresses] = useState([
-    {
-      id: 1,
-      type: "Home",
-      name: "Mayank Kataria",
-      address: "123 Park Street, Green Park",
-      city: "New Delhi",
-      state: "Delhi",
-      pincode: "110016",
-      phone: "7060067719",
-      isDefault: true,
-    },
-    {
-      id: 2,
-      type: "Office",
-      name: "Mayank Kataria",
-      address: "456 Business Complex, Sector 4",
-      city: "Gurugram",
-      state: "Haryana",
-      pincode: "122001",
-      phone: "7060067719",
-      isDefault: false,
-    },
-  ]);
-
+  const [addresses, setAddresses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
+
+  // Fetch addresses on component mount
+  useEffect(() => {
+    fetchAddresses();
+  }, []);
+
+  const fetchAddresses = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/api/address", { withCredentials: true });
+      setAddresses(response.data);
+    } catch (error) {
+      console.error("Failed to fetch addresses:", error);
+    }
+  };
 
   const handleAddNew = () => {
     setEditingAddress(null);
@@ -225,74 +230,44 @@ const DeliveryAddress = () => {
     setIsModalOpen(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this address?")) {
-      const deletedAddress = addresses.find(addr => addr.id === id);
-      const remainingAddresses = addresses.filter(addr => addr.id !== id);
-      
-      // If we're deleting the default address and there are other addresses
-      if (deletedAddress.isDefault && remainingAddresses.length > 0) {
-        // Set the first remaining address as default
-        remainingAddresses[0].isDefault = true;
+      try {
+        await axios.delete(`http://localhost:3001/api/address/delete/${id}`, { withCredentials: true });
+        fetchAddresses(); // Refresh the list after deletion
+      } catch (error) {
+        console.error("Failed to delete address:", error);
       }
-      
-      setAddresses(remainingAddresses);
     }
   };
 
-  const handleSetDefault = (id) => {
-    setAddresses(
-      addresses.map((addr) => ({
-        ...addr,
-        isDefault: addr.id === id,
-      }))
-    );
+  const handleSetDefault = async (id) => {
+    try {
+      await axios.get(`http://localhost:3001/api/address/default/${id}`, { withCredentials: true });
+      fetchAddresses(); // Refresh the list after setting default
+    } catch (error) {
+      console.error("Failed to set default address:", error);
+    }
   };
 
-  const handleSave = (formData) => {
-    if (editingAddress) {
-      // Update existing address
-      setAddresses(prevAddresses => {
-        const updatedAddresses = prevAddresses.map(addr => {
-          if (addr.id === editingAddress.id) {
-            // If this is the edited address
-            return { ...formData, id: editingAddress.id };
-          }
-          // If formData.isDefault is true, set all other addresses to not default
-          if (formData.isDefault) {
-            return { ...addr, isDefault: false };
-          }
-          // If we're removing default status from the only address, make sure at least one address is default
-          if (addr.id !== editingAddress.id && !formData.isDefault && editingAddress.isDefault) {
-            return { ...addr, isDefault: addr === prevAddresses[0] };
-          }
-          return addr;
-        });
-        return updatedAddresses;
-      });
-    } else {
-      // Add new address
-      const newId = Math.max(...addresses.map((addr) => addr.id), 0) + 1;
-      setAddresses(prevAddresses => {
-        const newAddress = { ...formData, id: newId };
-        // If this is the first address, make it default
-        if (prevAddresses.length === 0) {
-          newAddress.isDefault = true;
-        }
-        // If new address is set as default, update other addresses
-        if (newAddress.isDefault) {
-          return [...prevAddresses.map(addr => ({ ...addr, isDefault: false })), newAddress];
-        }
-        return [...prevAddresses, newAddress];
-      });
+  const handleSave = async (formData) => {
+    try {
+      if (editingAddress) {
+        await axios.post(`http://localhost:3001/api/address/edit/${editingAddress._id}`, formData, { withCredentials: true });
+      } else {
+        await axios.post("http://localhost:3001/api/address/add", formData, { withCredentials: true });
+      }
+      fetchAddresses(); // Refresh the list after saving
+    } catch (error) {
+      console.error("Failed to save address:", error);
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-16">
+    <div className="w-full max-w-4xl mx-auto p-3 sm:p-4 lg:p-8 mb-16">
       {/* Header Section */}
-      <div className="bg-white rounded-lg shadow p-6 relative mb-6">
-        <div className="flex justify-between items-center">
+      <div className="bg-white rounded-lg shadow p-4 sm:p-6 relative mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
               <MapPin className="w-5 h-5 text-blue-600" />
@@ -304,7 +279,7 @@ const DeliveryAddress = () => {
           </div>
           <button
             onClick={handleAddNew}
-            className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto justify-center sm:justify-start"
           >
             <Plus className="w-4 h-4" />
             <span>Add New</span>
@@ -315,30 +290,35 @@ const DeliveryAddress = () => {
       {/* Address Cards */}
       <div className="space-y-4">
         {addresses.map((address) => (
-          <div key={address.id} className="bg-white rounded-lg shadow p-6 relative">
+          <div key={address._id} className="bg-white rounded-lg shadow p-4 sm:p-6 relative">
             {address.isDefault && (
-              <span className="absolute top-4 right-4 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
+              <span className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
                 Default
               </span>
             )}
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-start gap-3">
+              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <MapPin className="w-4 h-4 text-gray-600" />
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="flex-1 w-full">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                   <h3 className="font-semibold">{address.type}</h3>
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">
+                  <span className="text-xs bg-gray-100 px-2 py-1 rounded inline-block">
                     +91 {address.phone}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 mb-1">{address.name}</p>
-                <p className="text-sm text-gray-600 mb-1">{address.address}</p>
+                <p className="text-sm text-gray-600 mb-1">{address.street}</p>
                 <p className="text-sm text-gray-600">
-                  {address.city}, {address.state} - {address.pincode}
+                  {address.city}, {address.state} - {address.postalCode}
                 </p>
+                {address.country && (
+                  <p className="text-sm text-gray-600">
+                    {address.country}
+                  </p>
+                )}
 
-                <div className="flex items-center gap-4 mt-4">
+                <div className="flex flex-wrap items-center gap-4 mt-4">
                   <button
                     onClick={() => handleEdit(address)}
                     className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
@@ -347,7 +327,7 @@ const DeliveryAddress = () => {
                     <span className="text-sm">Edit</span>
                   </button>
                   <button
-                    onClick={() => handleDelete(address.id)}
+                    onClick={() => handleDelete(address._id)}
                     className="flex items-center gap-2 text-red-600 hover:text-red-700"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -355,7 +335,7 @@ const DeliveryAddress = () => {
                   </button>
                   {!address.isDefault && (
                     <button
-                      onClick={() => handleSetDefault(address.id)}
+                      onClick={() => handleSetDefault(address._id)}
                       className="flex items-center gap-2 text-gray-600 hover:text-gray-700"
                     >
                       <span className="text-sm">Set as Default</span>
@@ -370,7 +350,7 @@ const DeliveryAddress = () => {
 
       {/* Empty State */}
       {addresses.length === 0 && (
-        <div className="bg-white rounded-lg shadow p-8 text-center">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-8 text-center">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <MapPin className="w-8 h-8 text-gray-400" />
           </div>

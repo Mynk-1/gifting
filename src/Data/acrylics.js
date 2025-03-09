@@ -1,815 +1,623 @@
 export const acrylics = [
-    {
-      "id": "201",
-      "category": "acrylics",
-      "productType": "Classic Acrylic Portrait",
-      "name": "Classic Style Acrylic Portrait",
-      "description": "Elegant hand-painted acrylic portraits with timeless artistic style",
-      "shortDescription": "Transform your photos into stunning acrylic artwork",
-      "price": 149.99,
-      "maxUploads": 3,
-      "images": [
-        "https://www.blissmygift.com/assets/images/products/57771.jpg"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 200,
-        "textPlaceholder": "Share any specific details about style, background, or elements you'd like included...",
-        "types": [
-          {
-            "name": "Single Portrait",
-            "id": "single",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "12×16",
-                "price": 149.99
-              },
-              {
-                "name": "16×20",
-                "price": 199.99
-              },
-              {
-                "name": "20×24",
-                "price": 249.99
-              }
-            ],
-            "description": "Beautiful single subject portrait in acrylic"
-          },
-          {
-            "name": "Couple Portrait",
-            "id": "couple",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "16×20",
-                "price": 249.99
-              },
-              {
-                "name": "20×24",
-                "price": 299.99
-              },
-              {
-                "name": "24×36",
-                "price": 399.99
-              }
-            ],
-            "description": "Romantic couple portrait with detailed backgrounds"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Classic",
-            "id": "classic",
-            "price": 0
-          },
-          {
-            "name": "Impressionist",
-            "id": "impressionist",
-            "price": 50
-          },
-          {
-            "name": "Modern",
-            "id": "modern",
-            "price": 75
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Gallery Canvas",
-            "id": "canvas",
-            "price": 0,
-            "description": "Premium stretched canvas with 1.5\" depth"
-          },
-          {
-            "name": "Framed Canvas",
-            "id": "framed",
-            "price": 89.99,
-            "frameOptions": ["Black", "Gold", "Silver", "Natural Wood"]
-          }
-        ]
-      },
-      "productDetails": {
-        "features": [
-          "Hand-painted by professional artists",
-          "Premium quality acrylic paints",
-          "Gallery-wrapped canvas",
-          "Two revision rounds included",
-          "Archival quality materials",
-          "Satisfaction guaranteed"
-        ]
-      },
-      "shipping": {
-        "processingTime": "14-21 business days",
-        "freeShippingThreshold": 299,
-        "shippingNote": "Free shipping on orders over $299",
-        "rush": {
-          "available": true,
-          "price": 99,
-          "processingTime": "7-10 business days"
-        }
-      },
-      "sections": [
+  {
+    "id": "custom-acrylic-frame-01",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Customizable Acrylic Frame",
+    "name": "Personalized Photo Acrylic Frame",
+    "description": "High-quality acrylic frame to showcase your favorite photos with a modern, sleek design",
+    "shortDescription": "Display your memories in style with our premium acrylic frames",
+    "price": 39.99,
+    "maxUploads": 5,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a caption or message for your frame...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Submit your favorite photo and our skilled artists will create a beautiful acrylic painting that captures the essence of your image. Each painting includes two rounds of revisions to ensure your complete satisfaction."
+          "name": "Standard",
+          "id": "standard",
+          "previewImages": [
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
+            "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
+            "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
+            "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
+          ],
+          "sizes": [
+            {
+              "name": "8x12",
+              "id": "8x12",
+              "dimensions": "8\" × 12\"",
+              "price": 39.99
+            },
+            {
+              "name": "12x18",
+              "id": "12x18",
+              "dimensions": "12\" × 18\"",
+              "price": 49.99
+            },
+            {
+              "name": "18x24",
+              "id": "18x24",
+              "dimensions": "18\" × 24\"",
+              "price": 59.99
+            },
+            {
+              "name": "24x36",
+              "id": "24x36",
+              "dimensions": "24\" × 36\"",
+              "price": 79.99
+            }
+          ]
         },
         {
-          "title": "PHOTO GUIDELINES",
-          "content": "For best results, please provide high-resolution photos with good lighting. Clear, well-focused images help our artists capture the finest details in your painting."
-        },
-        {
-          "title": "CANVAS & FRAMING",
-          "content": "All paintings are created on premium artist canvas and professionally stretched. Optional custom framing is available in various styles to complement your decor."
+          "name": "LED Backlit",
+          "id": "led-backlit",
+          "previewImages": [
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
+            "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
+            "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
+            "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
+          ],
+          "description": "Add a modern touch with LED backlighting",
+          "sizes": [
+            {
+              "name": "8x12",
+              "id": "8x12",
+              "dimensions": "8\" × 12\"",
+              "price": 59.99
+            },
+            {
+              "name": "12x18",
+              "id": "12x18",
+              "dimensions": "12\" × 18\"",
+              "price": 69.99
+            },
+            {
+              "name": "18x24",
+              "id": "18x24",
+              "dimensions": "18\" × 24\"",
+              "price": 89.99
+            },
+            {
+              "name": "24x36",
+              "id": "24x36",
+              "dimensions": "24\" × 36\"",
+              "price": 119.99
+            }
+          ]
         }
       ]
     },
-    {
-      "id": "202",
-      "category": "acrylics",
-      "productType": "Contemporary Acrylic Art",
-      "name": "Modern Acrylic Masterpiece",
-      "description": "Bold and expressive contemporary acrylic paintings with modern flair",
-      "shortDescription": "Turn your vision into vibrant acrylic artwork",
-      "price": 199.99,
-      "maxUploads": 5,
-      "images": [
-        "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 300,
-        "textPlaceholder": "Describe your vision, style preferences, or special elements you'd like included...",
-        "types": [
-          {
-            "name": "Abstract Portrait",
-            "id": "abstract",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "24×24",
-                "price": 199.99
-              },
-              {
-                "name": "36×36",
-                "price": 299.99
-              },
-              {
-                "name": "48×48",
-                "price": 449.99
-              }
-            ],
-            "description": "Contemporary abstract interpretation of your photo"
-          },
-          {
-            "name": "Urban Scene",
-            "id": "urban",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "24×36",
-                "price": 299.99
-              },
-              {
-                "name": "36×48",
-                "price": 449.99
-              },
-              {
-                "name": "48×60",
-                "price": 599.99
-              }
-            ],
-            "description": "Dynamic urban landscape with modern elements"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Bold Contemporary",
-            "id": "contemporary",
-            "price": 0
-          },
-          {
-            "name": "Minimalist",
-            "id": "minimalist",
-            "price": 25
-          },
-          {
-            "name": "Pop Art",
-            "id": "popArt",
-            "price": 75
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Museum Canvas",
-            "id": "museum",
-            "price": 0,
-            "description": "Premium gallery-wrapped canvas with 2\" depth"
-          },
-          {
-            "name": "Floating Frame",
-            "id": "floating",
-            "price": 129.99,
-            "frameOptions": ["Matte Black", "Brushed Gold", "Natural Oak"]
-          }
-        ]
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "printMethod": "High-Resolution UV Printing",
+      "features": [
+        "Shatter-resistant",
+        "Lightweight and durable",
+        "Crystal-clear clarity",
+        "Easy to hang or display"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 75,
+      "shippingNote": "Free shipping on orders over $75"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our premium acrylic frames are made from shatter-resistant, high-quality acrylic with crystal-clear clarity. Photos are printed using high-resolution UV printing for vibrant, long-lasting colors."
       },
-      "productDetails": {
-        "features": [
-          "Created by contemporary art specialists",
-          "Premium artist-grade acrylics",
-          "Museum-quality canvas",
-          "Three revision rounds included",
-          "UV-protective coating",
-          "Certificate of authenticity",
-          "100% satisfaction guarantee"
-        ]
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom acrylic frame to be printed and shipped."
       },
-      "shipping": {
-        "processingTime": "21-28 business days",
-        "freeShippingThreshold": 399,
-        "shippingNote": "Free worldwide shipping on orders over $399",
-        "rush": {
-          "available": true,
-          "price": 149,
-          "processingTime": "10-14 business days"
-        }
-      },
-      "sections": [
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's clarity and finish."
+      }
+    ]
+  },
+  {
+    "id": "custom-music-player-backlit-frame-01",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Music Player Backlit Photo Frame",
+    "name": "Music Player Backlit Photo Frame",
+    "description": "A unique photo frame with built-in music player and backlighting to showcase your favorite memories in a modern and stylish way",
+    "shortDescription": "Combine your favorite photos and music in one elegant frame",
+    "price": 79.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or caption...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Share your inspiration and our contemporary artists will create a stunning modern acrylic masterpiece. Includes three rounds of revisions to perfect your vision."
-        },
-        {
-          "title": "ARTISTIC PROCESS",
-          "content": "Our artists blend traditional techniques with modern approaches to create unique, expressive paintings that capture the essence of your vision."
-        },
-        {
-          "title": "MATERIALS & FINISHING",
-          "content": "We use only premium artist-grade acrylics and museum-quality canvas. Each piece is finished with a UV-protective coating for lasting beauty."
+          "name": "Standard",
+          "id": "standard",
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538209/WhatsApp_Image_2025-03-04_at_22.00.47_ghosux.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538208/WhatsApp_Image_2025-03-04_at_22.00.48_kkf5en.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538207/WhatsApp_Image_2025-03-06_at_23.16.49_dbg4tx.jpg"
+          ]
         }
       ]
     },
-    {
-      "id": "203",
-      "category": "acrylics",
-      "productType": "Pet Portrait",
-      "name": "Custom Acrylic Pet Portrait",
-      "description": "Lifelike acrylic portraits of your beloved pets, capturing their unique personality",
-      "shortDescription": "Celebrate your furry friends with a custom acrylic portrait",
-      "price": 179.99,
-      "maxUploads": 3,
-      "images": [
-        "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 150,
-        "textPlaceholder": "Tell us about your pet's personality or any special details...",
-        "types": [
-          {
-            "name": "Single Pet",
-            "id": "singlePet",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "12×12",
-                "price": 179.99
-              },
-              {
-                "name": "16×16",
-                "price": 229.99
-              },
-              {
-                "name": "20×20",
-                "price": 279.99
-              }
-            ],
-            "description": "A stunning portrait of your beloved pet"
-          },
-          {
-            "name": "Multiple Pets",
-            "id": "multiplePets",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a3_kzkebj.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "16×20",
-                "price": 299.99
-              },
-              {
-                "name": "20×24",
-                "price": 349.99
-              },
-              {
-                "name": "24×30",
-                "price": 449.99
-              }
-            ],
-            "description": "Capture the bond between your pets in one artwork"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Realistic",
-            "id": "realistic",
-            "price": 0
-          },
-          {
-            "name": "Whimsical",
-            "id": "whimsical",
-            "price": 50
-          },
-          {
-            "name": "Abstract",
-            "id": "abstract",
-            "price": 75
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Gallery Canvas",
-            "id": "canvas",
-            "price": 0,
-            "description": "Premium stretched canvas with 1.5\" depth"
-          },
-          {
-            "name": "Framed Canvas",
-            "id": "framed",
-            "price": 99.99,
-            "frameOptions": ["Black", "White", "Natural Wood"]
-          }
-        ]
+    "productDetails": {
+      "material": "Premium Acrylic and Wood",
+      "features": [
+        "Built-in music player with Bluetooth connectivity",
+        "LED backlighting for a modern look",
+        "High-resolution display for vibrant photos",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our Music Player Backlit Photo Frame combines a high-resolution display with a built-in music player and LED backlighting. It's perfect for showcasing your favorite photos while playing your favorite tunes."
       },
-      "productDetails": {
-        "features": [
-          "Hand-painted by pet portrait specialists",
-          "Vibrant and durable acrylic paints",
-          "Two revision rounds included",
-          "Archival-quality materials",
-          "Satisfaction guaranteed"
-        ]
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom photo frame to be prepared and shipped."
       },
-      "shipping": {
-        "processingTime": "14-21 business days",
-        "freeShippingThreshold": 299,
-        "shippingNote": "Free shipping on orders over $299",
-        "rush": {
-          "available": true,
-          "price": 99,
-          "processingTime": "7-10 business days"
-        }
-      },
-      "sections": [
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  }
+  ,
+  {
+    "id": "custom-acrylic-clock-01",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Customizable Acrylic Clock",
+    "name": "Personalized Photo Acrylic Clock",
+    "description": "High-quality acrylic clock with your favorite photos, perfect for adding a personal touch to your home or office",
+    "shortDescription": "Turn your memories into a functional and stylish clock",
+    "price": 49.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or date to your clock...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Submit your favorite photo of your pet, and our artists will create a lifelike acrylic portrait that captures their unique personality."
+          "name": "Square",
+          "id": "square",
+          "previewImages": [
+            "https://hiqpic.in/cdn/shop/files/photo_2024-04-16_18-12-30.jpg?v=1713382256&width=550",
+            "https://hiqpic.in/cdn/shop/files/square.webp?v=1713356865&width=550",
+            "https://m.media-amazon.com/images/I/61tROWCU32L._SX425_.jpg",
+            "https://img.thecdn.in/64506/square_Clock-1-1715777724390.jpeg?width=600&format=webp"
+          ],
+          "sizes": [
+            {
+              "name": "10x10-inch",
+              "id": "10x10-inch",
+              "dimensions": "10\" × 10\"",
+              "price": 49.99
+            },
+            {
+              "name": "12x12-inch",
+              "id": "12x12-inch",
+              "dimensions": "12\" × 12\"",
+              "price": 59.99
+            },
+            {
+              "name": "14x14-inch",
+              "id": "14x14-inch",
+              "dimensions": "14\" × 14\"",
+              "price": 69.99
+            }
+          ]
         },
         {
-          "title": "PHOTO GUIDELINES",
-          "content": "High-quality, well-lit photos work best. Ensure your pet's face is clearly visible for the most accurate representation."
-        },
-        {
-          "title": "MATERIALS & FINISHING",
-          "content": "Each portrait is painted on premium canvas with artist-grade acrylics, ensuring a lasting and vibrant artwork."
+          "name": "Circle",
+          "id": "circle",
+          "previewImages": [
+            "https://hiqpic.in/cdn/shop/files/photo_2024-04-16_18-08-10.jpg?v=1713382256",
+            "https://omgs.shop/wp-content/uploads/2022/05/round.jpg",
+            "https://cdn.shopify.com/s/files/1/0851/6475/3185/files/Clock-Size--600x600.webp?v=1713359026",
+            "https://cdn.shopify.com/s/files/1/0851/6475/3185/files/photo_2024-04-16_16-11-29.jpg?v=1713264263",
+            "https://cdn.shopify.com/s/files/1/0851/6475/3185/files/photo_2024-04-17_18-01-11_c17dc856-f5b4-463c-b2d6-890deb8f71ff.jpg?v=1713357173",
+            "https://hiqpic.in/cdn/shop/files/photo_2024-04-16_16-18-10.jpg?v=1713356865&width=550"
+          ],
+          "sizes": [
+            {
+              "name": "10-inch",
+              "id": "10-inch",
+              "dimensions": "10\" diameter",
+              "price": 49.99
+            },
+            {
+              "name": "12-inch",
+              "id": "12-inch",
+              "dimensions": "12\" diameter",
+              "price": 59.99
+            },
+            {
+              "name": "14-inch",
+              "id": "14-inch",
+              "dimensions": "14\" diameter",
+              "price": 69.99
+            }
+          ]
         }
       ]
     },
-    {
-      "id": "204",
-      "category": "acrylics",
-      "productType": "Landscape Painting",
-      "name": "Custom Acrylic Landscape",
-      "description": "Breathtaking acrylic landscapes that bring your favorite scenes to life",
-      "shortDescription": "Turn your favorite landscapes into stunning acrylic art",
-      "price": 249.99,
-      "maxUploads": 5,
-      "images": [
-        "https://onlineframing.in/cdn/shop/files/71hX3An_SDL._AC_UF894_1000_QL80_e6c7d4af-2331-402e-9842-d387f9d70d1f.jpg?v=1719039886"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 200,
-        "textPlaceholder": "Describe the scene, mood, or specific elements you'd like included...",
-        "types": [
-          {
-            "name": "Nature Landscape",
-            "id": "nature",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "16×20",
-                "price": 249.99
-              },
-              {
-                "name": "24×36",
-                "price": 349.99
-              },
-              {
-                "name": "36×48",
-                "price": 499.99
-              }
-            ],
-            "description": "Vivid and detailed nature landscapes"
-          },
-          {
-            "name": "Cityscape",
-            "id": "cityscape",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a4_jwhgoo.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "20×24",
-                "price": 299.99
-              },
-              {
-                "name": "30×40",
-                "price": 449.99
-              },
-              {
-                "name": "40×50",
-                "price": 599.99
-              }
-            ],
-            "description": "Dynamic and vibrant cityscapes"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Realistic",
-            "id": "realistic",
-            "price": 0
-          },
-          {
-            "name": "Impressionist",
-            "id": "impressionist",
-            "price": 50
-          },
-          {
-            "name": "Abstract",
-            "id": "abstract",
-            "price": 75
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Gallery Canvas",
-            "id": "canvas",
-            "price": 0,
-            "description": "Premium stretched canvas with 1.5\" depth"
-          },
-          {
-            "name": "Framed Canvas",
-            "id": "framed",
-            "price": 129.99,
-            "frameOptions": ["Black", "Gold", "Natural Wood"]
-          }
-        ]
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "printMethod": "High-Resolution UV Printing",
+      "features": [
+        "Shatter-resistant",
+        "Quartz clock mechanism",
+        "Easy-to-read clock hands",
+        "Lightweight and durable",
+        "Includes hanging hardware"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 75,
+      "shippingNote": "Free shipping on orders over $75"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our premium acrylic clocks are made from shatter-resistant, high-quality acrylic. Photos are printed using high-resolution UV printing for vibrant, long-lasting colors. Each clock includes a reliable quartz clock mechanism and easy-to-read clock hands."
       },
-      "productDetails": {
-        "features": [
-          "Hand-painted by landscape artists",
-          "Premium artist-grade acrylics",
-          "Three revision rounds included",
-          "UV-protective coating",
-          "Certificate of authenticity"
-        ]
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom acrylic clock to be printed and shipped."
       },
-      "shipping": {
-        "processingTime": "21-28 business days",
-        "freeShippingThreshold": 499,
-        "shippingNote": "Free shipping on orders over $499",
-        "rush": {
-          "available": true,
-          "price": 149,
-          "processingTime": "10-14 business days"
-        }
-      },
-      "sections": [
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the clock's clarity and finish."
+      }
+    ]
+  },
+  {
+    "id": "custom-anniversary-backlit-frame-01",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Anniversary Backlit Frame",
+    "name": "Personalized Anniversary Backlit Frame",
+    "description": "Celebrate your special moments with a stunning backlit frame, perfect for anniversaries and other cherished occasions",
+    "shortDescription": "Illuminate your memories with our elegant backlit frames",
+    "price": 69.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or date...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Share your favorite landscape photos or ideas, and our artists will create a stunning acrylic painting that captures the beauty of the scene."
+          "name": "Half Moon",
+          "id": "half-moon",
+          "price": 69.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp"
+          ],
+          "description": "A unique half-moon design with soft LED backlighting"
         },
         {
-          "title": "PHOTO GUIDELINES",
-          "content": "High-resolution photos with good lighting and clear details work best for creating accurate and vibrant landscapes."
-        },
-        {
-          "title": "MATERIALS & FINISHING",
-          "content": "Each painting is created on premium canvas with artist-grade acrylics and finished with a UV-protective coating for lasting vibrancy."
+          "name": "Full Moon",
+          "id": "full-moon",
+          "price": 79.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp"
+          ],
+          "description": "A complete circular design with vibrant LED backlighting"
         }
       ]
     },
-    {
-      "id": "205",
-      "category": "acrylics",
-      "productType": "Family Portrait",
-      "name": "Custom Acrylic Family Portrait",
-      "description": "Heartwarming family portraits painted in acrylic, capturing your family's unique bond",
-      "shortDescription": "Celebrate your family with a custom acrylic portrait",
-      "price": 299.99,
-      "maxUploads": 5,
-      "images": [
-        "https://onlineframing.in/cdn/shop/files/712Ttcv5xyL._SX679_f9102b7d-6a63-4faa-b78b-2d918784cec0.jpg?v=1719039886"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 250,
-        "textPlaceholder": "Share any special details or preferences for your family portrait...",
-        "types": [
-          {
-            "name": "Small Family (Up to 4 people)",
-            "id": "smallFamily",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "16×20",
-                "price": 299.99
-              },
-              {
-                "name": "20×24",
-                "price": 399.99
-              },
-              {
-                "name": "24×30",
-                "price": 499.99
-              }
-            ],
-            "description": "A beautiful portrait of your small family"
-          },
-          {
-            "name": "Large Family (5+ people)",
-            "id": "largeFamily",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a1_xnsztr.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a2_d7wp0q.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a5_uufset.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "20×24",
-                "price": 449.99
-              },
-              {
-                "name": "24×36",
-                "price": 599.99
-              },
-              {
-                "name": "30×40",
-                "price": 799.99
-              }
-            ],
-            "description": "A stunning portrait of your extended family"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Classic",
-            "id": "classic",
-            "price": 0
-          },
-          {
-            "name": "Modern",
-            "id": "modern",
-            "price": 50
-          },
-          {
-            "name": "Impressionist",
-            "id": "impressionist",
-            "price": 75
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Gallery Canvas",
-            "id": "canvas",
-            "price": 0,
-            "description": "Premium stretched canvas with 1.5\" depth"
-          },
-          {
-            "name": "Framed Canvas",
-            "id": "framed",
-            "price": 149.99,
-            "frameOptions": ["Black", "Gold", "Silver", "Natural Wood"]
-          }
-        ]
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "features": [
+        "LED backlighting for a modern and elegant look",
+        "High-quality acrylic construction",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging",
+        "Lightweight and easy to hang"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our Anniversary Backlit Frames are made from premium acrylic and feature elegant LED backlighting. They are perfect for showcasing your cherished memories in a modern and stylish way."
       },
-      "productDetails": {
-        "features": [
-          "Hand-painted by professional portrait artists",
-          "Premium artist-grade acrylics",
-          "Three revision rounds included",
-          "Archival-quality materials",
-          "Satisfaction guaranteed"
-        ]
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
       },
-      "shipping": {
-        "processingTime": "21-28 business days",
-        "freeShippingThreshold": 499,
-        "shippingNote": "Free shipping on orders over $499",
-        "rush": {
-          "available": true,
-          "price": 149,
-          "processingTime": "10-14 business days"
-        }
-      },
-      "sections": [
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  },
+
+  {
+    "id": "promise-backlit-frame-01",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Promise Backlit Frame",
+    "name": "Promise Backlit Frame",
+    "description": "A beautiful backlit frame to celebrate promises and special moments, perfect for adding a personal touch to your home or office",
+    "shortDescription": "Illuminate your promises with our elegant backlit frame",
+    "price": 59.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special promise or message...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Submit your favorite family photos, and our artists will create a beautiful acrylic portrait that captures your family's unique bond."
-        },
-        {
-          "title": "PHOTO GUIDELINES",
-          "content": "High-quality, well-lit photos work best. Ensure all faces are clearly visible for the most accurate representation."
-        },
-        {
-          "title": "MATERIALS & FINISHING",
-          "content": "Each portrait is painted on premium canvas with artist-grade acrylics, ensuring a lasting and vibrant artwork."
+          "name": "Standard",
+          "id": "standard",
+          "price": 59.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp"
+          ]
         }
       ]
     },
-    {
-      "id": "206",
-      "category": "acrylics",
-      "productType": "Abstract Art",
-      "name": "Custom Abstract Acrylic Painting",
-      "description": "Unique and expressive abstract acrylic paintings tailored to your vision",
-      "shortDescription": "Bring your abstract ideas to life with custom acrylic art",
-      "price": 199.99,
-      "maxUploads": 5,
-      "images": [
-        "https://onlineframing.in/cdn/shop/files/AluminiumWarf-01_web-1-1024x683_6709e2cf-f6e4-4fb3-b7e9-32d87b423021.jpg?v=1719039886"
-      ],
-      "isCustomizable": true,
-      "customizationOptions": {
-        "allowText": true,
-        "maxTextLength": 300,
-        "textPlaceholder": "Describe your vision, color preferences, or any special elements...",
-        "types": [
-          {
-            "name": "Geometric Abstract",
-            "id": "geometric",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a6_abstract.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a7_abstract2.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a8_abstract3.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "24×24",
-                "price": 199.99
-              },
-              {
-                "name": "36×36",
-                "price": 299.99
-              },
-              {
-                "name": "48×48",
-                "price": 449.99
-              }
-            ],
-            "description": "Bold and structured geometric abstract art"
-          },
-          {
-            "name": "Fluid Art",
-            "id": "fluid",
-            "previewImages": [
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a7_abstract2.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a8_abstract3.jpg",
-              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739701841/a6_abstract.jpg"
-            ],
-            "sizes": [
-              {
-                "name": "20×24",
-                "price": 249.99
-              },
-              {
-                "name": "30×40",
-                "price": 399.99
-              },
-              {
-                "name": "40×50",
-                "price": 599.99
-              }
-            ],
-            "description": "Dynamic and colorful fluid abstract art"
-          }
-        ],
-        "styles": [
-          {
-            "name": "Bold & Vibrant",
-            "id": "bold",
-            "price": 0
-          },
-          {
-            "name": "Minimalist",
-            "id": "minimalist",
-            "price": 25
-          },
-          {
-            "name": "Monochromatic",
-            "id": "monochromatic",
-            "price": 50
-          }
-        ],
-        "deliveryFormats": [
-          {
-            "name": "Gallery Canvas",
-            "id": "canvas",
-            "price": 0,
-            "description": "Premium stretched canvas with 1.5\" depth"
-          },
-          {
-            "name": "Floating Frame",
-            "id": "floating",
-            "price": 129.99,
-            "frameOptions": ["Matte Black", "Brushed Gold", "Natural Oak"]
-          }
-        ]
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "features": [
+        "LED backlighting for a modern and elegant look",
+        "High-quality acrylic construction",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging",
+        "Lightweight and easy to hang"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our Promise Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your promises and special moments in a modern and stylish way."
       },
-      "productDetails": {
-        "features": [
-          "Created by abstract art specialists",
-          "Premium artist-grade acrylics",
-          "Three revision rounds included",
-          "UV-protective coating",
-          "Certificate of authenticity"
-        ]
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
       },
-      "shipping": {
-        "processingTime": "21-28 business days",
-        "freeShippingThreshold": 399,
-        "shippingNote": "Free shipping on orders over $399",
-        "rush": {
-          "available": true,
-          "price": 149,
-          "processingTime": "10-14 business days"
-        }
-      },
-      "sections": [
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  },
+  {
+    "id": "custom-anniversary-backlit-frame-02",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Heart Anniversary Backlit Frame",
+    "name": "Heart Anniversary Backlit Frame",
+    "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
+    "shortDescription": "Illuminate your first year of love with our premium backlit frame",
+    "price": 69.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or date...",
+      "types": [
         {
-          "title": "HOW IT WORKS",
-          "content": "Share your abstract vision, and our artists will create a unique acrylic painting that reflects your style and preferences."
-        },
-        {
-          "title": "ARTISTIC PROCESS",
-          "content": "Our artists use innovative techniques to create expressive and dynamic abstract artworks."
-        },
-        {
-          "title": "MATERIALS & FINISHING",
-          "content": "Each painting is created on premium canvas with artist-grade acrylics and finished with a UV-protective coating."
+          "name": "Standard",
+          "id": "standard",
+          "price": 69.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg"
+          ],
+          "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
         }
       ]
-    }
-  ];
-  
-  export const getItemByAcrylicsId = (id) => {
-    return acrylics.find(item => item.id === id);
-  };
+    },
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "features": [
+        "LED backlighting for a modern and elegant look",
+        "High-quality acrylic construction",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging",
+        "Lightweight and easy to hang"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our First Anniversary Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your cherished memories in a modern and stylish way."
+      },
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
+      },
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  },
+  {
+    "id": "custom-anniversary-backlit-frame-03",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Diamond Anniversary Backlit Frame",
+    "name": "Diamond Anniversary Backlit Frame",
+    "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
+    "shortDescription": "Illuminate your first year of love with our premium backlit frame",
+    "price": 69.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or date...",
+      "types": [
+        {
+          "name": "Standard",
+          "id": "standard",
+          "price": 69.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg"
+          ],
+          "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
+        }
+      ]
+    },
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "features": [
+        "LED backlighting for a modern and elegant look",
+        "High-quality acrylic construction",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging",
+        "Lightweight and easy to hang"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our First Anniversary Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your cherished memories in a modern and stylish way."
+      },
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
+      },
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  }
+  ,
+  {
+    "id": "custom-anniversary-backlit-frame-04",
+    "isCustomizable": true,
+    "category": "acrylics",
+    "productType": "Infinity Anniversary Backlit Frame",
+    "name": "Infinity Anniversary Backlit Frame",
+    "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
+    "shortDescription": "Illuminate your first year of love with our premium backlit frame",
+    "price": 69.99,
+    "maxUploads": 1,
+    "customizationOptions": {
+      "allowText": true,
+      "maxTextLength": 50,
+      "textPlaceholder": "Add a special message or date...",
+      "types": [
+        {
+          "name": "Standard",
+          "id": "standard",
+          "price": 69.99,
+          "previewImages": [
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg",
+            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg"
+          ],
+          "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
+        }
+      ]
+    },
+    "productDetails": {
+      "material": "Premium Acrylic",
+      "features": [
+        "LED backlighting for a modern and elegant look",
+        "High-quality acrylic construction",
+        "Easy-to-use touch controls",
+        "Rechargeable battery with USB charging",
+        "Lightweight and easy to hang"
+      ]
+    },
+    "shipping": {
+      "processingTime": "5-7 business days",
+      "freeShippingThreshold": 100,
+      "shippingNote": "Free shipping on orders over $100"
+    },
+    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+    "sections": [
+      {
+        "title": "PRODUCT DETAILS",
+        "content": "Our First Anniversary Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your cherished memories in a modern and stylish way."
+      },
+      {
+        "title": "SHIPPING INFORMATION",
+        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
+      },
+      {
+        "title": "CARE INSTRUCTIONS",
+        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+      }
+    ]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+];
+
+export const getItemByAcrylicsId = (id) => {
+  return acrylics.find(item => item.id === id);
+};

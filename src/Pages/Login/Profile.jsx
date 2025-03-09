@@ -3,7 +3,7 @@ import {
   User,
   MapPin,
   ShoppingBag,
- 
+  Locate,
   Users,
   Lock,
   LogOut,
@@ -34,9 +34,10 @@ const Profile = () => {
     { icon: User, label: "My Profile", id: "profile", count: null },
     { icon: MapPin, label: "Delivery Address", id: "address", count: 0 },
     { icon: ShoppingBag, label: "My Orders", id: "orders", count: 0 },
+    { icon: Locate, label: "Track Order", id: "track", count: 0 },
     // { icon: Heart, label: "My Wishlist", id: "wishlist", count: 0 },
-    { icon: Users, label: "Refer Friend", id: "refer", count: null },
-    { icon: Lock, label: "Change Password", id: "password", count: null },
+    // { icon: Users, label: "Refer Friend", id: "refer", count: null },
+    // { icon: Lock, label: "Change Password", id: "password", count: null },
     { icon: LogOut, label: "Log Out", id: "logout", count: null },
   ];
 
@@ -80,7 +81,7 @@ const Profile = () => {
         return <DeliveryAddress />;
       case "orders":
         return <MyOrders />;
-      case "refer":
+      case "track":
         return <ReferFriend />;
       case "password":
         return <ChangePassword/>;

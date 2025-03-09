@@ -1,132 +1,123 @@
-import React, { useState } from "react";
-import {
-  
-  Edit,
-  Save,
-  X
-} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Edit, Save, X } from "lucide-react";
+import { useAuth } from "../../../auth/AuthProvider";
 
 const UserProfile = () => {
+  const { user } = useAuth(); // Use useAuth inside the component
   const [isEditing, setIsEditing] = useState(false);
-  const [errors, setErrors] = useState({
-    email: "",
-    phone: ""
-  });
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
-    firstName: "Mayank",
-    lastName: "Kataria",
-    email: "mayankkataria1628@gmail.com",
-    phone: "+917060067719",
-    day: "",
-    month: "",
-    year: "",
-    gender: ""
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthdate: "",
+    gender: "",
   });
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
-      return "Email is required";
+  // Fetch or initialize user profile
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/user/profile", {
+        method: "GET",
+        credentials: "include", // Include cookies for authentication
+      });
+
+    
+      const data = await response.json();
+      // console.log(data)
+      setFormData(data);
+      
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      setIsLoading(false);
     }
-    if (!emailRegex.test(email)) {
-      return "Please enter a valid email address";
-    }
-    return "";
   };
 
-  const validatePhone = (phone) => {
-    const phoneRegex = /^\+91[6-9]\d{9}$/;
-    if (!phone) {
-      return "Phone number is required";
-    }
-    if (!phoneRegex.test(phone)) {
-      return "Please enter a valid Indian phone number (+91 followed by 10 digits)";
-    }
-    return "";
-  };
+  // Fetch profile data on component mount
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-
-    if (name === "email" || name === "phone") {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ""
-      }));
-    }
   };
 
-  const handleSave = () => {
-    const emailError = validateEmail(formData.email);
-    const phoneError = validatePhone(formData.phone);
-
-    setErrors({
-      email: emailError,
-      phone: phoneError
-    });
-
-    if (!emailError && !phoneError) {
+  // Save updated profile data
+  const handleSave = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/user/profile", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      // console.log(response)
+      await fetchUserProfile(); // Fetch updated data to ensure UI is in sync
       setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating profile:", error);
     }
   };
 
+  // Cancel editing and reset form data
   const handleCancel = () => {
-    setFormData({
-      firstName: "Mayank",
-      lastName: "Kataria",
-      email: "mayankkataria1628@gmail.com",
-      phone: "+917060067719",
-      day: "",
-      month: "",
-      year: "",
-      gender: ""
-    });
-    setErrors({
-      email: "",
-      phone: ""
-    });
+    fetchUserProfile(); // Reset to original data
     setIsEditing(false);
   };
 
+  // Show loading state
+  if (isLoading) {
+    return <div className="flex justify-center items-center h-64">Loading...</div>;
+  }
+
   return (
-    <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-8">
-      <div className="bg-white rounded-lg shadow p-6 relative mt-16 mb-8 lg:mb-0">
+    <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-12">
+      <div className="bg-white rounded-lg shadow p-6 relative mt-16">
+        {/* Profile Header */}
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mb-2">
-            MK
+          <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl">
+            {formData.firstName?.[0]}
+            {formData.lastName?.[0]}
           </div>
-          <h2 className="text-lg font-semibold">Good Evening!</h2>
-          <p className="text-sm font-semibold">Mayank</p>
+          <h2 className="text-lg font-semibold mt-2">
+            {formData.firstName || "Welcome"}
+          </h2>
         </div>
 
+        {/* Edit Controls */}
         {isEditing ? (
-          <>
+          <div className="absolute top-4 right-4 flex gap-2">
             <button
               onClick={handleCancel}
-              className="absolute top-4 left-4 w-8 h-8 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-full transition-colors"
+              className="text-red-500 hover:bg-red-50 p-2 rounded-full"
             >
               <X className="w-5 h-5" />
             </button>
             <button
               onClick={handleSave}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-green-500 hover:bg-green-50 rounded-full transition-colors"
+              className="text-green-500 hover:bg-green-50 p-2 rounded-full"
             >
               <Save className="w-5 h-5" />
             </button>
-          </>
+          </div>
         ) : (
           <button
             onClick={() => setIsEditing(true)}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:bg-gray-50 rounded-full transition-colors"
+            className="absolute top-4 right-4 text-gray-400 hover:bg-gray-50 p-2 rounded-full"
           >
             <Edit className="w-5 h-5" />
           </button>
         )}
 
+        {/* Form Fields */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-16">
           <div>
             <label className="block text-sm text-gray-600 mb-2">First Name</label>
@@ -136,8 +127,8 @@ const UserProfile = () => {
               value={formData.firstName}
               onChange={handleInputChange}
               className={`w-full p-2 rounded border ${
-                isEditing 
-                  ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                isEditing
+                  ? "bg-white border-gray-300"
                   : "bg-gray-50 border-gray-200"
               }`}
               readOnly={!isEditing}
@@ -152,8 +143,8 @@ const UserProfile = () => {
               value={formData.lastName}
               onChange={handleInputChange}
               className={`w-full p-2 rounded border ${
-                isEditing 
-                  ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                isEditing
+                  ? "bg-white border-gray-300"
                   : "bg-gray-50 border-gray-200"
               }`}
               readOnly={!isEditing}
@@ -168,118 +159,59 @@ const UserProfile = () => {
               value={formData.email}
               onChange={handleInputChange}
               className={`w-full p-2 rounded border ${
-                isEditing 
-                  ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                isEditing
+                  ? "bg-white border-gray-300"
                   : "bg-gray-50 border-gray-200"
-              } ${errors.email ? "border-red-500" : ""}`}
+              }`}
               readOnly={!isEditing}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-            )}
           </div>
 
+          {/* Phone Number Field (Read-Only) */}
           <div>
-            <label className="block text-sm text-gray-600 mb-2">Contact Number</label>
+            <label className="block text-sm text-gray-600 mb-2">Phone Number</label>
             <input
               type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className={`w-full p-2 rounded border ${
-                isEditing 
-                  ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                  : "bg-gray-50 border-gray-200"
-              } ${errors.phone ? "border-red-500" : ""}`}
-              readOnly={!isEditing}
+              value={user.phone || ""}
+              className="w-full p-2 rounded border bg-gray-50 border-gray-200"
+              readOnly
             />
-            {errors.phone && (
-              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-            )}
           </div>
 
           <div>
             <label className="block text-sm text-gray-600 mb-2">Birthdate</label>
-            <div className="flex gap-4">
-              <input
-                type="text"
-                name="day"
-                placeholder="DD"
-                value={formData.day}
-                onChange={handleInputChange}
-                className={`w-20 p-2 rounded border ${
-                  isEditing 
-                    ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                    : "bg-gray-50 border-gray-200"
-                }`}
-                readOnly={!isEditing}
-              />
-              <input
-                type="text"
-                name="month"
-                placeholder="MM"
-                value={formData.month}
-                onChange={handleInputChange}
-                className={`w-20 p-2 rounded border ${
-                  isEditing 
-                    ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                    : "bg-gray-50 border-gray-200"
-                }`}
-                readOnly={!isEditing}
-              />
-              <input
-                type="text"
-                name="year"
-                placeholder="YYYY"
-                value={formData.year}
-                onChange={handleInputChange}
-                className={`w-20 p-2 rounded border ${
-                  isEditing 
-                    ? "bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                    : "bg-gray-50 border-gray-200"
-                }`}
-                readOnly={!isEditing}
-              />
-            </div>
+            <input
+              type="date"
+              name="birthdate"
+              value={formData.birthdate ? new Date(formData.birthdate).toISOString().split('T')[0] : ''}
+              onChange={handleInputChange}
+              className={`w-full p-2 rounded border ${
+                isEditing
+                  ? "bg-white border-gray-300"
+                  : "bg-gray-50 border-gray-200"
+              }`}
+              readOnly={!isEditing}
+            />
           </div>
 
           <div>
             <label className="block text-sm text-gray-600 mb-2">Gender</label>
-            <div className="flex gap-4">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  checked={formData.gender === "male"}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                />
-                <span className="text-sm">Male</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  checked={formData.gender === "female"}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                />
-                <span className="text-sm">Female</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="other"
-                  checked={formData.gender === "other"}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                />
-                <span className="text-sm">Other</span>
-              </label>
-            </div>
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              className={`w-full p-2 rounded border ${
+                isEditing
+                  ? "bg-white border-gray-300"
+                  : "bg-gray-50 border-gray-200"
+              }`}
+              disabled={!isEditing}
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
         </div>
       </div>

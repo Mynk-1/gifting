@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Package, ChevronDown, ChevronUp, ShoppingBag, Clock, CheckCircle, XCircle, Truck } from "lucide-react";
 
 const OrderStatus = ({ status }) => {
@@ -9,6 +9,7 @@ const OrderStatus = ({ status }) => {
       case 'cancelled':
         return 'bg-red-50 text-red-700';
       case 'processing':
+      case 'pending':
         return 'bg-blue-50 text-blue-700';
       case 'shipped':
         return 'bg-purple-50 text-purple-700';
@@ -28,13 +29,13 @@ const OrderItem = ({ item }) => (
   <div className="flex items-center gap-4 py-3 border-t border-gray-100 first:border-t-0">
     <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
       <img 
-        src={item.image || "/api/placeholder/64/64"} 
-        alt={item.name} 
+        src={item.productImage || "/api/placeholder/64/64"} 
+        alt={item.selectedTypeName} 
         className="w-12 h-12 object-cover rounded"
       />
     </div>
     <div className="flex-1 min-w-0">
-      <h4 className="text-sm font-medium text-gray-900 truncate">{item.name}</h4>
+      <h4 className="text-sm font-medium text-gray-900 truncate">{item.selectedTypeName}</h4>
       <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
       <p className="text-sm font-medium text-gray-900">₹{item.price.toFixed(2)}</p>
     </div>
@@ -51,11 +52,38 @@ const Order = ({ order }) => {
       case 'cancelled':
         return <XCircle className="w-4 h-4 text-red-600" />;
       case 'processing':
+      case 'pending':
         return <Clock className="w-4 h-4 text-blue-600" />;
       case 'shipped':
         return <Truck className="w-4 h-4 text-purple-600" />;
       default:
         return <Clock className="w-4 h-4 text-gray-600" />;
+    }
+  };
+
+  // Format date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  };
+
+  const formattedDate = formatDate(order.createdAt);
+  
+  // Create status message
+  const getStatusMessage = (status, date) => {
+    switch (status.toLowerCase()) {
+      case 'delivered':
+        return `Delivered on ${date}`;
+      case 'cancelled':
+        return `Cancelled on ${date}`;
+      case 'processing':
+        return 'Order is being processed';
+      case 'pending':
+        return 'Order is pending';
+      case 'shipped':
+        return `Shipped on ${date}`;
+      default:
+        return `Order status: ${status}`;
     }
   };
 
@@ -66,10 +94,10 @@ const Order = ({ order }) => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-medium text-gray-900">Order #{order.orderId}</h3>
+              <h3 className="text-sm font-medium text-gray-900">Order #{order.orderNumber}</h3>
               <OrderStatus status={order.status} />
             </div>
-            <p className="text-sm text-gray-500">Placed on {order.date}</p>
+            <p className="text-sm text-gray-500">Placed on {formattedDate}</p>
           </div>
           <div className="flex items-center gap-4">
             <p className="text-sm font-medium text-gray-900">₹{order.total.toFixed(2)}</p>
@@ -89,7 +117,7 @@ const Order = ({ order }) => {
         {/* Status Timeline */}
         <div className="mt-4 flex items-center gap-2">
           {getStatusIcon(order.status)}
-          <div className="text-sm text-gray-500">{order.statusMessage}</div>
+          <div className="text-sm text-gray-500">{getStatusMessage(order.status, formattedDate)}</div>
         </div>
       </div>
 
@@ -101,10 +129,10 @@ const Order = ({ order }) => {
             <div>
               <h4 className="text-sm font-medium text-gray-900 mb-2">Delivery Address</h4>
               <div className="text-sm text-gray-500">
-                <p>{order.deliveryAddress.name}</p>
-                <p>{order.deliveryAddress.address}</p>
-                <p>{order.deliveryAddress.city}, {order.deliveryAddress.state} {order.deliveryAddress.pincode}</p>
-                <p>Phone: {order.deliveryAddress.phone}</p>
+                <p>{order.address.name}</p>
+                <p>{order.address.street}</p>
+                <p>{order.address.city}, {order.address.state} {order.address.postalCode}</p>
+                <p>Phone: {order.address.phone}</p>
               </div>
             </div>
 
@@ -147,66 +175,71 @@ const Order = ({ order }) => {
 };
 
 const MyOrders = () => {
-  const [orders] = useState([
-    {
-      orderId: "ORD123456",
-      date: "15 Feb 2025",
-      status: "Delivered",
-      statusMessage: "Delivered on 14 Feb 2025",
-      total: 2499.00,
-      subtotal: 2299.00,
-      shipping: 100.00,
-      tax: 100.00,
-      items: [
-        {
-          name: "Cotton T-Shirt",
-          quantity: 2,
-          price: 999.00,
-          image: "/api/placeholder/64/64"
-        },
-        {
-          name: "Denim Jeans",
-          quantity: 1,
-          price: 1300.00,
-          image: "/api/placeholder/64/64"
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('http://localhost:3001/api/orders/get', {
+          method: 'GET',
+          credentials: 'include', // Include credentials as requested
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
         }
-      ],
-      deliveryAddress: {
-        name: "John Doe",
-        address: "123 Main Street",
-        city: "Mumbai",
-        state: "Maharashtra",
-        pincode: "400001",
-        phone: "9876543210"
-      }
-    },
-    {
-      orderId: "ORD123457",
-      date: "14 Feb 2025",
-      status: "Processing",
-      statusMessage: "Order is being processed",
-      total: 1599.00,
-      subtotal: 1399.00,
-      shipping: 100.00,
-      tax: 100.00,
-      items: [
-        {
-          name: "Running Shoes",
-          quantity: 1,
-          price: 1399.00,
-          image: "/api/placeholder/64/64"
+
+        const data = await response.json();
+        if (data.success && data.orders) {
+          setOrders(data.orders);
+        } else {
+          setOrders([]);
         }
-      ],
-      deliveryAddress: {
-        name: "John Doe",
-        address: "123 Main Street",
-        city: "Mumbai",
-        state: "Maharashtra",
-        pincode: "400001",
-        phone: "9876543210"
+      } catch (err) {
+        console.error('Failed to fetch orders:', err);
+        setError('Failed to load orders. Please try again later.');
+      } finally {
+        setLoading(false);
       }
-    }
-  ]);
+    };
+
+    fetchOrders();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-8 flex justify-center items-center h-64">
+        <div className="text-center">
+          <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-800 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading your orders...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-8">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <XCircle className="w-8 h-8 text-red-500 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-red-700 mb-2">Error</h3>
+          <p className="text-red-600 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+          >
+            <span>Try Again</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-8">
@@ -226,7 +259,7 @@ const MyOrders = () => {
       {/* Orders List */}
       <div className="space-y-4">
         {orders.map((order) => (
-          <Order key={order.orderId} order={order} />
+          <Order key={order._id} order={order} />
         ))}
       </div>
 

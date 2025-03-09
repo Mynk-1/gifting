@@ -18,9 +18,9 @@ const HomePage = () => {
     <div className="p-4">
       {!isViewAllPage && <MainCrosel className="-z-10" />}
 
-      <ProductSlider data={caricature} category="caricature"/>
-      <ProductCategory />
       <ProductSlider data={acrylics} category="acrylics"/>
+      <ProductCategory />
+      <ProductSlider data={caricature} category="caricature"/>
       <Banner/>
     </div>
   );

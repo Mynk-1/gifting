@@ -1,74 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addCartItem, resetAddItemSuccess } from "../../../Store/Slices/cartitemSlice"; // Update path as needed
 import ImageGallery from "./ImageGallery";
-import PhotoGalleryModal from "./PhotoGalleryModal";
 import ProductOptions from "./ProductOptions";
 import PhotoUploader from "./PhotoUploader";
 import ProductInfo from "./ProductInfo";
 import ProductSections from "./ProductSections";
 import Button from "./Button";
-import { getProductByCategory } from '../../../Data/CustumProductDetails';
+import PhotoGalleryModal from "./PhotoGalleryModal";
+import { getProductByCategory } from "../../../Data/CustumProductDetails";
 
 const CustomProductDetail = () => {
   const { category, id } = useParams();
   const product = getProductByCategory(category);
+  const dispatch = useDispatch();
+  
+  // Get cart state from Redux
+  const { loading: isSubmitting, error, addItemSuccess } = useSelector((state) => state.cart);
+
+  // State management
   const [selectedType, setSelectedType] = useState(product.customizationOptions.types?.[0]);
   const [selectedSize, setSelectedSize] = useState(selectedType?.sizes?.[0] || null);
+  const [selectedColor, setSelectedColor] = useState(selectedType?.colors?.[0] || null);
   const [mainImage, setMainImage] = useState(0);
-  const [showAllPhotos, setShowAllPhotos] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [customText, setCustomText] = useState("");
   const [hoverImage, setHoverImage] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const currentPrice = selectedSize?.price || product.price;
+  // Calculate current price based on selected type, size, or base price
+  const currentPrice = selectedSize?.price || selectedType?.price || product.price;
 
-  const handleSubmit = () => {
-    setIsSubmitting(true);
-    try {
-      const formData = new FormData();
-      
-      // Add product details
-      formData.append('productId', id);
-      formData.append('productCategory', category);
-      formData.append('productName', product.name);
-      
-      // Add selected options
-      formData.append('selectedType', selectedType.id);
-      formData.append('selectedTypeName', selectedType.name);
-      
-      if (selectedSize) {
-        formData.append('selectedSize', selectedSize.id);
-        formData.append('selectedSizeName', selectedSize.name);
-        formData.append('price', selectedSize.price.toString());
-      } else {
-        formData.append('price', product.price.toString());
-      }
-  
-      // Add custom text if enabled and provided
-      if (product.customizationOptions.allowText && customText.trim()) {
-        formData.append('customText', customText.trim());
-      }
-  
-      // Add uploaded images and their descriptions
-      uploadedImages.forEach((image, index) => {
-        formData.append(`image-${index}`, image.file);
-        if (image.text) {
-          formData.append(`image-${index}-description`, image.text);
-        }
-      });
-  
-      // Log all form data entries
-      console.log('Form Data Contents:');
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: `, value);
-      }
-      
-    } catch (error) {
-      console.error('Error creating form data:', error);
-    } finally {
-      setIsSubmitting(false);
+  // Reset form after successful add to cart
+  useEffect(() => {
+    if (addItemSuccess) {
+      setUploadedImages([]);
+      setCustomText("");
+      dispatch(resetAddItemSuccess());
     }
+  }, [addItemSuccess, dispatch]);
+
+  // Update error message from Redux
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(typeof error === "string" ? error : "Login to add Item");
+      console.log(error)
+    } else {
+      setErrorMessage("");
+    }
+  }, [error]);
+
+
+
+  const handleSubmit = async () => {
+    // Validate that photos have been uploaded
+    if (uploadedImages.length === 0) {
+      setErrorMessage("Please upload at least one photo to continue.");
+      return;
+    }
+
+    const formData = new FormData();
+
+    // Add required fields
+    formData.append("productId", product.id);
+    formData.append("selectedType", selectedType.id);
+    formData.append("selectedSize", selectedSize?.id || "");
+    formData.append("selectedColor", selectedColor?.id || "");
+    formData.append("quantity", quantity.toString());
+    formData.append("customText", customText);
+
+    // Add uploaded images and their descriptions
+    uploadedImages.forEach((image, index) => {
+      formData.append("images", image.file);
+      formData.append(`imageDescriptions[${index}]`, image.text || "");
+    });
+
+    // Dispatch the addCartItem thunk
+    dispatch(addCartItem(formData));
   };
 
   return (
@@ -81,7 +92,7 @@ const CustomProductDetail = () => {
           setMainImage={setMainImage}
         />
       )}
-      
+
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2">
           <ImageGallery
@@ -96,20 +107,44 @@ const CustomProductDetail = () => {
         </div>
 
         <div className="md:w-1/2 md:pl-8 mt-4 md:mt-0">
-          <ProductInfo
-            product={product}
-            currentPrice={currentPrice}
-          />
+          <ProductInfo product={product} currentPrice={currentPrice} />
 
           <ProductOptions
-            product={product}
-            selectedType={selectedType}
-            setSelectedType={setSelectedType}
-            selectedSize={selectedSize}
-            setSelectedSize={setSelectedSize}
-            setMainImage={setMainImage}
-            setHoverImage={setHoverImage}
-          />
+  product={product}
+  selectedType={selectedType}
+  setSelectedType={setSelectedType}
+  selectedSize={selectedSize}
+  setSelectedSize={setSelectedSize}
+  selectedColor={selectedColor}
+  setSelectedColor={setSelectedColor}
+  setMainImage={setMainImage}
+  setHoverImage={setHoverImage}
+/>
+
+          <div className="mt-6">
+            <p className="font-semibold mb-2">QUANTITY</p>
+            <div className="flex items-center border rounded-md w-32">
+              <button
+                className="px-3 py-2 hover:bg-gray-100"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                className="w-16 text-center border-x"
+              />
+              <button
+                className="px-3 py-2 hover:bg-gray-100"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
+            </div>
+          </div>
 
           <PhotoUploader
             product={product}
@@ -131,13 +166,28 @@ const CustomProductDetail = () => {
             </div>
           )}
 
-          <Button 
+          {errorMessage && (
+            <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md">
+              {errorMessage}
+            </div>
+          )}
+
+          {addItemSuccess && (
+            <div className="mt-4 p-3 bg-green-100 text-green-700 rounded-md">
+              Item added to cart successfully!
+            </div>
+          )}
+
+          <Button
             disabled={uploadedImages.length === 0 || isSubmitting}
             className="w-full mt-6"
             onClick={handleSubmit}
           >
-            {uploadedImages.length === 0 ? "UPLOAD PHOTOS TO CONTINUE" : 
-             isSubmitting ? "ADDING TO CART..." : "ADD TO CART"}
+            {uploadedImages.length === 0
+              ? "UPLOAD PHOTOS TO CONTINUE"
+              : isSubmitting
+              ? "ADDING TO CART..."
+              : "ADD TO CART"}
           </Button>
 
           <ProductSections sections={product.sections} />
