@@ -657,6 +657,263 @@ export const customizableProducts = {
       }
     ]
   }
+  ,
+  
+  
+    "cushion": {
+      "id": "custom-cushion-01",
+      "isCustomizable": true,
+      "category": "cushion",
+      "productType": "Customized Cushion",
+      "name": "Personalized Photo Cushion",
+      "description": "A soft and cozy cushion featuring your favorite photos, perfect for adding a personal touch to your home",
+      "shortDescription": "Turn your memories into a comfortable and stylish cushion",
+      "price": 39.99,
+      "maxUploads": 4,
+      "customizationOptions": {
+        "allowText": true,
+        "maxTextLength": 50,
+        "textPlaceholder": "Add a special message or caption...",
+        "types": [
+          {
+            "name": "Standard",
+            "id": "standard",
+            "price": 39.99,
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741621855/Happy-anniversary-cushion_bdkj75.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741619958/WhatsApp_Image_2025-03-09_at_23.40.46_fvf4vu.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741621983/Cushion-Printing_qfqjxw.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741621986/photo-cushion_m1kqlh.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741621987/photo-cushion-1_prlpoa.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622142/36_34_44243_wdct1p.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622144/89315_gkx8tg.avif",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622254/personalized-cushions-set-for-anniversary_1_qhfw37.jpg"
+            ]
+          },
+          {
+            "name": "Fur Heart",
+            "id": "fur-heart",
+            "price": 49.99,
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623628/customized-heart-shape-fur-pillow-1000x1000_uyweg7.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623638/Blooming-Prints-Red-Heart-Cushion-scaled-1_rc3she.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623630/BPHFRC-2_h7sic1.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623624/fur-heart-pillow-1000x1000_oktm3f.jpg"
+            ],
+            "description": "A luxurious fur heart-shaped cushion, perfect for adding a touch of elegance to your home"
+          }
+        ]
+      },
+      "productDetails": {
+        "material": "Premium Polyester",
+        "features": [
+          "Soft and durable fabric",
+          "High-quality digital printing",
+          "Removable and washable cover",
+          "Lightweight and comfortable",
+          "Perfect for sofas, beds, or chairs"
+        ]
+      },
+      "shipping": {
+        "processingTime": "5-7 business days",
+        "freeShippingThreshold": 50,
+        "shippingNote": "Free shipping on orders over $50"
+      },
+      "careInstructions": "Machine washable on gentle cycle. Tumble dry on low heat.",
+      "sections": [
+        {
+          "title": "PRODUCT DETAILS",
+          "content": "Our Customized Cushion is made from premium polyester fabric and features high-quality digital printing. It's perfect for adding a personal touch to your home decor."
+        },
+        {
+          "title": "SHIPPING INFORMATION",
+          "content": "Please allow 5-7 business days for your custom cushion to be prepared and shipped."
+        },
+        {
+          "title": "CARE INSTRUCTIONS",
+          "content": "Machine washable on gentle cycle. Tumble dry on low heat to maintain the cushion's quality."
+        }
+      ]
+    }
+  ,
+  
+    "frames": {
+      "id": "custom-frame-01",
+      "isCustomizable": true,
+      "category": "frames",
+      "productType": "Customized Frame",
+      "name": "Personalized Photo Frame",
+      "description": "High-quality frames to showcase your favorite photos, available in multiple colors and sizes",
+      "shortDescription": "Display your cherished memories in style with our premium frames",
+      "price": 29.99,
+      "maxUploads": 12,
+      "customizationOptions": {
+        "allowText": true,
+        "maxTextLength": 50,
+        "textPlaceholder": "Add a special message or caption...",
+        "types": [
+          {
+            "name": "White",
+            "id": "white",
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624214/wp4dzgdsothxjxnmltxh.avif",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624212/1c_0164d0b8-a3fc-4ecf-8def-c2fa791307f7_mmod0k.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624217/1_F_e16faf3b-0c0b-429a-a233-6d0451f58262.jppg_sa44lw.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624210/51jST1pqkGL._AC_UF894_1000_QL80__sfsyr8.jpg"
+            ],
+            "sizes": [
+              {
+                "name": "5x7",
+                "id": "5x7",
+                "dimensions": "5\" × 7\"",
+                "price": 29.99
+              },
+              {
+                "name": "8x12",
+                "id": "8x12",
+                "dimensions": "8\" × 12\"",
+                "price": 39.99
+              },
+              {
+                "name": "12x18",
+                "id": "12x18",
+                "dimensions": "12\" × 18\"",
+                "price": 49.99
+              },
+              {
+                "name": "18x24",
+                "id": "18x24",
+                "dimensions": "18\" × 24\"",
+                "price": 59.99
+              },
+              {
+                "name": "24x36",
+                "id": "24x36",
+                "dimensions": "24\" × 36\"",
+                "price": 79.99
+              }
+            ]
+          },
+          {
+            "name": "Black",
+            "id": "black",
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624430/Black-3-1-Frame_crkgjs.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624428/2c_242855b4-9861-4ec9-a6f0-a52f6567473e_fjpuxt.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624432/8X10-Bk_e25a3e01-6c06-4596-98ab-3887b2f60c45_700x700_eq95x0.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624435/81AKSC8A5xL_grqmgl.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624437/71O-FzCZgOL._AC_UF894_1000_QL80__uxugw7.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624537/20230717_162536758207_289627_Matt-Finish-Photo-Frame_as9olt.jpg"
+            ],
+            "sizes": [
+              {
+                "name": "5x7",
+                "id": "5x7",
+                "dimensions": "5\" × 7\"",
+                "price": 34.99
+              },
+              {
+                "name": "8x12",
+                "id": "8x12",
+                "dimensions": "8\" × 12\"",
+                "price": 44.99
+              },
+              {
+                "name": "12x18",
+                "id": "12x18",
+                "dimensions": "12\" × 18\"",
+                "price": 54.99
+              },
+              {
+                "name": "18x24",
+                "id": "18x24",
+                "dimensions": "18\" × 24\"",
+                "price": 64.99
+              },
+              {
+                "name": "24x36",
+                "id": "24x36",
+                "dimensions": "24\" × 36\"",
+                "price": 84.99
+              }
+            ]
+          },
+          {
+            "name": "Brown",
+            "id": "brown",
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624802/Frames-4x6-8_b6eo7u.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624798/-473Wx593H-462812090-brown-MODEL_kcfd0x.avif",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624792/1_itlgpp.jpg",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624789/brown-with-beading_lacgdx.webp"
+            ],
+            "sizes": [
+              {
+                "name": "5x7",
+                "id": "5x7",
+                "dimensions": "5\" × 7\"",
+                "price": 32.99
+              },
+              {
+                "name": "8x12",
+                "id": "8x12",
+                "dimensions": "8\" × 12\"",
+                "price": 42.99
+              },
+              {
+                "name": "12x18",
+                "id": "12x18",
+                "dimensions": "12\" × 18\"",
+                "price": 52.99
+              },
+              {
+                "name": "18x24",
+                "id": "18x24",
+                "dimensions": "18\" × 24\"",
+                "price": 62.99
+              },
+              {
+                "name": "24x36",
+                "id": "24x36",
+                "dimensions": "24\" × 36\"",
+                "price": 82.99
+              }
+            ]
+          }
+        ]
+      },
+      "productDetails": {
+        "material": "Premium Wood",
+        "features": [
+          "High-quality wood construction",
+          "Sleek and modern design",
+          "Durable and long-lasting",
+          "Easy to hang or display",
+          "Available in multiple colors and sizes"
+        ]
+      },
+      "shipping": {
+        "processingTime": "5-7 business days",
+        "freeShippingThreshold": 100,
+        "shippingNote": "Free shipping on orders over $100"
+      },
+      "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+      "sections": [
+        {
+          "title": "PRODUCT DETAILS",
+          "content": "Our premium frames are made from high-quality wood and are available in multiple colors and sizes. They are perfect for showcasing your cherished memories in a modern and stylish way."
+        },
+        {
+          "title": "SHIPPING INFORMATION",
+          "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
+        },
+        {
+          "title": "CARE INSTRUCTIONS",
+          "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
+        }
+      ]
+    }
+   
 
 
 
