@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ChevronDown, Mail } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 import { useAuth } from "../../auth/AuthProvider";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -9,8 +9,8 @@ const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const {login,user}= useAuth()
-  const navigate=useNavigate()
+  const {login, user} = useAuth();
+  const navigate = useNavigate();
   
   const requestOTP = async (e) => {
     e.preventDefault();
@@ -18,27 +18,25 @@ const Login = () => {
     setError(null);
 
     try {
-      
       if (phoneNumber.length !== 10) {
         throw new Error("Please enter a valid 10-digit phone number");
       }
 
-      const response = await fetch("http://localhost:3001/api/auth/send-otp",{
-        method:"POST",
+      const response = await fetch("http://localhost:3001/api/auth/send-otp", {
+        method: "POST",
         credentials: 'include',
-        headers:{
-          "Content-Type":"application/json",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify({phone:String(phoneNumber)})  
-      })
+        body: JSON.stringify({phone: String(phoneNumber)})  
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json()
-      console.log(data)
-      
+      const data = await response.json();
+      console.log(data);
       
       setIsOtpSent(true);
       setLoading(false);
@@ -51,7 +49,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user)
+      console.log(user);
       navigate("/");
     }
   }, [user, navigate]);
@@ -99,8 +97,8 @@ const Login = () => {
   };
 
   return (
-    <div className=" flex items-center justify-center bg-gray-50 p-4 lg:py-16 ">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6">
+    <div className="flex items-center justify-center py-24  bg-gray-50 p-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 mx-auto">
         <div className="text-center space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">LOGIN WITH OTP</h1>
           <p className="text-sm text-gray-600">Please enter your 10-digit mobile number</p>
@@ -111,7 +109,7 @@ const Login = () => {
             <div className="flex rounded-lg border border-gray-300 overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
               <div className="flex items-center px-3 sm:px-4 bg-transparent border-r border-gray-300">
                 <div className="flex items-center gap-1 sm:gap-2">
-                  <img src="/api/placeholder/24/16" alt="India flag" className="w-6 h-4 object-cover rounded" />
+                  <Phone className="w-5 h-5 text-gray-500" />
                   <ChevronDown className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
@@ -169,24 +167,6 @@ const Login = () => {
             {isOtpSent ? "Please enter the 6-digit OTP sent to your phone" : "A 6-digit OTP will be sent to your phone number"}
           </p>
         </form>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-white text-gray-500">Or Sign-in with</span>
-          </div>
-        </div>
-
-        <button
-          type="button"
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={loading}
-        >
-          <Mail className="w-5 h-5" />
-          <span>Email</span>
-        </button>
       </div>
     </div>
   );

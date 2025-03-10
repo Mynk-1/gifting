@@ -7,6 +7,7 @@ import BagSlider from "../CheckoutPages/cartItemSlider";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCart } from "../../Store/Slices/cartitemSlice"; // Import the fetchCart action
 import { useAuth } from "../../auth/AuthProvider";
+import MobileNavBar from "./MobBottomNav";
 
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -199,6 +200,9 @@ const NavBar = () => {
           }}
         ></div>
       )}
+      
+      {/* Mobile Navigation Bar */}
+      <MobileNavBar openBagSlider={handleBagOpen} />
     </div>
   );
 };

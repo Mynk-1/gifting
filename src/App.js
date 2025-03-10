@@ -7,7 +7,7 @@ import ProductCatalog from "./Pages/ProductCatalog/ProductCatalog";
 import Profile from "./Pages/Login/Profile";
 import Login from "./Pages/Login/Login";
 import Navigation from "./Pages/Navbar/Navbar";
-import MobileNavBar from "./Pages/Navbar/MobBottomNav";
+// import MobileNavBar from "./Pages/Navbar/MobBottomNav";
 import Footer from "./Pages/Footer/Footer";
 import CustomProductDetail from "./Pages/ProductDetail/CustumProductDetail/ProductDetail.jsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail/ProductDetail.jsx";
@@ -180,7 +180,7 @@ function App() {
         </Suspense>
         
         <Footer />
-        <MobileNavBar />
+        
       </Provider>
     </>
   );

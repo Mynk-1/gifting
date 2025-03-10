@@ -1,41 +1,92 @@
 import React, { useState } from 'react';
-import { Home, Sparkles, Grid, Heart, ShoppingBag } from 'lucide-react';
+import { Home, Zap, ShoppingCart, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const MobileNavBar = () => {
+const MobileNavBar = ({ openBagSlider }) => {
   const [activeItem, setActiveItem] = useState('HOME');
+  const navigate = useNavigate();
+
+  const handleNavItemClick = (label) => {
+    setActiveItem(label);
+    
+    switch(label) {
+      case 'HOME':
+        navigate('/');
+        break;
+      case 'UPCOMING':
+        navigate('/upcoming');
+        break;
+      case 'CART':
+        openBagSlider();
+        break;
+      case 'PROFILE':
+        navigate('/profile');
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 md:hidden">
-      <ul className="flex justify-around items-center">
-        <NavItem icon={<Home size={24} />} label="HOME" activeItem={activeItem} setActiveItem={setActiveItem} />
-        <NavItem icon={<Sparkles size={24} />} label="NEW" activeItem={activeItem} setActiveItem={setActiveItem} />
-        <NavItem icon={<Grid size={24} />} label="SHOP" activeItem={activeItem} setActiveItem={setActiveItem} />
-        <NavItem icon={<Heart size={24} />} label="WISHLIST" activeItem={activeItem} setActiveItem={setActiveItem} />
-        <NavItem icon={<ShoppingBag size={24} />} label="BAG" badge={1} activeItem={activeItem} setActiveItem={setActiveItem} />
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-1 md:hidden z-30">
+      <ul className="flex justify-around items-center relative">
+        <NavItem 
+          icon={<Home size={20} />} 
+          label="HOME" 
+          activeItem={activeItem} 
+          onClick={() => handleNavItemClick('HOME')} 
+        />
+        
+        <div className="h-8 w-px bg-gray-200 absolute" style={{ left: '25%' }}></div>
+        
+        <NavItem 
+          icon={<Zap size={20} />} 
+          label="UPCOMING" 
+          activeItem={activeItem} 
+          onClick={() => handleNavItemClick('UPCOMING')} 
+        />
+        
+        <div className="h-8 w-px bg-gray-200 absolute" style={{ left: '50%' }}></div>
+        
+        <NavItem 
+          icon={<ShoppingCart size={20} />} 
+          label="CART" 
+          activeItem={activeItem} 
+          onClick={() => handleNavItemClick('CART')} 
+        />
+        
+        <div className="h-8 w-px bg-gray-200 absolute" style={{ left: '75%' }}></div>
+        
+        <NavItem 
+          icon={<User size={20} />} 
+          label="PROFILE" 
+          activeItem={activeItem} 
+          onClick={() => handleNavItemClick('PROFILE')} 
+        />
       </ul>
     </nav>
   );
 };
 
-const NavItem = ({ icon, label, badge, activeItem, setActiveItem }) => {
+const NavItem = ({ icon, label, badge, activeItem, onClick }) => {
   const isActive = activeItem === label;
 
   return (
-    <li className="flex flex-col items-center">
+    <li className="flex flex-col items-center w-1/4 py-1">
       <button 
-        className={`relative p-1 ${isActive ? 'text-black' : 'text-gray-500'}`}
-        onClick={() => setActiveItem(label)}
+        className={`relative p-1.5 rounded-full ${
+          isActive ? 'text-black bg-gray-200' : 'text-gray-500'
+        }`}
+        onClick={onClick}
       >
-        {React.cloneElement(icon, { 
-          // strokeWidth: isActive ? 3 : 2 
-        })}
+        {React.cloneElement(icon, {})}
         {badge && (
-          <span className="absolute top-0 right-0 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+          <span className="absolute top-0 right-0 bg-black text-white text-xs rounded-full h-3 w-3 flex items-center justify-center">
             {badge}
           </span>
         )}
       </button>
-      <span className={`text-xs mt-1 ${isActive ? 'font-bold' : ''}`}>{label}</span>
+      <span className="text-xs mt-0.5">{label}</span>
     </li>
   );
 };

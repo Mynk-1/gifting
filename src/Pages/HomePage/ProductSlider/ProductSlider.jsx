@@ -3,26 +3,34 @@ import { ChevronRight } from "lucide-react";
 import ProductCard from "../../Cards/ProductCard";
 import { useNavigate } from "react-router-dom";
 
-
-const ProductSlider = ({data , category}) => {
-  
+const ProductSlider = ({ data, category }) => {
   const navigate = useNavigate();
-
+  
   const handleScroll = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-
-
-  
+  // Function to format category name (capitalize first letter of each word)
+  const formatCategoryName = (category) => {
+    if (!category) return "";
+    return category
+      .split("-")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
-    <div>
-      
+    <div className="mb-8">
+      {/* Category Heading with light gray background and rounded borders */}
+      <div className="flex justify-center bg-gray-100 rounded-lg px-4 py-2 mb-4 mx-2 sm:mx-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 font-titillium">
+          {formatCategoryName(category)}
+        </h2>
+      </div>
       
       <div className="w-full max-w-full px-2 sm:px-4 font-titillium">
         <div className="relative">
-          <div 
+          <div
             className="flex gap-2 sm:gap-4 overflow-x-auto"
             style={{
               msOverflowStyle: 'none',

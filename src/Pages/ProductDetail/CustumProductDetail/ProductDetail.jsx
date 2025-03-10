@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {  useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCartItem, resetAddItemSuccess } from "../../../Store/Slices/cartitemSlice"; // Update path as needed
 import ImageGallery from "./ImageGallery";
@@ -10,13 +10,17 @@ import ProductSections from "./ProductSections";
 import Button from "./Button";
 import PhotoGalleryModal from "./PhotoGalleryModal";
 import { getProductByCategory } from "../../../Data/CustumProductDetails";
+import SignInModal from "./SignInModal"; // You'll need to create this component
+import { useAuth } from "../../../auth/AuthProvider";
 
 const CustomProductDetail = () => {
   const { category, id } = useParams();
   const product = getProductByCategory(category);
   const dispatch = useDispatch();
-  
-  // Get cart state from Redux
+  const navigate = useNavigate();
+
+  // Get user and cart state from Redux
+  const { user } = useAuth// Assuming auth state contains user info
   const { loading: isSubmitting, error, addItemSuccess } = useSelector((state) => state.cart);
 
   // State management
@@ -30,6 +34,7 @@ const CustomProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [showAllPhotos, setShowAllPhotos] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   // Calculate current price based on selected type, size, or base price
   const currentPrice = selectedSize?.price || selectedType?.price || product.price;
@@ -43,19 +48,22 @@ const CustomProductDetail = () => {
     }
   }, [addItemSuccess, dispatch]);
 
-  // Update error message from Redux
+  // Update error message from Redux - only for non-auth related errors
   useEffect(() => {
-    if (error) {
-      setErrorMessage(typeof error === "string" ? error : "Login to add Item");
-      console.log(error)
+    if (error && error !== "Login to add Item") {
+      setErrorMessage(typeof error === "string" ? error : "An error occurred");
     } else {
       setErrorMessage("");
     }
   }, [error]);
 
-
-
   const handleSubmit = async () => {
+    // Check if user is logged in
+    if (!user) {
+      setShowSignInModal(true);
+      return;
+    }
+
     // Validate that photos have been uploaded
     if (uploadedImages.length === 0) {
       setErrorMessage("Please upload at least one photo to continue.");
@@ -82,6 +90,12 @@ const CustomProductDetail = () => {
     dispatch(addCartItem(formData));
   };
 
+  const handleSignIn = () => {
+    // Navigate to sign in page or handle as needed
+    navigate("/profile");
+    setShowSignInModal(false);
+  };
+
   return (
     <div className="container mx-auto p-4 font-sans">
       {showAllPhotos && (
@@ -90,6 +104,14 @@ const CustomProductDetail = () => {
           product={product}
           setShowAllPhotos={setShowAllPhotos}
           setMainImage={setMainImage}
+        />
+      )}
+
+      {showSignInModal && (
+        <SignInModal 
+          onClose={() => setShowSignInModal(false)} 
+          onSignIn={handleSignIn}
+          message="Please sign in to add items to your cart"
         />
       )}
 
@@ -110,16 +132,16 @@ const CustomProductDetail = () => {
           <ProductInfo product={product} currentPrice={currentPrice} />
 
           <ProductOptions
-  product={product}
-  selectedType={selectedType}
-  setSelectedType={setSelectedType}
-  selectedSize={selectedSize}
-  setSelectedSize={setSelectedSize}
-  selectedColor={selectedColor}
-  setSelectedColor={setSelectedColor}
-  setMainImage={setMainImage}
-  setHoverImage={setHoverImage}
-/>
+            product={product}
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
+            setMainImage={setMainImage}
+            setHoverImage={setHoverImage}
+          />
 
           <div className="mt-6">
             <p className="font-semibold mb-2">QUANTITY</p>
@@ -166,7 +188,7 @@ const CustomProductDetail = () => {
             </div>
           )}
 
-          {errorMessage && (
+          {user && errorMessage && (
             <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md">
               {errorMessage}
             </div>
@@ -184,7 +206,7 @@ const CustomProductDetail = () => {
             onClick={handleSubmit}
           >
             {uploadedImages.length === 0
-              ? "UPLOAD PHOTOS TO CONTINUE"
+              ? "UPLOAD PHOTOS TO ADD ITEM TO CART"
               : isSubmitting
               ? "ADDING TO CART..."
               : "ADD TO CART"}
