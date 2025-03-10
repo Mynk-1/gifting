@@ -14,13 +14,13 @@ import SignInModal from "./SignInModal"; // You'll need to create this component
 import { useAuth } from "../../../auth/AuthProvider";
 
 const CustomProductDetail = () => {
-  const { category, id } = useParams();
+  const { category } = useParams();
   const product = getProductByCategory(category);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Get user and cart state from Redux
-  const { user } = useAuth// Assuming auth state contains user info
+  const { user } = useAuth()// Assuming auth state contains user info
   const { loading: isSubmitting, error, addItemSuccess } = useSelector((state) => state.cart);
 
   // State management

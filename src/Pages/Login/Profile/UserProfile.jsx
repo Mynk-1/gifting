@@ -51,7 +51,7 @@ const UserProfile = () => {
   // Save updated profile data
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/user/profile", {
+        await fetch("http://localhost:3001/api/user/profile", {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -60,7 +60,7 @@ const UserProfile = () => {
         body: JSON.stringify(formData),
       });
       // console.log(response)
-      await fetchUserProfile(); // Fetch updated data to ensure UI is in sync
+       fetchUserProfile(); // Fetch updated data to ensure UI is in sync
       setIsEditing(false);
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -79,7 +79,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-12">
+    <div className="max-w-4xl mx-auto p-4 lg:p-8 mb-16">
       <div className="bg-white rounded-lg shadow p-6 relative mt-16">
         {/* Profile Header */}
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center">

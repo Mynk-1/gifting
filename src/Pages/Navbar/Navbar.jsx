@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, User, ShoppingBag } from "lucide-react";
+import { Menu, X, User, ShoppingCart } from "lucide-react";
 import { Instagram, Facebook, Youtube, Twitter, Linkedin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BagSlider from "../CheckoutPages/cartItemSlider";
@@ -18,7 +18,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   
   // Get cart from the cart slice
-  const { cart, loading } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.cart);
   
   const [cartItemQuantity, setCartItemQuantity] = useState(0);
   
@@ -88,7 +88,7 @@ const NavBar = () => {
     { name: "Facebook", Icon: Facebook },
     { name: "YouTube", Icon: Youtube },
     { name: "Twitter", Icon: Twitter },
-    { name: "Pinterest", Icon: ShoppingBag },
+    { name: "Pinterest", Icon: ShoppingCart },
     { name: "LinkedIn", Icon: Linkedin },
   ];
 
@@ -110,7 +110,7 @@ const NavBar = () => {
             onClick={handleBagOpen}
             className="text-gray-600 relative"
           >
-            <ShoppingBag size={24} />
+            <ShoppingCart size={24} />
             <div className="flex absolute text-sm bottom-3 left-3 font-semibold bg-gray-600 w-4 h-4 items-center justify-center text-white rounded-full">
               {cartItemQuantity}
             </div>
@@ -202,7 +202,7 @@ const NavBar = () => {
       )}
       
       {/* Mobile Navigation Bar */}
-      <MobileNavBar openBagSlider={handleBagOpen} />
+      <MobileNavBar openBagSlider={handleBagOpen} cartItemQuantity={cartItemQuantity} />
     </div>
   );
 };

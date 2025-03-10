@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Home, Zap, ShoppingCart, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const MobileNavBar = ({ openBagSlider }) => {
+const MobileNavBar = ({ openBagSlider, cartItemQuantity = 0 }) => {
   const [activeItem, setActiveItem] = useState('HOME');
   const navigate = useNavigate();
 
@@ -51,6 +51,7 @@ const MobileNavBar = ({ openBagSlider }) => {
         <NavItem 
           icon={<ShoppingCart size={20} />} 
           label="CART" 
+          badge={cartItemQuantity > 0 ? cartItemQuantity : null}
           activeItem={activeItem} 
           onClick={() => handleNavItemClick('CART')} 
         />
@@ -81,7 +82,7 @@ const NavItem = ({ icon, label, badge, activeItem, onClick }) => {
       >
         {React.cloneElement(icon, {})}
         {badge && (
-          <span className="absolute top-0 right-0 bg-black text-white text-xs rounded-full h-3 w-3 flex items-center justify-center">
+          <span className="absolute -top-1 -right-1 bg-gray-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
             {badge}
           </span>
         )}
