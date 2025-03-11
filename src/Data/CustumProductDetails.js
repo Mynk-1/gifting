@@ -8,7 +8,7 @@ export const customizableProducts = {
     "name": "Personalized Photo Mug",
     "description": "High-quality ceramic mug with your cherished photos",
     "shortDescription": "Create lasting memories with our premium photo mugs",
-    "price": 24.99,
+    "price": 200,
     "maxUploads": 6,
     "customizationOptions": {
       "allowText": true,
@@ -18,7 +18,7 @@ export const customizableProducts = {
         {
           "name": "Plain",
           "id": "plain",
-          "price": 24.99, // Added price
+          "price": 200, // Added price
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/1_tstm8y.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/3_dpzekb.jpg",
@@ -33,7 +33,7 @@ export const customizableProducts = {
         {
           "name": "Magic",
           "id": "magic",
-          "price": 29.99, // Added price
+          "price": 400, // Added price
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435220/m1_u7kkio.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435220/m1_u7kkio.jpg",
@@ -49,7 +49,7 @@ export const customizableProducts = {
         {
           "name": "Heart Handle",
           "id": "color",
-          "price": 27.99, // Added price
+          "price": 300, // Added price
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435565/h1_hxdz7s.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435565/h1_hxdz7s.jpg",
@@ -64,7 +64,7 @@ export const customizableProducts = {
         {
           "name": "Colour Handle",
           "id": "heart",
-          "price": 26.99, // Added price
+          "price": 300, // Added price
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/heart/1.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/heart/2.jpg"
@@ -84,8 +84,8 @@ export const customizableProducts = {
     },
     "shipping": {
       "processingTime": "3-5 business days",
-      "freeShippingThreshold": 50,
-      "shippingNote": "Free shipping on orders over $50"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹1500"
     },
     "careInstructions": "Hand washing is recommended to preserve print quality. Microwave safe but avoid extended heating periods.",
     "sections": [
@@ -115,7 +115,7 @@ export const customizableProducts = {
     "name": "Custom Polaroid-Style Photos",
     "description": "Transform your digital memories into vintage-inspired Polaroid prints",
     "shortDescription": "Classic Polaroid-style prints with your personal touch",
-    "price": 19.99,
+    "price": 200,
     "maxUploads": 12,
     "customizationOptions": {
       "allowText": true,
@@ -137,23 +137,23 @@ export const customizableProducts = {
           ],
           "sizes": [
             {
+              "name": "Mini",
+              "id": "mini",
+              "dimensions": "2.5\" × 3.25\"",
+              "price": 200
+            },
+            {
               "name": "Standard",
               "id": "standard",
               "dimensions": "3.5\" × 4.25\"",
-              "price": 19.99
+              "price": 250
             },
             {
               "name": "Large",
               "id": "large",
               "dimensions": "4.25\" × 5.5\"",
-              "price": 24.99
+              "price": 300
             },
-            {
-              "name": "Mini",
-              "id": "mini",
-              "dimensions": "2.5\" × 3.25\"",
-              "price": 14.99
-            }
           ]
         },
         {
@@ -172,23 +172,23 @@ export const customizableProducts = {
           "description": "Aged effect with subtle color shifts",
           "sizes": [
             {
+              "name": "Mini",
+              "id": "mini",
+              "dimensions": "2.5\" × 3.25\"",
+              "price": 200
+            },
+            {
               "name": "Standard",
               "id": "standard",
               "dimensions": "3.5\" × 4.25\"",
-              "price": 21.99
+              "price": 250
             },
             {
               "name": "Large",
               "id": "large",
               "dimensions": "4.25\" × 5.5\"",
-              "price": 26.99
+              "price": 300
             },
-            {
-              "name": "Mini",
-              "id": "mini",
-              "dimensions": "2.5\" × 3.25\"",
-              "price": 16.99
-            }
           ]
         },
         {
@@ -207,23 +207,23 @@ export const customizableProducts = {
           "colors": [{ id: "pink", name: "Pink" },{ id: "blue", name: "Blue" },{ id: "mint", name: "Mint" }],
           "sizes": [
             {
+              "name": "Mini",
+              "id": "mini",
+              "dimensions": "2.5\" × 3.25\"",
+              "price": 200
+            },
+            {
               "name": "Standard",
               "id": "standard",
               "dimensions": "3.5\" × 4.25\"",
-              "price": 21.99
+              "price": 250
             },
             {
               "name": "Large",
               "id": "large",
               "dimensions": "4.25\" × 5.5\"",
-              "price": 26.99
+              "price": 300
             },
-            {
-              "name": "Mini",
-              "id": "mini",
-              "dimensions": "2.5\" × 3.25\"",
-              "price": 16.99
-            }
           ]
         }
       ]
@@ -269,7 +269,7 @@ export const customizableProducts = {
     "name": "Personalized Metal Wallet Card",
     "description": "Premium metal wallet card with your cherished photos and messages",
     "shortDescription": "Turn memories into a beautiful keepsake you can carry everywhere",
-    "price": 19.99,
+    "price": 150,
     "maxUploads": 2,
     "customizationOptions": {
       "allowText": true,
@@ -277,8 +277,8 @@ export const customizableProducts = {
       "textPlaceholder": "Add a special message or date to your wallet card...",
       "types": [
         {
-          "name": "Brushed Silver",
-          "id": "silver",
+          "name": "Shinny Gloss",
+          "id": "Shinny Gloss",
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554937/w2_fn1wie.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554936/w3_ainpbf.jpg",
@@ -288,51 +288,16 @@ export const customizableProducts = {
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w5_dcynmt.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w6_d6zbmi.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w1_dc2lh8.jpg"
+          ],
+          "sizes": [
+            {
+              "name": "Standard",
+              "id": "Standard",
+              "dimensions": "2.25\" × 3.5\"",
+              "price": 150
+            }
           ]
-        },
-        {
-          "name": "Rose Gold",
-          "id": "rosegold",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554937/w2_fn1wie.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554936/w3_ainpbf.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w4_esjlru.png",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w7_mtk2i8.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w8_rsuy2b.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w5_dcynmt.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w6_d6zbmi.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w1_dc2lh8.jpg"
-          ]
-        },
-        {
-          "name": "Matte Black",
-          "id": "black",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554937/w2_fn1wie.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554936/w3_ainpbf.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w4_esjlru.png",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w7_mtk2i8.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w8_rsuy2b.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554935/w5_dcynmt.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w6_d6zbmi.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739554934/w1_dc2lh8.jpg"
-          ]
-        }
-      ],
-      "sizes": [
-        {
-          "name": "Standard",
-          "id": "standard",
-          "dimensions": "3.375\" × 2.125\"",
-          "price": 19.99 // Added price for this size
-        },
-        {
-          "name": "Mini",
-          "id": "mini",
-          "dimensions": "2.5\" × 1.5\"",
-          "price": 16.99 // Added price for this size
-        }
-      ]
+        }]
     },
     "productDetails": {
       "material": "Premium Anodized Aluminum",
@@ -347,8 +312,8 @@ export const customizableProducts = {
     },
     "shipping": {
       "processingTime": "2-3 business days",
-      "freeShippingThreshold": 35,
-      "shippingNote": "Free shipping on orders over $35"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with soft, dry cloth. Avoid exposure to harsh chemicals.",
     "sections": [
@@ -376,7 +341,7 @@ export const customizableProducts = {
     "name": "Custom Photo T-Shirt",
     "description": "High-quality cotton t-shirt with your favorite photos and designs",
     "shortDescription": "Create your own unique style with custom printed t-shirts",
-    "price": 29.99,
+    "price": 300,
     "maxUploads": 4,
     "customizationOptions": {
       "allowText": true,
@@ -401,21 +366,6 @@ export const customizableProducts = {
               "name": "White",
               "id": "white",
               "hex": "#FFFFFF"
-            },
-            {
-              "name": "Black",
-              "id": "black",
-              "hex": "#000000"
-            },
-            {
-              "name": "Navy",
-              "id": "navy",
-              "hex": "#000080"
-            },
-            {
-              "name": "Grey",
-              "id": "grey",
-              "hex": "#808080"
             }
           ],
           "sizes": [
@@ -423,152 +373,31 @@ export const customizableProducts = {
               "name": "Small",
               "id": "S",
               "dimensions": "Chest 34\"-36\"",
-              "price": 29.99
+              "price": 300
             },
             {
               "name": "Medium",
               "id": "M",
               "dimensions": "Chest 38\"-40\"",
-              "price": 29.99
+              "price": 300
             },
             {
               "name": "Large",
               "id": "L",
               "dimensions": "Chest 42\"-44\"",
-              "price": 29.99
+              "price": 300
             },
             {
               "name": "X-Large",
               "id": "XL",
               "dimensions": "Chest 46\"-48\"",
-              "price": 32.99
+              "price": 300
             },
             {
               "name": "2X-Large",
               "id": "2XL",
               "dimensions": "Chest 50\"-52\"",
-              "price": 34.99
-            }
-          ]
-        },
-        {
-          "name": "V-Neck",
-          "id": "vneck",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t5_kvvsra.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t1_qdfppl.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t7_kwkzlo.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555467/t6_jsu3ww.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t3_q8d5oh.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t2_uhlkbx.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t4_dkprz5.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t8_pvfo3m.webp"
-          ],
-          "colors": [
-            {
-              "name": "White",
-              "id": "white",
-              "hex": "#FFFFFF"
-            },
-            {
-              "name": "Black",
-              "id": "black",
-              "hex": "#000000"
-            },
-            {
-              "name": "Navy",
-              "id": "navy",
-              "hex": "#000080"
-            }
-          ],
-          "sizes": [
-            {
-              "name": "Small",
-              "id": "S",
-              "dimensions": "Chest 34\"-36\"",
-              "price": 29.99
-            },
-            {
-              "name": "Medium",
-              "id": "M",
-              "dimensions": "Chest 38\"-40\"",
-              "price": 29.99
-            },
-            {
-              "name": "Large",
-              "id": "L",
-              "dimensions": "Chest 42\"-44\"",
-              "price": 29.99
-            },
-            {
-              "name": "X-Large",
-              "id": "XL",
-              "dimensions": "Chest 46\"-48\"",
-              "price": 32.99
-            },
-            {
-              "name": "2X-Large",
-              "id": "2XL",
-              "dimensions": "Chest 50\"-52\"",
-              "price": 34.99
-            }
-          ]
-        },
-        {
-          "name": "Long Sleeve",
-          "id": "longSleeve",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t5_kvvsra.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t1_qdfppl.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t7_kwkzlo.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555467/t6_jsu3ww.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t3_q8d5oh.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t2_uhlkbx.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t4_dkprz5.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t8_pvfo3m.webp"
-          ],
-          "colors": [
-            {
-              "name": "White",
-              "id": "white",
-              "hex": "#FFFFFF"
-            },
-            {
-              "name": "Black",
-              "id": "black",
-              "hex": "#000000"
-            }
-          ],
-          "sizes": [
-            {
-              "name": "Small",
-              "id": "S",
-              "dimensions": "Chest 34\"-36\"",
-              "price": 34.99
-            },
-            {
-              "name": "Medium",
-              "id": "M",
-              "dimensions": "Chest 38\"-40\"",
-              "price": 34.99
-            },
-            {
-              "name": "Large",
-              "id": "L",
-              "dimensions": "Chest 42\"-44\"",
-              "price": 34.99
-            },
-            {
-              "name": "X-Large",
-              "id": "XL",
-              "dimensions": "Chest 46\"-48\"",
-              "price": 37.99
-            },
-            {
-              "name": "2X-Large",
-              "id": "2XL",
-              "dimensions": "Chest 50\"-52\"",
-              "price": 39.99
+              "price": 300
             }
           ]
         }
@@ -602,46 +431,33 @@ export const customizableProducts = {
     },
     "productDetails": {
       "material": "100% Premium Cotton",
-      "printMethod": "DTG (Direct to Garment) Printing",
+      "printMethod": "DTG (Direct to Garment)/Sublimation Printing",
       "features": [
         "Premium cotton fabric",
         "Breathable and comfortable",
         "Pre-shrunk material",
         "Reinforced double-stitching",
         "Tagless neck label",
-        "High-quality DTG printing"
+        "High-quality DTG / Sublimation printing"
       ],
       "weightInOz": 6.1,
-      "fabricWeight": "180 GSM"
+      "fabricWeight": "160 GSM"
     },
     "shipping": {
       "processingTime": "3-5 business days",
-      "freeShippingThreshold": 50,
-      "shippingNote": "Free shipping on orders over $50",
-      "bulkDiscounts": [
-        {
-          "quantity": 5,
-          "discount": 10
-        },
-        {
-          "quantity": 10,
-          "discount": 15
-        },
-        {
-          "quantity": 20,
-          "discount": 20
-        }
-      ]
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹1500",
+      
     },
     "careInstructions": "Machine wash cold, inside-out. Tumble dry low. Do not iron directly on printed design.",
     "sections": [
       {
         "title": "PRODUCT DETAILS",
-        "content": "Our premium cotton t-shirts are printed using state-of-the-art DTG printing technology for vibrant, long-lasting designs. Each shirt features reinforced double-stitching and a comfortable tagless neck label."
+        "content": "Our premium cotton t-shirts are printed using state-of-the-art DTG / Sublimation printing technology for vibrant, long-lasting designs. Each shirt features reinforced double-stitching and a comfortable tagless neck label."
       },
       {
         "title": "PRINTING INFORMATION",
-        "content": "We use Direct to Garment (DTG) printing for exceptional detail and color vibrancy. Your design is printed directly into the fabric for maximum durability and a soft feel."
+        "content": "We use Direct to Garment (DTG) / Sublimation printing for exceptional detail and color vibrancy. Your design is printed directly into the fabric for maximum durability and a soft feel."
       },
       {
         "title": "SHIPPING INFORMATION",
@@ -668,7 +484,7 @@ export const customizableProducts = {
       "name": "Personalized Photo Cushion",
       "description": "A soft and cozy cushion featuring your favorite photos, perfect for adding a personal touch to your home",
       "shortDescription": "Turn your memories into a comfortable and stylish cushion",
-      "price": 39.99,
+      "price": 600,
       "maxUploads": 4,
       "customizationOptions": {
         "allowText": true,
@@ -678,7 +494,7 @@ export const customizableProducts = {
           {
             "name": "Standard",
             "id": "standard",
-            "price": 39.99,
+            "price": 600,
             "previewImages": [
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741621855/Happy-anniversary-cushion_bdkj75.jpg",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741619958/WhatsApp_Image_2025-03-09_at_23.40.46_fvf4vu.jpg",
@@ -688,18 +504,32 @@ export const customizableProducts = {
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622142/36_34_44243_wdct1p.webp",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622144/89315_gkx8tg.avif",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741622254/personalized-cushions-set-for-anniversary_1_qhfw37.jpg"
-            ]
+            ],
+            "sizes": [
+              {
+                "name": "16x16-inch",
+                "id": "16x16-inch",
+                "dimensions": "16\" × 16\"",
+                "price": 600
+              }],
           },
           {
             "name": "Fur Heart",
             "id": "fur-heart",
-            "price": 49.99,
+           
             "previewImages": [
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623628/customized-heart-shape-fur-pillow-1000x1000_uyweg7.jpg",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623638/Blooming-Prints-Red-Heart-Cushion-scaled-1_rc3she.webp",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623630/BPHFRC-2_h7sic1.webp",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741623624/fur-heart-pillow-1000x1000_oktm3f.jpg"
             ],
+            "sizes": [
+              {
+                "name": "14x16-inch",
+                "id": "14x16-inch",
+                "dimensions": "14\" × 16\"",
+                "price": 400
+              }],
             "description": "A luxurious fur heart-shaped cushion, perfect for adding a touch of elegance to your home"
           }
         ]
@@ -716,8 +546,8 @@ export const customizableProducts = {
       },
       "shipping": {
         "processingTime": "5-7 business days",
-        "freeShippingThreshold": 50,
-        "shippingNote": "Free shipping on orders over $50"
+        "freeShippingThreshold": 1500,
+        "shippingNote": "Free shipping on orders over ₹ 1500"
       },
       "careInstructions": "Machine washable on gentle cycle. Tumble dry on low heat.",
       "sections": [
@@ -745,7 +575,7 @@ export const customizableProducts = {
       "name": "Personalized Photo Frame",
       "description": "High-quality frames to showcase your favorite photos, available in multiple colors and sizes",
       "shortDescription": "Display your cherished memories in style with our premium frames",
-      "price": 29.99,
+      "price": 150,
       "maxUploads": 12,
       "customizationOptions": {
         "allowText": true,
@@ -766,31 +596,31 @@ export const customizableProducts = {
                 "name": "5x7",
                 "id": "5x7",
                 "dimensions": "5\" × 7\"",
-                "price": 29.99
+                "price": 150
               },
               {
                 "name": "8x12",
                 "id": "8x12",
                 "dimensions": "8\" × 12\"",
-                "price": 39.99
+                "price": 400
               },
               {
                 "name": "12x18",
                 "id": "12x18",
                 "dimensions": "12\" × 18\"",
-                "price": 49.99
+                "price": 550
               },
               {
                 "name": "18x24",
                 "id": "18x24",
                 "dimensions": "18\" × 24\"",
-                "price": 59.99
+                "price": 1100
               },
               {
                 "name": "24x36",
                 "id": "24x36",
                 "dimensions": "24\" × 36\"",
-                "price": 79.99
+                "price": 1600
               }
             ]
           },
@@ -810,31 +640,31 @@ export const customizableProducts = {
                 "name": "5x7",
                 "id": "5x7",
                 "dimensions": "5\" × 7\"",
-                "price": 34.99
+                "price": 150
               },
               {
                 "name": "8x12",
                 "id": "8x12",
                 "dimensions": "8\" × 12\"",
-                "price": 44.99
+                "price": 400
               },
               {
                 "name": "12x18",
                 "id": "12x18",
                 "dimensions": "12\" × 18\"",
-                "price": 54.99
+                "price": 550
               },
               {
                 "name": "18x24",
                 "id": "18x24",
                 "dimensions": "18\" × 24\"",
-                "price": 64.99
+                "price": 1100
               },
               {
                 "name": "24x36",
                 "id": "24x36",
                 "dimensions": "24\" × 36\"",
-                "price": 84.99
+                "price": 1600
               }
             ]
           },
@@ -847,36 +677,36 @@ export const customizableProducts = {
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624792/1_itlgpp.jpg",
               "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741624789/brown-with-beading_lacgdx.webp"
             ],
-            "sizes": [
+           "sizes": [
               {
                 "name": "5x7",
                 "id": "5x7",
                 "dimensions": "5\" × 7\"",
-                "price": 32.99
+                "price": 150
               },
               {
                 "name": "8x12",
                 "id": "8x12",
                 "dimensions": "8\" × 12\"",
-                "price": 42.99
+                "price": 400
               },
               {
                 "name": "12x18",
                 "id": "12x18",
                 "dimensions": "12\" × 18\"",
-                "price": 52.99
+                "price": 550
               },
               {
                 "name": "18x24",
                 "id": "18x24",
                 "dimensions": "18\" × 24\"",
-                "price": 62.99
+                "price": 1100
               },
               {
                 "name": "24x36",
                 "id": "24x36",
                 "dimensions": "24\" × 36\"",
-                "price": 82.99
+                "price": 1600
               }
             ]
           }
@@ -894,8 +724,8 @@ export const customizableProducts = {
       },
       "shipping": {
         "processingTime": "5-7 business days",
-        "freeShippingThreshold": 100,
-        "shippingNote": "Free shipping on orders over $100"
+        "freeShippingThreshold": 1500,
+        "shippingNote": "Free shipping on orders over ₹ 1500"
       },
       "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
       "sections": [
