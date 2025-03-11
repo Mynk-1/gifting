@@ -100,7 +100,7 @@ const NavBar = () => {
   return (
     <div className="relative">
       {/* Header */}
-      <header className="flex justify-between items-center p-4 border-b">
+      <header className="flex justify-between items-center px-4 py-1 border-b">
         <button onClick={toggleDrawer} className="text-gray-600">
           <Menu size={24} />
         </button>
