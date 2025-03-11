@@ -15,8 +15,8 @@ export const acrylics = [
       "textPlaceholder": "Add a caption or message for your frame...",
       "types": [
         {
-          "name": "Standard",
-          "id": "standard",
+          "name": "Landscape",
+          "id": "Landscape",
           "previewImages": [
             "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
             "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
@@ -54,47 +54,47 @@ export const acrylics = [
             }
           ]
         },
-        // {
-        //   "name": "LED Backlit",
-        //   "id": "led-backlit",
-        //   "previewImages": [
-        //     "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
-        //     "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
-        //     "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
-        //     "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
-        //     "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
-        //     "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
-        //     "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
-        //     "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
-        //   ],
-        //   "description": "Add a modern touch with LED backlighting",
-        //   "sizes": [
-        //     {
-        //       "name": "8x12",
-        //       "id": "8x12",
-        //       "dimensions": "8\" × 12\"",
-        //       "price": 1100
-        //     },
-        //     {
-        //       "name": "12x18",
-        //       "id": "12x18",
-        //       "dimensions": "12\" × 18\"",
-        //       "price": 1800
-        //     },
-        //     {
-        //       "name": "18x24",
-        //       "id": "18x24",
-        //       "dimensions": "18\" × 24\"",
-        //       "price": 2800
-        //     },
-        //     {
-        //       "name": "24x36",
-        //       "id": "24x36",
-        //       "dimensions": "24\" × 36\"",
-        //       "price": 
-        //     }
-        //   ]
-        // }
+        {
+          "name": "Portrait",
+          "id": "Portrait",
+          "previewImages": [
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
+            "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
+            "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
+            "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
+            "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
+          ],
+          "sizes": [
+            {
+              "name": "8x12",
+              "id": "8x12",
+              "dimensions": "8\" × 12\"",
+              "price": 800
+            },
+            {
+              "name": "12x18",
+              "id": "12x18",
+              "dimensions": "12\" × 18\"",
+              "price": 1400
+            },
+            {
+              "name": "18x24",
+              "id": "18x24",
+              "dimensions": "18\" × 24\"",
+              "price": 2200
+            },
+            {
+              "name": "24x36",
+              "id": "24x36",
+              "dimensions": "24\" × 36\"",
+              "price": 4500
+            }
+          ]
+        }
+       
       ]
     },
     "productDetails": {
