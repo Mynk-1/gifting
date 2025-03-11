@@ -35,8 +35,8 @@ const Login = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log(data);
+      // const data = await response.json();
+      // console.log(data);
       
       setIsOtpSent(true);
       setLoading(false);
@@ -49,7 +49,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
+      // console.log(user);
       navigate("/");
     }
   }, [user, navigate]);

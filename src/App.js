@@ -143,9 +143,7 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <div className="bg-black text-white text-center py-1 lg-p-2 text-lg font-semibold font-titillium">
-          Get extra 10% off on all the products.....
-        </div>
+        
         <Navigation />
         
         <Suspense fallback={<LoadingSpinner />}>

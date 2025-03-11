@@ -9,8 +9,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
- 
 } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 import UserProfile from "./Profile/UserProfile";
 import DeliveryAddress from "./Profile/DeliveryAddress";
@@ -18,11 +18,8 @@ import MyOrders from "./Profile/MyOrder";
 import ReferFriend from "./Profile/ReferFriend";
 import ChangePassword from "./Profile/ChangePasword";
 
-
-
-
-
 const Profile = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const scrollContainerRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -34,7 +31,7 @@ const Profile = () => {
     { icon: User, label: "My Profile", id: "profile", count: null },
     { icon: MapPin, label: "Delivery Address", id: "address", count: 0 },
     { icon: ShoppingBag, label: "My Orders", id: "orders", count: 0 },
-    { icon: Locate, label: "Track Order", id: "track", count: 0 },
+    // { icon: Locate, label: "Track Order", id: "track", count: 0 },
     // { icon: Heart, label: "My Wishlist", id: "wishlist", count: 0 },
     // { icon: Users, label: "Refer Friend", id: "refer", count: null },
     // { icon: Lock, label: "Change Password", id: "password", count: null },
@@ -81,17 +78,46 @@ const Profile = () => {
         return <DeliveryAddress />;
       case "orders":
         return <MyOrders />;
-      case "track":
-        return <ReferFriend />;
+      // case "track":
+      //   return <ReferFriend />;
       case "password":
         return <ChangePassword/>;
       default:
-        return < ></>;
+        return <></>;
+    }
+  };
+
+  // Function to handle logout
+  const handleLogout = async () => {
+    try {
+      // Make API call to delete cookie
+      const response = await fetch('http://localhost:3001/api/get/logout', {
+        method: 'POST',
+        credentials: 'include', // Include cookies in request
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.ok) {
+        // If successful, redirect to home page
+        navigate('/');
+        // Optional: refresh the page
+        window.location.reload();
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
     }
   };
 
   const handleMenuClick = (id) => {
-    setActiveSection(id);
+    if (id === "logout") {
+      handleLogout();
+    } else {
+      setActiveSection(id);
+    }
   };
 
   return (
@@ -170,7 +196,7 @@ const Profile = () => {
 
         <nav className="py-2">
           {menuGroups.map((item) => (
-            <a
+            <div
               key={item.id}
               onClick={() => handleMenuClick(item.id)}
               className={`flex items-center justify-between px-4 py-3 hover:bg-gray-50 cursor-pointer
@@ -185,7 +211,7 @@ const Profile = () => {
                   {item.count}
                 </span>
               )}
-            </a>
+            </div>
           ))}
         </nav>
       </div>

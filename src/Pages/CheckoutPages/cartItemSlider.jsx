@@ -3,6 +3,7 @@ import { X, PlusCircle, MapPin, Edit, Trash2 } from "lucide-react";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteCartItem, fetchCart } from '../../Store/Slices/cartitemSlice';
+import { useAuth } from "../../auth/AuthProvider";
 
 // Address Modal Component from DeliveryAddress
 const AddressModal = ({ isOpen, onClose, address, onSave }) => {
@@ -19,6 +20,7 @@ const AddressModal = ({ isOpen, onClose, address, onSave }) => {
       isDefault: false,
     }
   );
+  
 
   // Reset form data when modal opens with new address
   React.useEffect(() => {
@@ -211,6 +213,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
   const dispatch = useDispatch();
+  const { user } = useAuth(); // Get user from auth context
   
   // Enhanced animation control
   useEffect(() => {
@@ -223,15 +226,17 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     }
   }, [isOpen]);
 
-  // Fetch addresses when component mounts or isOpen changes
+  // Fetch addresses when component mounts or isOpen changes, only if user is logged in
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && user) {
       fetchAddresses();
     }
-  }, [isOpen]);
+  }, [isOpen, user]);
 
   // Fetch addresses from API
   const fetchAddresses = async () => {
+    if (!user) return; // Only proceed if user is authenticated
+    
     try {
       const response = await axios.get("http://localhost:3001/api/address", { withCredentials: true });
       setAddresses(response.data);
@@ -258,16 +263,23 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   };
 
   const handleAddNew = () => {
+    if (!user) {
+      alert("Please log in to add an address");
+      return;
+    }
     setEditingAddress(null);
     setIsModalOpen(true);
   };
 
   const handleEdit = (address) => {
+    if (!user) return;
     setEditingAddress(address);
     setIsModalOpen(true);
   };
 
   const handleDelete = async (id) => {
+    if (!user) return;
+    
     if (window.confirm("Are you sure you want to delete this address?")) {
       try {
         await axios.delete(`http://localhost:3001/api/address/delete/${id}`, { withCredentials: true });
@@ -280,12 +292,19 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
 
   // Handler for deleting cart items
   const handleDeleteCartItem = (itemId) => {
+    if (!user) {
+      alert("Please log in to manage your cart");
+      return;
+    }
+    
     if (window.confirm("Are you sure you want to remove this item from your bag?")) {
       dispatch(deleteCartItem(itemId));
     }
   };
 
   const handleSetDefault = async (id) => {
+    if (!user) return;
+    
     try {
       await axios.get(`http://localhost:3001/api/address/default/${id}`, { withCredentials: true });
       fetchAddresses(); // Refresh the list after setting default
@@ -296,6 +315,11 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   };
 
   const handleSave = async (formData) => {
+    if (!user) {
+      alert("Please log in to save addresses");
+      return;
+    }
+    
     try {
       if (editingAddress) {
         // Update existing address
@@ -311,6 +335,11 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   };
 
   const initiatePayment = async () => {
+    if (!user) {
+      alert("Please log in to proceed with checkout");
+      return;
+    }
+    
     if (!selectedAddressId) {
       alert("Please select a delivery address");
       return;
@@ -366,6 +395,25 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     }
   };
 
+  // Determine if user is logged in for UI messaging
+  const notLoggedInMessage = !user ? (
+    <div className="bg-gray-50 p-6 text-center rounded mb-4">
+      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <MapPin className="w-6 h-6 text-gray-400" />
+      </div>
+      <h3 className="text-sm font-medium mb-2">Please Log In</h3>
+      <p className="text-xs text-gray-500 mb-4">
+        You need to be logged in to view addresses and checkout
+      </p>
+      <button
+        className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-200 text-sm"
+        onClick={() => setToggle(false)} // Close the slider
+      >
+        Go to Login
+      </button>
+    </div>
+  ) : null;
+
   return (
     <>
       {/* Backdrop overlay with fade effect */}
@@ -406,210 +454,229 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
           </div>
 
           <div className="flex-grow overflow-y-auto">
-            <div className="px-4 sm:px-6 py-4">
-              <h3 className="text-base font-medium mb-3">Your Items</h3>
-              {cartData && cartData.items && cartData.items.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex gap-3 sm:gap-5 mb-6 pb-5 border-b border-gray-100 transform transition-all duration-400 ease-out`}
-                  style={{
-                    opacity: showContent ? 1 : 0,
-                    transform: showContent ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: `${100 + index * 75}ms`
-                  }}
-                >
-                  <img
-                    src={item.images && item.images.length > 0 ? item.productImage : ''}
-                    alt={item.product.name}
-                    className="w-20 sm:w-24 h-28 sm:h-32 object-cover rounded-sm"
-                  />
-                  <div className="flex-grow flex flex-col">
-                    <div className="flex justify-between">
-                      <h3 className="text-sm sm:text-base font-medium mb-1">{item.product.name}</h3>
-                      <button 
-                        onClick={() => handleDeleteCartItem(item._id)}
-                        className="text-gray-400 hover:text-red-500 transition-colors duration-200"
-                        aria-label="Remove item"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                    <div className="space-y-1 mb-auto">
-                      {item.selectedTypeName && (
-                        <p className="text-xs sm:text-sm text-gray-600">
-                          {item.selectedTypeName}
-                        </p>
-                      )}
-                      {item.selectedSizeName && (
-                        <p className="text-xs sm:text-sm text-gray-600">
-                          Size: {item.selectedSizeName}
-                        </p>
-                      )}
-                      {item.selectedColorName && (
-                        <p className="text-xs sm:text-sm text-gray-600">
-                          Color: {item.selectedColorName}
-                        </p>
-                      )}
-                    </div>
-                    
-                    <div className="flex items-center justify-between mt-3 pt-2">
-                      <span className="text-xs sm:text-sm text-gray-600">
-                        Quantity: {item.quantity}
-                      </span>
-                      <span className="font-semibold text-sm sm:text-base">
-                        INR {(item.price * item.quantity).toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Display not logged in message if no user */}
+            {notLoggedInMessage}
 
-            {/* Address Selection Section */}
-            <div className="px-4 sm:px-6 py-4 border-t border-gray-100">
-              <div 
-                className={`flex justify-between items-center mb-3 transition-opacity duration-500`}
-                style={{
-                  opacity: showContent ? 1 : 0,
-                  transitionDelay: '250ms'
-                }}
-              >
-                <h3 className="text-base font-medium">Delivery Address</h3>
-                <button 
-                  onClick={handleAddNew}
-                  className="text-sm flex items-center gap-1 text-black hover:text-gray-700 transition-colors duration-200"
-                >
-                  <PlusCircle size={16} />
-                  <span>Add New</span>
-                </button>
-              </div>
-
-              {addresses.length === 0 ? (
-                <div 
-                  className="bg-gray-50 p-6 text-center rounded mb-4 transition-all duration-500"
-                  style={{
-                    opacity: showContent ? 1 : 0,
-                    transform: showContent ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '300ms'
-                  }}
-                >
-                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-6 h-6 text-gray-400" />
-                  </div>
-                  <h3 className="text-sm font-medium mb-2">No Addresses Found</h3>
-                  <p className="text-xs text-gray-500 mb-4">
-                    You haven't added any delivery addresses yet
-                  </p>
-                  <button
-                    onClick={handleAddNew}
-                    className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-200 text-sm"
-                  >
-                    <PlusCircle size={14} />
-                    <span>Add New Address</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-3 mb-4">
-                  {addresses.map((address, index) => (
-                    <div 
-                      key={address._id}
-                      className={`p-3 border rounded relative transition-all duration-400 ease-out ${
-                        selectedAddressId === address._id ? 'border-black bg-gray-50' : 'border-gray-200 hover:border-gray-400'
-                      }`}
+            {/* Only show items section if user is logged in and cart has items */}
+            {user && (
+              <div className="px-4 sm:px-6 py-4">
+                <h3 className="text-base font-medium mb-3">Your Items</h3>
+                {cartData && cartData.items && cartData.items.length > 0 ? (
+                  cartData.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`flex gap-3 sm:gap-5 mb-6 pb-5 border-b border-gray-100 transform transition-all duration-400 ease-out`}
                       style={{
                         opacity: showContent ? 1 : 0,
                         transform: showContent ? 'translateY(0)' : 'translateY(20px)',
-                        transitionDelay: `${300 + index * 75}ms`
+                        transitionDelay: `${100 + index * 75}ms`
                       }}
                     >
-                      {address.isDefault && (
-                        <span className="absolute top-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded">
-                          Default
-                        </span>
-                      )}
-                      <div className="flex justify-between items-start">
-                        <div className="flex items-start gap-2">
-                          <input
-                            type="radio"
-                            id={`address-${address._id}`}
-                            name="selected-address"
-                            className="mt-1"
-                            checked={selectedAddressId === address._id}
-                            onChange={() => handleAddressChange(address._id)}
-                          />
-                          <div onClick={() => handleAddressChange(address._id)} className="cursor-pointer">
-                            <div className="font-medium text-sm">{address.type}</div>
-                            <div className="text-xs text-gray-600 mt-1">{address.name}</div>
-                            <div className="text-xs text-gray-600">{address.street}</div>
-                            <div className="text-xs text-gray-600">
-                              {address.city}, {address.state} - {address.postalCode}
-                            </div>
-                            <div className="text-xs text-gray-600">{address.country}</div>
-                            <div className="text-xs text-gray-600 mt-1">+91 {address.phone}</div>
-                          </div>
+                      <img
+                        src={item.images && item.images.length > 0 ? item.productImage : ''}
+                        alt={item.product.name}
+                        className="w-20 sm:w-24 h-28 sm:h-32 object-cover rounded-sm"
+                      />
+                      <div className="flex-grow flex flex-col">
+                        <div className="flex justify-between">
+                          <h3 className="text-sm sm:text-base font-medium mb-1">{item.product.name}</h3>
+                          <button 
+                            onClick={() => handleDeleteCartItem(item._id)}
+                            className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+                            aria-label="Remove item"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                        <div className="space-y-1 mb-auto">
+                          {item.selectedTypeName && (
+                            <p className="text-xs sm:text-sm text-gray-600">
+                              {item.selectedTypeName}
+                            </p>
+                          )}
+                          {item.selectedSizeName && (
+                            <p className="text-xs sm:text-sm text-gray-600">
+                              Size: {item.selectedSizeName}
+                            </p>
+                          )}
+                          {item.selectedColorName && (
+                            <p className="text-xs sm:text-sm text-gray-600">
+                              Color: {item.selectedColorName}
+                            </p>
+                          )}
+                        </div>
+                        
+                        <div className="flex items-center justify-between mt-3 pt-2">
+                          <span className="text-xs sm:text-sm text-gray-600">
+                            Quantity: {item.quantity}
+                          </span>
+                          <span className="font-semibold text-sm sm:text-base">
+                            INR {(item.price * item.quantity).toFixed(2)}
+                          </span>
                         </div>
                       </div>
-                      
-                      <div className="flex items-center gap-3 mt-3 pt-2 border-t">
-                        <button
-                          onClick={() => handleEdit(address)}
-                          className="flex items-center gap-1 text-xs text-gray-600 hover:text-black transition-colors duration-200"
-                        >
-                          <Edit size={12} />
-                          <span>Edit</span>
-                        </button>
-                        <button
-                          onClick={() => handleDelete(address._id)}
-                          className="flex items-center gap-1 text-xs text-red-600 hover:text-red-700 transition-colors duration-200"
-                        >
-                          <Trash2 size={12} />
-                          <span>Delete</span>
-                        </button>
-                        {!address.isDefault && (
-                          <button
-                            onClick={() => handleSetDefault(address._id)}
-                            className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-700 transition-colors duration-200"
-                          >
-                            <span>Set as Default</span>
-                          </button>
-                        )}
-                      </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    Your bag is empty
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Address Selection Section - only show if user is logged in */}
+            {user && (
+              <div className="px-4 sm:px-6 py-4 border-t border-gray-100">
+                <div 
+                  className={`flex justify-between items-center mb-3 transition-opacity duration-500`}
+                  style={{
+                    opacity: showContent ? 1 : 0,
+                    transitionDelay: '250ms'
+                  }}
+                >
+                  <h3 className="text-base font-medium">Delivery Address</h3>
+                  <button 
+                    onClick={handleAddNew}
+                    className="text-sm flex items-center gap-1 text-black hover:text-gray-700 transition-colors duration-200"
+                  >
+                    <PlusCircle size={16} />
+                    <span>Add New</span>
+                  </button>
                 </div>
-              )}
-            </div>
+
+                {addresses.length === 0 ? (
+                  <div 
+                    className="bg-gray-50 p-6 text-center rounded mb-4 transition-all duration-500"
+                    style={{
+                      opacity: showContent ? 1 : 0,
+                      transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                      transitionDelay: '300ms'
+                    }}
+                  >
+                    <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <MapPin className="w-6 h-6 text-gray-400" />
+                    </div>
+                    <h3 className="text-sm font-medium mb-2">No Addresses Found</h3>
+                    <p className="text-xs text-gray-500 mb-4">
+                      You haven't added any delivery addresses yet
+                    </p>
+                    <button
+                      onClick={handleAddNew}
+                      className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-200 text-sm"
+                    >
+                      <PlusCircle size={14} />
+                      <span>Add New Address</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3 mb-4">
+                    {addresses.map((address, index) => (
+                      <div 
+                        key={address._id}
+                        className={`p-3 border rounded relative transition-all duration-400 ease-out ${
+                          selectedAddressId === address._id ? 'border-black bg-gray-50' : 'border-gray-200 hover:border-gray-400'
+                        }`}
+                        style={{
+                          opacity: showContent ? 1 : 0,
+                          transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                          transitionDelay: `${300 + index * 75}ms`
+                        }}
+                      >
+                        {address.isDefault && (
+                          <span className="absolute top-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded">
+                            Default
+                          </span>
+                        )}
+                        <div className="flex justify-between items-start">
+                          <div className="flex items-start gap-2">
+                            <input
+                              type="radio"
+                              id={`address-${address._id}`}
+                              name="selected-address"
+                              className="mt-1"
+                              checked={selectedAddressId === address._id}
+                              onChange={() => handleAddressChange(address._id)}
+                            />
+                            <div onClick={() => handleAddressChange(address._id)} className="cursor-pointer">
+                              <div className="font-medium text-sm">{address.type}</div>
+                              <div className="text-xs text-gray-600 mt-1">{address.name}</div>
+                              <div className="text-xs text-gray-600">{address.street}</div>
+                              <div className="text-xs text-gray-600">
+                                {address.city}, {address.state} - {address.postalCode}
+                              </div>
+                              <div className="text-xs text-gray-600">{address.country}</div>
+                              <div className="text-xs text-gray-600 mt-1">+91 {address.phone}</div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3 mt-3 pt-2 border-t">
+                          <button
+                            onClick={() => handleEdit(address)}
+                            className="flex items-center gap-1 text-xs text-gray-600 hover:text-black transition-colors duration-200"
+                          >
+                            <Edit size={12} />
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            onClick={() => handleDelete(address._id)}
+                            className="flex items-center gap-1 text-xs text-red-600 hover:text-red-700 transition-colors duration-200"
+                          >
+                            <Trash2 size={12} />
+                            <span>Delete</span>
+                          </button>
+                          {!address.isDefault && (
+                            <button
+                              onClick={() => handleSetDefault(address._id)}
+                              className="flex items-center gap-1 text-xs text-gray-600 hover:text-gray-700 transition-colors duration-200"
+                            >
+                              <span>Set as Default</span>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          <div
-            className={`px-4 sm:px-6 py-4 border-t bg-gray-50 transition-all duration-500 ease-out`}
-            style={{
-              opacity: showContent ? 1 : 0,
-              transform: showContent ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '400ms'
-            }}
-          >
-            <div className="flex justify-between items-center mb-2">
-              <span className="uppercase text-sm font-medium">Subtotal</span>
-              <span className="font-semibold text-lg">
-                INR {calculateSubtotal()}
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-gray-600 mb-4">
-              Shipping, taxes, and discount codes calculated at checkout.
-            </p>
-            <button 
-              className={`w-full py-3 tracking-wide font-medium rounded-sm transition-all duration-300 ${
-                addresses.length === 0 
-                  ? 'bg-gray-400 text-white cursor-not-allowed' 
-                  : 'bg-black text-white hover:bg-gray-900'
-              }`}
-              onClick={initiatePayment}
-              disabled={addresses.length === 0}
+          {/* Show checkout section only if user is logged in */}
+          {user && (
+            <div
+              className={`px-4 sm:px-6 py-4 border-t bg-gray-50 transition-all duration-500 ease-out`}
+              style={{
+                opacity: showContent ? 1 : 0,
+                transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '400ms'
+              }}
             >
-              {addresses.length === 0 ? 'ADD ADDRESS TO PROCEED' : 'PROCEED TO CHECKOUT'}
-            </button>
-          </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="uppercase text-sm font-medium">Subtotal</span>
+                <span className="font-semibold text-lg">
+                  INR {calculateSubtotal()}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-600 mb-4">
+                Shipping, taxes, and discount codes calculated at checkout.
+              </p>
+              <button 
+                className={`w-full py-3 tracking-wide font-medium rounded-sm transition-all duration-300 ${
+                  !cartData || !cartData.items || cartData.items.length === 0 || addresses.length === 0 
+                    ? 'bg-gray-400 text-white cursor-not-allowed' 
+                    : 'bg-black text-white hover:bg-gray-900'
+                }`}
+                onClick={initiatePayment}
+                disabled={!cartData || !cartData.items || cartData.items.length === 0 || addresses.length === 0}
+              >
+                {addresses.length === 0 ? 'ADD ADDRESS TO PROCEED' : 
+                 (!cartData || !cartData.items || cartData.items.length === 0) ? 'YOUR BAG IS EMPTY' : 
+                 'PROCEED TO CHECKOUT'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

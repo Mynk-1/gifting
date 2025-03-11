@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCart } from "../../Store/Slices/cartitemSlice"; // Import the fetchCart action
 import { useAuth } from "../../auth/AuthProvider";
 import MobileNavBar from "./MobBottomNav";
+import logoImage from "./logo.jpeg"
 
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -24,7 +25,9 @@ const NavBar = () => {
   
   // Fetch cart on component mount AND when authentication state changes
   useEffect(() => {
-    dispatch(fetchCart());
+    if (user) {
+      dispatch(fetchCart());
+    }
   }, [dispatch, user]); // Add user as a dependency
   
   // Update cart quantity when cart changes
@@ -67,7 +70,9 @@ const NavBar = () => {
   
   // Handle bag open - fetch latest cart data
   const handleBagOpen = () => {
-    dispatch(fetchCart()); // Fetch latest cart data before opening
+    if (user) {
+      dispatch(fetchCart()); // Fetch latest cart data before opening
+    }
     setIsBagOpen(true);
   };
   
@@ -100,7 +105,10 @@ const NavBar = () => {
           <Menu size={24} />
         </button>
         <div className="text-center flex-grow" onClick={handleHome}>
-          <button className="text-2xl font-bold">SNITCH</button>
+          <div className="flex items-center justify-center">
+            <img src={logoImage} height={50} width={50} alt="Surprise Box Logo" className="m-0" />
+            <button className="text-2xl font-bold">SUPRISE BOX</button>
+          </div>
         </div>
         <div className="flex space-x-4">
           <button onClick={handleLogin} className="text-gray-600">

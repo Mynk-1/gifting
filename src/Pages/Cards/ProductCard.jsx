@@ -28,13 +28,7 @@ const ProductCard = ({ product, category, id }) => {
 
   const startingPrice = getStartingPrice(product);
 
-  // Format price
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(price);
-  };
+ 
 
   return (
     <div
@@ -53,7 +47,7 @@ const ProductCard = ({ product, category, id }) => {
           {product.name}
         </h3>
         <p className="text-xs sm:text-sm md:text-base font-normal text-gray-900 mb-2">
-          {formatPrice(startingPrice)}
+        ₹{startingPrice}
         </p>
       </div>
     </div>
