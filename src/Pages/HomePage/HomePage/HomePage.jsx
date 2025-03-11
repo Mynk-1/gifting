@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import MainCrosel from "../HomePageCarousel/MainCarousel.jsx";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import ProductCategory from "../ProductCategory/ProductCategory";
-import Banner from "../Banner/Banner";
+
 import {caricature} from "../../../Data/Caricature.js"
 import {acrylics} from "../../../Data/acrylics.js"
 
@@ -21,7 +21,7 @@ const HomePage = () => {
       <ProductSlider data={acrylics} category="acrylics"/>
       <ProductCategory />
       <ProductSlider data={caricature} category="caricature"/>
-      <Banner/>
+
     </div>
   );
 };

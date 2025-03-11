@@ -15,16 +15,16 @@ import { useParams } from "react-router-dom";
 const getAcrylicsFilters = () => {
   return {
     "Product Type": [
-      { name: "Acrylic Frame", count: 1 },
-      { name: "Music Player Backlit Frame", count: 1 },
-      { name: "Acrylic Clock", count: 1 },
+      { name: "Customizable Acrylic Frame", count: 1 },
+      { name: "Music Player Backlit Photo Frame", count: 1 },
+      { name: "Customizable Acrylic Clock", count: 1 },
       { name: "Anniversary Backlit Frame", count: 4 },
       { name: "Promise Backlit Frame", count: 1 },
     ],
     "Price Range": [
-      { name: "Under $50", count: 3 },
-      { name: "$50 - $70", count: 5 },
-      { name: "Above $70", count: 2 },
+      { name: "Under ₹500", count: 3 },
+      { name: "₹500 - ₹1000", count: 5 },
+      { name: "Above ₹1000", count: 2 },
     ],
     "LED Feature": [
       { name: "LED Backlit", count: 6 },
@@ -166,34 +166,29 @@ const ProductCatalog = () => {
     if (Object.keys(activeFilters).length === 0) return allProducts;
 
     return allProducts.filter(product => {
-      // Check each active filter category
       return Object.entries(activeFilters).every(([filterCategory, selectedValues]) => {
         if (selectedValues.length === 0) return true;
 
         switch (filterCategory) {
           case "Product Type":
-            // Match product type (check both productType and name fields)
+            // Match product type directly
             return selectedValues.some(value => 
-              product.productType.includes(value.split(" ")[0]) || 
-              product.name.includes(value.split(" ")[0])
+              product.productType === value
             );
           case "Price Range":
-            // Check price ranges
+            // Check price ranges in INR
             const price = product.price;
             return selectedValues.some(range => {
-              if (range === "Under $50") return price < 50;
-              if (range === "$50 - $70") return price >= 50 && price <= 70;
-              if (range === "Above $70") return price > 70;
+              if (range === "Under ₹500") return price < 500;
+              if (range === "₹500 - ₹1000") return price >= 500 && price <= 1000;
+              if (range === "Above ₹1000") return price > 1000;
               return false;
             });
           case "LED Feature":
             // Check if LED feature is included
             if (selectedValues.includes("LED Backlit")) {
               return product.name.toLowerCase().includes("backlit") || 
-                     product.productType.toLowerCase().includes("backlit") ||
-                     (product.customizationOptions?.types?.some(type => 
-                       type.id === "led-backlit" || type.name.includes("LED")
-                     ));
+                     product.productType.toLowerCase().includes("backlit");
             }
             if (selectedValues.includes("Standard")) {
               return !product.name.toLowerCase().includes("backlit") &&
@@ -238,7 +233,6 @@ const ProductCatalog = () => {
               const shapeLower = shape.toLowerCase();
               return (
                 product.customizationOptions?.types?.some(type => 
-                  type.id.includes(shapeLower) || 
                   type.name.toLowerCase().includes(shapeLower)
                 ) ||
                 product.name.toLowerCase().includes(shapeLower) ||

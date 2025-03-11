@@ -112,7 +112,7 @@ export const customizableProducts = {
     "isCustomizable": true, // Added isCustomizable key
     "category": "polaroid",
     "productType": "Customizable Polaroid Prints",
-    "name": "Custom Polaroid-Style Photos",
+    "name": "Custom Polaroid-Style Photos (Set of 12 photos)",
     "description": "Transform your digital memories into vintage-inspired Polaroid prints",
     "shortDescription": "Classic Polaroid-style prints with your personal touch",
     "price": 200,
@@ -240,8 +240,8 @@ export const customizableProducts = {
     },
     "shipping": {
       "processingTime": "2-3 business days",
-      "freeShippingThreshold": 35,
-      "shippingNote": "Free shipping on orders over $35"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Store in a cool, dry place. Avoid direct sunlight and humidity to preserve print quality.",
     "sections": [
@@ -353,7 +353,7 @@ export const customizableProducts = {
           "id": "crew",
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t5_kvvsra.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t1_qdfppl.webp",
+            
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555464/t7_kwkzlo.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555467/t6_jsu3ww.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739555466/t3_q8d5oh.webp",
