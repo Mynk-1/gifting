@@ -7,8 +7,8 @@ export const acrylics = [
     "name": "Personalized Photo Acrylic Frame",
     "description": "High-quality acrylic frame to showcase your favorite photos with a modern, sleek design",
     "shortDescription": "Display your memories in style with our premium acrylic frames",
-    "price": 39.99,
-    "maxUploads": 5,
+    "price": 800,
+    "maxUploads": 10,
     "customizationOptions": {
       "allowText": true,
       "maxTextLength": 50,
@@ -32,69 +32,69 @@ export const acrylics = [
               "name": "8x12",
               "id": "8x12",
               "dimensions": "8\" × 12\"",
-              "price": 39.99
+              "price": 800
             },
             {
               "name": "12x18",
               "id": "12x18",
               "dimensions": "12\" × 18\"",
-              "price": 49.99
+              "price": 1400
             },
             {
               "name": "18x24",
               "id": "18x24",
               "dimensions": "18\" × 24\"",
-              "price": 59.99
+              "price": 2200
             },
             {
               "name": "24x36",
               "id": "24x36",
               "dimensions": "24\" × 36\"",
-              "price": 79.99
+              "price": 4500
             }
           ]
         },
-        {
-          "name": "LED Backlit",
-          "id": "led-backlit",
-          "previewImages": [
-            "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
-            "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
-            "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
-            "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
-            "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
-            "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
-            "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
-            "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
-          ],
-          "description": "Add a modern touch with LED backlighting",
-          "sizes": [
-            {
-              "name": "8x12",
-              "id": "8x12",
-              "dimensions": "8\" × 12\"",
-              "price": 59.99
-            },
-            {
-              "name": "12x18",
-              "id": "12x18",
-              "dimensions": "12\" × 18\"",
-              "price": 69.99
-            },
-            {
-              "name": "18x24",
-              "id": "18x24",
-              "dimensions": "18\" × 24\"",
-              "price": 89.99
-            },
-            {
-              "name": "24x36",
-              "id": "24x36",
-              "dimensions": "24\" × 36\"",
-              "price": 119.99
-            }
-          ]
-        }
+        // {
+        //   "name": "LED Backlit",
+        //   "id": "led-backlit",
+        //   "previewImages": [
+        //     "https://www.zestpics.com/cdn/shop/files/Glassframe16x2402.jpg?v=1688567077&width=1080",
+        //     "https://paperplanedesign.in/cdn/shop/files/acrylic-rectangle-collage-wall-photo-frame-for-birthday-anniversary-gift-906205.jpg?v=1715591133&width=1800",
+        //     "https://www.photoland.in/wp-content/uploads/2023/08/Acrylic-photo-frame-16x24-a.jpg",
+        //     "https://www.zestpics.com/cdn/shop/products/AcrylicPhotoFrames.jpg?v=1688567077&width=1080",
+        //     "https://www.zestpics.com/cdn/shop/files/AcrylicPhotoFrames_7eb7f81d-bed0-44b7-aed6-1cbd60d32787.jpg?v=1688567077&width=1080",
+        //     "https://www.zestpics.com/cdn/shop/files/Glassframe12x18Frame.jpg?v=1688567077&width=1080",
+        //     "https://www.zestpics.com/cdn/shop/files/Glassframe16x24.jpg?v=1688567077&width=1080",
+        //     "https://www.zestpics.com/cdn/shop/files/Glassframe8x1201.jpg?v=1688567077&width=1080"
+        //   ],
+        //   "description": "Add a modern touch with LED backlighting",
+        //   "sizes": [
+        //     {
+        //       "name": "8x12",
+        //       "id": "8x12",
+        //       "dimensions": "8\" × 12\"",
+        //       "price": 1100
+        //     },
+        //     {
+        //       "name": "12x18",
+        //       "id": "12x18",
+        //       "dimensions": "12\" × 18\"",
+        //       "price": 1800
+        //     },
+        //     {
+        //       "name": "18x24",
+        //       "id": "18x24",
+        //       "dimensions": "18\" × 24\"",
+        //       "price": 2800
+        //     },
+        //     {
+        //       "name": "24x36",
+        //       "id": "24x36",
+        //       "dimensions": "24\" × 36\"",
+        //       "price": 
+        //     }
+        //   ]
+        // }
       ]
     },
     "productDetails": {
@@ -109,8 +109,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 75,
-      "shippingNote": "Free shipping on orders over $75"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -136,8 +136,8 @@ export const acrylics = [
     "name": "Music Player Backlit Photo Frame",
     "description": "A unique photo frame with built-in music player and backlighting to showcase your favorite memories in a modern and stylish way",
     "shortDescription": "Combine your favorite photos and music in one elegant frame",
-    "price": 79.99,
-    "maxUploads": 1,
+    "price": 700,
+    "maxUploads": 2,
     "customizationOptions": {
       "allowText": true,
       "maxTextLength": 50,
@@ -150,7 +150,14 @@ export const acrylics = [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538209/WhatsApp_Image_2025-03-04_at_22.00.47_ghosux.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538208/WhatsApp_Image_2025-03-04_at_22.00.48_kkf5en.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741538207/WhatsApp_Image_2025-03-06_at_23.16.49_dbg4tx.jpg"
-          ]
+          ],
+          "sizes": [
+            {
+              "name": "8x10-inch",
+              "id": "8x10-inch",
+              "dimensions": "8\" × 10\"",
+              "price": 700
+            }]
         }
       ]
     },
@@ -166,8 +173,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 100,
-      "shippingNote": "Free shipping on orders over $100"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -194,8 +201,8 @@ export const acrylics = [
     "name": "Personalized Photo Acrylic Clock",
     "description": "High-quality acrylic clock with your favorite photos, perfect for adding a personal touch to your home or office",
     "shortDescription": "Turn your memories into a functional and stylish clock",
-    "price": 49.99,
-    "maxUploads": 1,
+    "price": 800,
+    "maxUploads": 5,
     "customizationOptions": {
       "allowText": true,
       "maxTextLength": 50,
@@ -215,20 +222,28 @@ export const acrylics = [
               "name": "10x10-inch",
               "id": "10x10-inch",
               "dimensions": "10\" × 10\"",
-              "price": 49.99
+              "price": 800
             },
             {
               "name": "12x12-inch",
               "id": "12x12-inch",
               "dimensions": "12\" × 12\"",
-              "price": 59.99
+              "price": 1100
             },
             {
-              "name": "14x14-inch",
-              "id": "14x14-inch",
-              "dimensions": "14\" × 14\"",
-              "price": 69.99
+              "name": "16x16-inch",
+              "id": "16x16-inch",
+              "dimensions": "16\" × 16\"",
+              "price": 1800
             }
+            ,
+            {
+              "name": "18x18-inch",
+              "id": "18x18-inch",
+              "dimensions": "18\" × 18\"",
+              "price": 2300
+            }
+
           ]
         },
         {
@@ -244,23 +259,31 @@ export const acrylics = [
           ],
           "sizes": [
             {
-              "name": "10-inch",
-              "id": "10-inch",
-              "dimensions": "10\" diameter",
-              "price": 49.99
+              "name": "10x10-inch",
+              "id": "10x10-inch",
+              "dimensions": "10\" × 10\"",
+              "price": 800
             },
             {
-              "name": "12-inch",
-              "id": "12-inch",
-              "dimensions": "12\" diameter",
-              "price": 59.99
+              "name": "12x12-inch",
+              "id": "12x12-inch",
+              "dimensions": "12\" × 12\"",
+              "price": 1100
             },
             {
-              "name": "14-inch",
-              "id": "14-inch",
-              "dimensions": "14\" diameter",
-              "price": 69.99
+              "name": "16x16-inch",
+              "id": "16x16-inch",
+              "dimensions": "16\" × 16\"",
+              "price": 1800
             }
+            ,
+            {
+              "name": "18x18-inch",
+              "id": "18x18-inch",
+              "dimensions": "18\" × 18\"",
+              "price": 2300
+            }
+
           ]
         }
       ]
@@ -278,8 +301,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 75,
-      "shippingNote": "Free shipping on orders over $75"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -305,7 +328,7 @@ export const acrylics = [
     "name": "Personalized Anniversary Backlit Frame",
     "description": "Celebrate your special moments with a stunning backlit frame, perfect for anniversaries and other cherished occasions",
     "shortDescription": "Illuminate your memories with our elegant backlit frames",
-    "price": 69.99,
+    "price": 700,
     "maxUploads": 1,
     "customizationOptions": {
       "allowText": true,
@@ -315,23 +338,35 @@ export const acrylics = [
         {
           "name": "Half Moon",
           "id": "half-moon",
-          "price": 69.99,
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539821/full-moon-mouckup-3_zrmfyh.webp"
           ],
+          "sizes": [
+            {
+              "name": "8x10-inch",
+              "id": "8x10-inch",
+              "dimensions": "8\" × 10\"",
+              "price": 650
+            }],
           "description": "A unique half-moon design with soft LED backlighting"
         },
         {
           "name": "Full Moon",
           "id": "full-moon",
-          "price": 79.99,
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539837/1st-mo2-1-scaled_tyhyud.webp"
           ],
+          "sizes": [
+            {
+              "name": "8x8-inch",
+              "id": "8x8-inch",
+              "dimensions": "8\" × 8\"",
+              "price": 700
+            }],
           "description": "A complete circular design with vibrant LED backlighting"
         }
       ]
@@ -348,8 +383,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 100,
-      "shippingNote": "Free shipping on orders over $100"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -376,8 +411,8 @@ export const acrylics = [
     "name": "Promise Backlit Frame",
     "description": "A beautiful backlit frame to celebrate promises and special moments, perfect for adding a personal touch to your home or office",
     "shortDescription": "Illuminate your promises with our elegant backlit frame",
-    "price": 59.99,
-    "maxUploads": 1,
+    "price": 650,
+    "maxUploads": 0,
     "customizationOptions": {
       "allowText": true,
       "maxTextLength": 50,
@@ -386,12 +421,18 @@ export const acrylics = [
         {
           "name": "Standard",
           "id": "standard",
-          "price": 59.99,
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp"
-          ]
+          ],
+          "sizes": [
+            {
+              "name": "8x10-inch",
+              "id": "8x10-inch",
+              "dimensions": "8\" × 10\"",
+              "price": 650
+            }],
         }
       ]
     },
@@ -407,8 +448,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 100,
-      "shippingNote": "Free shipping on orders over $100"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -434,7 +475,7 @@ export const acrylics = [
     "name": "Heart Anniversary Backlit Frame",
     "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
     "shortDescription": "Illuminate your first year of love with our premium backlit frame",
-    "price": 69.99,
+    "price": 600,
     "maxUploads": 1,
     "customizationOptions": {
       "allowText": true,
@@ -444,12 +485,18 @@ export const acrylics = [
         {
           "name": "Standard",
           "id": "standard",
-          "price": 69.99,
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741541222/WhatsApp_Image_2025-03-09_at_22.30.00_rhe9w9.jpg"
           ],
+          "sizes": [
+            {
+              "name": "8x8-inch",
+              "id": "8x8-inch",
+              "dimensions": "8\" × 8\"",
+              "price": 600
+            }],
           "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
         }
       ]
@@ -493,7 +540,7 @@ export const acrylics = [
     "name": "Diamond Anniversary Backlit Frame",
     "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
     "shortDescription": "Illuminate your first year of love with our premium backlit frame",
-    "price": 69.99,
+    "price": 700,
     "maxUploads": 1,
     "customizationOptions": {
       "allowText": true,
@@ -503,12 +550,18 @@ export const acrylics = [
         {
           "name": "Standard",
           "id": "standard",
-          "price": 69.99,
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540983/WhatsApp_Image_2025-03-09_at_22.29.59_cf706i.jpg"
           ],
+          "sizes": [
+            {
+              "name": "8x10-inch",
+              "id": "8x10-inch",
+              "dimensions": "8\" × 10\"",
+              "price": 700
+            }],
           "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
         }
       ]
@@ -525,8 +578,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 100,
-      "shippingNote": "Free shipping on orders over $100"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
@@ -553,7 +606,7 @@ export const acrylics = [
     "name": "Infinity Anniversary Backlit Frame",
     "description": "Celebrate your first anniversary with this elegant backlit frame, perfect for showcasing your cherished memories",
     "shortDescription": "Illuminate your first year of love with our premium backlit frame",
-    "price": 69.99,
+    "price": 700,
     "maxUploads": 1,
     "customizationOptions": {
       "allowText": true,
@@ -563,12 +616,19 @@ export const acrylics = [
         {
           "name": "Standard",
           "id": "standard",
-          "price": 69.99,
+          
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741540982/WhatsApp_Image_2025-03-09_at_22.29.59_1_h03vwt.jpg"
           ],
+          "sizes": [
+            {
+              "name": "8x10-inch",
+              "id": "8x10-inch",
+              "dimensions": "8\" × 10\"",
+              "price": 700
+            }],
           "description": "A classic design with soft LED backlighting, perfect for first anniversaries"
         }
       ]
@@ -585,8 +645,8 @@ export const acrylics = [
     },
     "shipping": {
       "processingTime": "5-7 business days",
-      "freeShippingThreshold": 100,
-      "shippingNote": "Free shipping on orders over $100"
+      "freeShippingThreshold": 1500,
+      "shippingNote": "Free shipping on orders over ₹ 1500"
     },
     "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
     "sections": [
