@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AboutPage = () => {
+    const navigate=useNavigate()
   return (
     <div className="bg-white min-h-screen text-gray-800">
       {/* Hero Section */}
@@ -80,7 +82,7 @@ const AboutPage = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <button className="bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+            <button className="bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors" onClick={()=> navigate("/")}>
               Explore Our Collection
             </button>
           </div>
