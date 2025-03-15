@@ -13,7 +13,7 @@ const AboutPage = () => {
     }, []);
     
     return (
-    <div className="bg-white min-h-screen text-gray-800">
+    <div className="bg-white min-h-screen text-gray-800 font-titillium">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-100 to-gray-200 py-16">
         <div className="container mx-auto px-4">
