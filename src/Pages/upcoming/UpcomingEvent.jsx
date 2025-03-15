@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AboutPage = () => {
-    const navigate=useNavigate()
-  return (
+    const navigate = useNavigate();
+    
+    // Add smooth scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+    
+    return (
     <div className="bg-white min-h-screen text-gray-800">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-100 to-gray-200 py-16">
@@ -171,8 +180,6 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-
-    
     </div>
   );
 };
