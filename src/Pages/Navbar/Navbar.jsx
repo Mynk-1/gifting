@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCart } from "../../Store/Slices/cartitemSlice"; // Import the fetchCart action
 import { useAuth } from "../../auth/AuthProvider";
 import MobileNavBar from "./MobBottomNav";
-import logoImage from "./logo.jpeg"
 
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -105,9 +104,8 @@ const NavBar = () => {
           <Menu size={24} />
         </button>
         <div className="text-center flex-grow" onClick={handleHome}>
-          <div className="flex items-center justify-center">
-            <img src={logoImage} height={50} width={50} alt="Surprise Box Logo" className="m-0" />
-            <button className="text-2xl font-bold">SUPRISE BOX</button>
+          <div className="flex items-center justify-center py-2">
+            <img src="https://res.cloudinary.com/dg3ftdduj/image/upload/v1742046840/Logo_tkdsy3.png" height={125} width={125} alt="Logo" className="m-0" />
           </div>
         </div>
         <div className="flex space-x-4">

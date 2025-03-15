@@ -1,22 +1,22 @@
 export const MainCrousalData = [
     {
       image:
-        "https://www.snitch.co.in/cdn/shop/files/3_WebBanner_1920x1080_3_d4b6703a-0e96-46b7-ba88-c77166924f4a_1400x.jpg?v=1728392099",
+        "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742046832/Banner4_anx8ex.png",
       path: "/route1",
     },
     {
       image:
-        "https://www.snitch.co.in/cdn/shop/files/5_WebBanner_1920x1080_1_1400x.jpg?v=1728392099",
+        "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742046837/Banner2_yoydly.png",
       path: "/route2",
     },
     {
       image:
-        "https://www.snitch.co.in/cdn/shop/files/2_WebBanner_1920x1080_4_1400x.jpg?v=1728458033",
+        "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742047569/Banner1_1_swvjjo.png",
       path: "/route3",
     },
     {
       image:
-        "https://www.snitch.co.in/cdn/shop/files/4_WebBanner_1920x1080_1_1400x.jpg?v=1728392099",
+        "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742047563/Banner3_1_klidl8.png",
       path: "/route4",
     },
   ];
