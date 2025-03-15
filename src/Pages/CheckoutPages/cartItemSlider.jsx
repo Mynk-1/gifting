@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteCartItem, fetchCart } from '../../Store/Slices/cartitemSlice';
 import { useAuth } from "../../auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 // Address Modal Component from DeliveryAddress
 const AddressModal = ({ isOpen, onClose, address, onSave }) => {
@@ -214,6 +215,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   const [editingAddress, setEditingAddress] = useState(null);
   const dispatch = useDispatch();
   const { user } = useAuth(); // Get user from auth context
+  const navigate = useNavigate()
   
   // Enhanced animation control
   useEffect(() => {
@@ -256,6 +258,19 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   const calculateSubtotal = () => {
     if (!cartData || !cartData.items) return 0;
     return cartData.items.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+  };
+
+  // Calculate shipping cost based on subtotal
+  const calculateShipping = () => {
+    const subtotal = parseFloat(calculateSubtotal());
+    return subtotal < 1500 ? 50 : 0;
+  };
+
+  // Calculate total with shipping included
+  const calculateTotal = () => {
+    const subtotal = parseFloat(calculateSubtotal());
+    const shipping = calculateShipping();
+    return (subtotal + shipping).toFixed(2);
   };
 
   const handleAddressChange = (addressId) => {
@@ -347,8 +362,9 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
   
     try {
       const orderResponse = await axios.post('http://localhost:3001/api/orders/create', {
-        amount: calculateSubtotal(),
+        amount: calculateTotal(), // Use total with shipping
         addressId: selectedAddressId, // Pass the selected address ID
+        shipping: calculateShipping(), // Pass the shipping cost
       }, {
         withCredentials: true,
       });
@@ -368,6 +384,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
             addressId: selectedAddressId, // Pass the selected address ID
+            shipping: calculateShipping(), // Pass the shipping cost
           },{withCredentials:true});
           console.log(paymentVerificationResponse.data.success)
           if (paymentVerificationResponse.data) {
@@ -407,7 +424,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
       </p>
       <button
         className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-200 text-sm"
-        onClick={() => setToggle(false)} // Close the slider
+        onClick={() => {setToggle(false);navigate("/profile")}  } // Close the slider
       >
         Go to Login
       </button>
@@ -653,15 +670,37 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
                 transitionDelay: '400ms'
               }}
             >
-              <div className="flex justify-between items-center mb-2">
-                <span className="uppercase text-sm font-medium">Subtotal</span>
-                <span className="font-semibold text-lg">
-                  INR {calculateSubtotal()}
-                </span>
+              <div className="space-y-2 mb-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Subtotal</span>
+                  <span className="text-sm">
+                    INR {calculateSubtotal()}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Shipping</span>
+                  <span className="text-sm">
+                    {calculateShipping() > 0 
+                      ? `INR ${calculateShipping().toFixed(2)}` 
+                      : "FREE"}
+                  </span>
+                </div>
+                
+                {calculateShipping() > 0 && (
+                  <div className="text-xs text-gray-500 italic">
+                    Free shipping on orders above INR 1,500
+                  </div>
+                )}
+                
+                <div className="border-t pt-2 mt-2 flex justify-between items-center">
+                  <span className="uppercase text-sm font-medium">Total</span>
+                  <span className="font-semibold text-lg">
+                    INR {calculateTotal()}
+                  </span>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-gray-600 mb-4">
-                Shipping, taxes, and discount codes calculated at checkout.
-              </p>
+              
               <button 
                 className={`w-full py-3 tracking-wide font-medium rounded-sm transition-all duration-300 ${
                   !cartData || !cartData.items || cartData.items.length === 0 || addresses.length === 0 

@@ -8,7 +8,7 @@ const API_URL = "http://localhost:3001/api/cart";
 export const fetchCart = createAsyncThunk("cart/fetchCart", async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${API_URL}/get`, { withCredentials: true }); // Ensure cookies are sent
-    // console.log(response.data)
+    console.log(response.data)
     return response.data;
   } catch (error) {
 

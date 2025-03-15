@@ -13,8 +13,8 @@ const MobileNavBar = ({ openBagSlider, cartItemQuantity = 0 }) => {
       case 'HOME':
         navigate('/');
         break;
-      case 'UPCOMING':
-        navigate('/upcoming');
+      case 'ABOUT':
+        navigate('/about');
         break;
       case 'CART':
         openBagSlider();
@@ -41,9 +41,9 @@ const MobileNavBar = ({ openBagSlider, cartItemQuantity = 0 }) => {
         
         <NavItem 
           icon={<Zap size={20} />} 
-          label="UPCOMING" 
+          label="ABOUT" 
           activeItem={activeItem} 
-          onClick={() => handleNavItemClick('UPCOMING')} 
+          onClick={() => handleNavItemClick('ABOUT')} 
         />
         
         <div className="h-8 w-px bg-gray-200 absolute" style={{ left: '50%' }}></div>

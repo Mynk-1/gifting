@@ -15,6 +15,7 @@ import { AuthProvider } from "./auth/AuthProvider.js";
 import ProtectedRoute from "./auth/ProtectedRoute.js";
 import MyOrders from "./Pages/Login/Profile/MyOrder.jsx";
 import { XCircle } from "lucide-react";
+import UpcomingEvents from "./Pages/upcoming/UpcomingEvent.jsx";
 
 // Error Page Component
 const ErrorPage = ({ error }) => {
@@ -166,6 +167,7 @@ function App() {
               } 
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<UpcomingEvents />} />
             <Route path="/:category/:id" element={<ProductDetail />} />
             <Route path="/productcatalog/:category" element={<ProductCatalog />} />
             <Route path="/customize/:category" element={<CustomProductDetail />} />
