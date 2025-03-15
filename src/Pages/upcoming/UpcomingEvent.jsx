@@ -40,7 +40,7 @@ const AboutPage = () => {
       </div>
 
       {/* Products Showcase */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-16 pb-0">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-center text-gray-900 mb-12">
             Our Handcrafted Gifts
