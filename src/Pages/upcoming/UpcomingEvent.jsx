@@ -14,7 +14,7 @@ const AboutPage = () => {
       </div>
 
       {/* Our Story Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 pb-0">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/2">
             <img 
