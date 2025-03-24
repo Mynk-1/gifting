@@ -110,13 +110,13 @@ const Login = () => {
   // Gifting-themed background icons
   const GiftBackgroundIcons = () => {
     const giftIcons = [
-      { Icon: Gift, color: "text-gray-400", size: "w-12 h-12", animation: "animate-float-1" },
-      { Icon: Cake, color: "text-gray-500", size: "w-10 h-10", animation: "animate-float-2" },
-      { Icon: Heart, color: "text-gray-400", size: "w-8 h-8", animation: "animate-float-3" },
-      { Icon: PartyPopper, color: "text-gray-500", size: "w-14 h-14", animation: "animate-float-4" },
-      { Icon: Package, color: "text-gray-400", size: "w-12 h-12", animation: "animate-float-2" },
-      { Icon: ShoppingBag, color: "text-gray-500", size: "w-10 h-10", animation: "animate-float-3" },
-      { Icon: Star, color: "text-gray-400", size: "w-6 h-6", animation: "animate-float-1" }
+      { Icon: Gift, color: "text-blue-600", size: "w-12 h-12", animation: "animate-float-1" },
+      { Icon: Cake, color: "text-yellow-600", size: "w-10 h-10", animation: "animate-float-2" },
+      { Icon: Heart, color: "text-red-600", size: "w-8 h-8", animation: "animate-float-3" },
+      { Icon: PartyPopper, color: "text-pink-600", size: "w-14 h-14", animation: "animate-float-4" },
+      { Icon: Package, color: "text-purple-600", size: "w-12 h-12", animation: "animate-float-2" },
+      { Icon: ShoppingBag, color: "text-black-600", size: "w-10 h-10", animation: "animate-float-3" },
+      { Icon: Star, color: "text-brown-600", size: "w-6 h-6", animation: "animate-float-1" }
     ];
 
     return (
@@ -149,7 +149,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center py-24 p-4 min-h-screen bg-gray-100">
+    <div className="relative flex flex-col items-center pt-20 md:pt-0 md:justify-center p-4 min-h-screen bg-gray-100">
       {/* Custom animations */}
       <style jsx>{`
         @keyframes float-1 {
@@ -180,12 +180,19 @@ const Login = () => {
         .animate-float-4 {
           animation: float-4 18s ease-in-out infinite;
         }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 10s linear infinite;
+        }
       `}</style>
 
       {/* Animated background with gift icons */}
       <GiftBackgroundIcons />
 
-      <div className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 space-y-6 mx-auto z-10 border-t-4 border-black">
+      <div className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 space-y-6 mx-auto z-10 border-t-4 border-black mt-0">
         <div className="text-center space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">GIFTING MADE SIMPLE</h1>
           <p className="text-sm text-gray-600">Login with your phone to continue</p>

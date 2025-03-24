@@ -70,18 +70,18 @@ const Order = ({ order }) => {
   const formattedDate = formatDate(order.createdAt);
   
   // Create status message
-  const getStatusMessage = (status, date) => {
+  const getStatusMessage = (status) => {
     switch (status.toLowerCase()) {
       case 'delivered':
-        return `Delivered on ${date}`;
+        return `Delivered`;
       case 'cancelled':
-        return `Cancelled on ${date}`;
+        return `Cancelled`;
       case 'processing':
         return 'Order is being processed';
       case 'pending':
         return 'Order is pending';
       case 'shipped':
-        return `Shipped on ${date}`;
+        return `Shipped`;
       default:
         return `Order status: ${status}`;
     }
@@ -117,7 +117,7 @@ const Order = ({ order }) => {
         {/* Status Timeline */}
         <div className="mt-4 flex items-center gap-2">
           {getStatusIcon(order.status)}
-          <div className="text-sm text-gray-500">{getStatusMessage(order.status, formattedDate)}</div>
+          <div className="text-sm text-gray-500">{getStatusMessage(order.status)}</div>
         </div>
       </div>
 
@@ -133,6 +133,20 @@ const Order = ({ order }) => {
                 <p>{order.address.street}</p>
                 <p>{order.address.city}, {order.address.state} {order.address.postalCode}</p>
                 <p>Phone: {order.address.phone}</p>
+              </div>
+            </div>
+
+            {/* Tracking Information */}
+            <div>
+              <h4 className="text-sm font-medium text-gray-900 mb-2">Tracking Information</h4>
+              <div className="text-sm text-gray-500">
+                {order.trackingId ? (
+                  <p>
+                    <span className="font-medium">Tracking ID:</span> {order.trackingId}
+                  </p>
+                ) : (
+                  <p>Tracking ID will be updated soon</p>
+                )}
               </div>
             </div>
 
@@ -185,7 +199,7 @@ const MyOrders = () => {
         setLoading(true);
         const response = await fetch('http://localhost:3001/api/orders/get', {
           method: 'GET',
-          credentials: 'include', // Include credentials as requested
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },

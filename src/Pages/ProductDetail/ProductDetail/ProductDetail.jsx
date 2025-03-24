@@ -11,7 +11,7 @@ import Button from "../CustumProductDetail/Button";
 import PhotoGalleryModal from "../CustumProductDetail/PhotoGalleryModal";
 import SignInModal from "../CustumProductDetail/SignInModal";
 import { useAuth } from "../../../auth/AuthProvider";
-import { getItemByCaricatureId } from "../../../Data/Caricature";
+import { getItemByCustomizedFrameId } from "../../../Data/frames";
 import { getItemByAcrylicsId } from "../../../Data/acrylics";
 import { getProductByCategory } from "../../../Data/CustumProductDetails";
 
@@ -44,8 +44,8 @@ const CustomProductDetail = () => {
   useEffect(() => {
     let foundProduct = null;
     
-    if (category === "caricature") {
-      foundProduct = getItemByCaricatureId(id);
+    if (category === "CustomizedFrames") {
+      foundProduct = getItemByCustomizedFrameId(id);
     } else if (category === "acrylics") {
       foundProduct = getItemByAcrylicsId(id);
     } else {

@@ -15,7 +15,11 @@ import { AuthProvider } from "./auth/AuthProvider.js";
 import ProtectedRoute from "./auth/ProtectedRoute.js";
 import MyOrders from "./Pages/Login/Profile/MyOrder.jsx";
 import { XCircle } from "lucide-react";
-import UpcomingEvents from "./Pages/upcoming/UpcomingEvent.jsx";
+import UpcomingEvents from "./Pages/About/UpcomingEvent.jsx";
+
+import OrdersTable from "./Pages/Dashboard/OrderTable.jsx";
+
+
 
 // Error Page Component
 const ErrorPage = ({ error }) => {
@@ -30,13 +34,13 @@ const ErrorPage = ({ error }) => {
           {error || "We encountered an error while loading this page. Please try again later."}
         </p>
         <div className="space-y-3">
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors"
           >
             Reload Page
           </button>
-          <button 
+          <button
             onClick={() => window.location.href = '/'}
             className="w-full bg-white text-gray-900 border border-gray-300 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors"
           >
@@ -60,7 +64,7 @@ const NotFoundPage = () => {
         <p className="text-gray-600 mb-6">
           The page you are looking for doesn't exist or has been moved.
         </p>
-        <button 
+        <button
           onClick={() => window.location.href = '/'}
           className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors"
         >
@@ -108,7 +112,7 @@ class MinimalErrorBoundary extends React.Component {
 // Functional wrapper for ErrorBoundary
 const FunctionalErrorBoundary = ({ children, onError }) => {
   return (
-    <MinimalErrorBoundary 
+    <MinimalErrorBoundary
       fallback={(error) => <ErrorPage error={error?.message} />}
       onError={onError}
     >
@@ -131,7 +135,7 @@ function App() {
     };
 
     window.addEventListener('error', handleError);
-    
+
     return () => {
       window.removeEventListener('error', handleError);
     };
@@ -144,43 +148,46 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        
+
         <Navigation />
-        
+
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
               path="/profile"
               element={
-                <ProtectedRoute allowedRoles={["user"]}>
+                <ProtectedRoute allowedRoles={["user","admin"]}>
                   <Profile />
                 </ProtectedRoute>
               }
             />
-            <Route 
-              path="/orders" 
+            <Route
+              path="/orders"
               element={
-                <ProtectedRoute allowedRoles={["user"]}>
+                <ProtectedRoute allowedRoles={["user","admin"]}>
                   <MyOrders />
                 </ProtectedRoute>
-              } 
+              }
             />
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<UpcomingEvents />} />
             <Route path="/:category/:id" element={<ProductDetail />} />
             <Route path="/productcatalog/:category" element={<ProductCatalog />} />
             <Route path="/customize/:category" element={<CustomProductDetail />} />
+           
+            <Route path="/dashboard" element={<ProtectedRoute allowedRoles={["admin"]}><OrdersTable /></ProtectedRoute>} />
             
+
             {/* Error Routes */}
             <Route path="/error" element={<ErrorPage />} />
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </Suspense>
-        
+
         <Footer />
-        
+
       </Provider>
     </>
   );

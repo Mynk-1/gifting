@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { caricature } from "../../Data/Caricature";
+import { CustomizedFrames } from "../../Data/frames";
 import { acrylics } from "../../Data/acrylics";
 import {
   ChevronDown,
@@ -152,7 +152,7 @@ const ProductCatalog = () => {
     let products = [];
     
     if (category === "caricature") {
-      products = caricature;
+      products = CustomizedFrames;
     }
     if (category === "acrylics") {
       products = acrylics;

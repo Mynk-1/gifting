@@ -43,7 +43,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-gray-300 text-sm">
-            © 2025 MM Graphics Private Limited
+            © 2025 MM Graphics 
           </div>
         </div>
       </nav>

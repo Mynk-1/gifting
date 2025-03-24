@@ -1,4 +1,4 @@
-export const  caricature= [
+export const  CustomizedFrames= [
      {
       "id": "101",
       "category": "caricature",
@@ -788,7 +788,7 @@ export const  caricature= [
       ]
     }
 ]
-export const getItemByCaricatureId = (id) => {
+export const getItemByCustomizedFrameId = (id) => {
   
-  return caricature.find(item => item.id === id);
+  return CustomizedFrames.find(item => item.id === id);
 };
