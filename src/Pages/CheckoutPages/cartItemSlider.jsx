@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, PlusCircle, MapPin, Edit, Trash2 } from "lucide-react";
+import { X, PlusCircle, MapPin, Edit, Trash2,AlertCircle } from "lucide-react";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteCartItem, fetchCart } from '../../Store/Slices/cartitemSlice';
@@ -702,7 +702,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
               </div>
 
                  {/* COD Unavailability Note */}
-            {hasCustomizedItems() && (
+            { (
               <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 p-2 rounded mb-3">
                 <AlertCircle className="w-5 h-5 text-yellow-600" />
                 <p className="text-xs text-yellow-800">
