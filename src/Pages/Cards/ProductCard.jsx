@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setClickedProduct } from "../../Store/Slices/productSlice";
+
 
 const ProductCard = ({ product, category, id }) => {
-  const dispatch = useDispatch();
+  
   const navigate = useNavigate();
 
   const handleScroll = () => {
@@ -12,7 +12,7 @@ const ProductCard = ({ product, category, id }) => {
   };
 
   const handleClick = () => {
-    dispatch(setClickedProduct(product));
+    
     handleScroll();
     navigate(`/${category}/${id}`);
   };
