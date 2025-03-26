@@ -4,11 +4,7 @@ export const MainCrousalData = [
         "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742046832/Banner4_anx8ex.png",
       path: "/route1",
     },
-    {
-      image:
-        "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742046837/Banner2_yoydly.png",
-      path: "/route2",
-    },
+   
     {
       image:
         "https://res.cloudinary.com/dg3ftdduj/image/upload/v1742047569/Banner1_1_swvjjo.png",
