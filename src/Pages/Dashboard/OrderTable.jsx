@@ -20,10 +20,8 @@ const OrderPage = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Add any authentication headers if required, e.g.:
-          // 'Authorization': `Bearer ${yourToken}`
         },
-        credentials: 'include', // Include credentials (cookies, auth headers) with the request
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -39,7 +37,6 @@ const OrderPage = () => {
     } catch (error) {
       console.error('Error fetching orders:', error);
       alert('Failed to fetch orders. Please try again later.');
-      // Optionally set fallback data or empty array
       setOrders([]);
     } finally {
       setLoading(false);
@@ -237,7 +234,6 @@ const OrderPage = () => {
         </div>
       </div>
 
-      {/* Order Details Modal */}
       {selectedOrder && (
         <OrderDetails
           order={selectedOrder}

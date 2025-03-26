@@ -213,7 +213,7 @@ const DeliveryAddress = () => {
 
   const fetchAddresses = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/address", { withCredentials: true });
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/address`, { withCredentials: true });
       setAddresses(response.data);
     } catch (error) {
       console.error("Failed to fetch addresses:", error);
@@ -233,7 +233,7 @@ const DeliveryAddress = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this address?")) {
       try {
-        await axios.delete(`http://localhost:3001/api/address/delete/${id}`, { withCredentials: true });
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/address/delete/${id}`, { withCredentials: true });
         fetchAddresses(); // Refresh the list after deletion
       } catch (error) {
         console.error("Failed to delete address:", error);
@@ -243,7 +243,7 @@ const DeliveryAddress = () => {
 
   const handleSetDefault = async (id) => {
     try {
-      await axios.get(`http://localhost:3001/api/address/default/${id}`, { withCredentials: true });
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/address/default/${id}`, { withCredentials: true });
       fetchAddresses(); // Refresh the list after setting default
     } catch (error) {
       console.error("Failed to set default address:", error);
@@ -253,9 +253,9 @@ const DeliveryAddress = () => {
   const handleSave = async (formData) => {
     try {
       if (editingAddress) {
-        await axios.post(`http://localhost:3001/api/address/edit/${editingAddress._id}`, formData, { withCredentials: true });
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/address/edit/${editingAddress._id}`, formData, { withCredentials: true });
       } else {
-        await axios.post("http://localhost:3001/api/address/add", formData, { withCredentials: true });
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/address/add`, formData, { withCredentials: true });
       }
       fetchAddresses(); // Refresh the list after saving
     } catch (error) {

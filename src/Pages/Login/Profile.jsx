@@ -91,7 +91,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       // Make API call to delete cookie
-      const response = await fetch('http://localhost:3001/api/get/logout', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/get/logout`, {
         method: 'POST',
         credentials: 'include', // Include cookies in request
         headers: {

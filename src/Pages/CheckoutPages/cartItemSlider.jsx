@@ -240,7 +240,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     if (!user) return; // Only proceed if user is authenticated
     
     try {
-      const response = await axios.get("http://localhost:3001/api/address", { withCredentials: true });
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/address`, { withCredentials: true });
       setAddresses(response.data);
       
       // Set default address as selected
@@ -297,7 +297,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     
     if (window.confirm("Are you sure you want to delete this address?")) {
       try {
-        await axios.delete(`http://localhost:3001/api/address/delete/${id}`, { withCredentials: true });
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/address/delete/${id}`, { withCredentials: true });
         fetchAddresses(); // Refresh the list after deletion
       } catch (error) {
         console.error("Failed to delete address:", error);
@@ -321,7 +321,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     if (!user) return;
     
     try {
-      await axios.get(`http://localhost:3001/api/address/default/${id}`, { withCredentials: true });
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/address/default/${id}`, { withCredentials: true });
       fetchAddresses(); // Refresh the list after setting default
       setSelectedAddressId(id);
     } catch (error) {
@@ -338,10 +338,10 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     try {
       if (editingAddress) {
         // Update existing address
-        await axios.post(`http://localhost:3001/api/address/edit/${editingAddress._id}`, formData, { withCredentials: true });
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/address/edit/${editingAddress._id}`, formData, { withCredentials: true });
       } else {
         // Add new address
-        await axios.post("http://localhost:3001/api/address/add", formData, { withCredentials: true });
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/address/add`, formData, { withCredentials: true });
       }
       fetchAddresses(); // Refresh the list after saving
     } catch (error) {
@@ -361,7 +361,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
     }
   
     try {
-      const orderResponse = await axios.post('http://localhost:3001/api/orders/create', {
+      const orderResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders/create`, {
         amount: calculateTotal(), // Use total with shipping
         addressId: selectedAddressId, // Pass the selected address ID
         shipping: calculateShipping(), // Pass the shipping cost
@@ -379,7 +379,7 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
         description: "Complete Printing Solution",
         order_id: id,
         handler: async (response) => {
-          const paymentVerificationResponse = await axios.post('http://localhost:3001/api/orders/verify-payment', {
+          const paymentVerificationResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/orders/verify-payment`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
@@ -700,6 +700,16 @@ const BagSlider = ({ isOpen, setToggle, cartData }) => {
                   </span>
                 </div>
               </div>
+
+                 {/* COD Unavailability Note */}
+            {hasCustomizedItems() && (
+              <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 p-2 rounded mb-3">
+                <AlertCircle className="w-5 h-5 text-yellow-600" />
+                <p className="text-xs text-yellow-800">
+                  Cash on Delivery (COD) is not available for customized items.
+                </p>
+              </div>
+            )}
               
               <button 
                 className={`w-full py-3 tracking-wide font-medium rounded-sm transition-all duration-300 ${

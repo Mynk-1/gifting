@@ -23,7 +23,7 @@ const Login = () => {
         throw new Error("Please enter a valid 10-digit phone number");
       }
 
-      const response = await fetch("http://localhost:3001/api/auth/send-otp", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/send-otp`, {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -70,7 +70,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:3001/api/auth/verify-otp", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/verify-otp`, {
         method: "POST",
         credentials: 'include',
         headers: {

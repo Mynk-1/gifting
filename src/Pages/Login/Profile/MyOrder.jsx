@@ -197,7 +197,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:3001/api/orders/get', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/get`, {
           method: 'GET',
           credentials: 'include',
           headers: {

@@ -65,9 +65,15 @@ export const customizableProducts = {
           "name": "Colour Handle",
           "id": "heart",
           "price": 300, // Added price
+          "colors": [{ id: "red", name: "Red" },{ id: "orange", name: "Orange" },{ id: "green", name: "Green" }],
           "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/heart/1.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/heart/2.jpg"
+            "https://images.zoomin.com/colour_inside_mug/4.0.0/product_images/web/colour-inside-photo-mug-1.jpg",
+            "https://m.media-amazon.com/images/I/31A9JXNQT8L.jpg",
+            "https://rkcustomisedgifts.com/wp-content/uploads/2023/07/Customized-Orange-Inner-color-mug-3.jpg",
+            "https://images-cdn.ubuy.co.in/644abe133dea0460f712e531-homevss-11oz-white-ceramic-sublimation.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp4C6rwuJ9fZ_g9BRh6MWzMqnYvzAmmYZyQ7lNtZxGTIdMMliJ9Zu_Eva-sncVtF8NYl4&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjWV_dOf5xBlRVvn34ivhM1VLzT9fMdAhDyEAn1nr0n2kaUwTsMamzwJQzks4EoxHtCq8&usqp=CAU"
+
           ]
         }
       ]
@@ -135,41 +141,6 @@ export const customizableProducts = {
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436962/p5_axhtsh.webp",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436961/p3_krino8.jpg"
           ],
-          "sizes": [
-            {
-              "name": "Mini",
-              "id": "mini",
-              "dimensions": "2.5\" × 3.25\"",
-              "price": 200
-            },
-            {
-              "name": "Standard",
-              "id": "standard",
-              "dimensions": "3.5\" × 4.25\"",
-              "price": 250
-            },
-            {
-              "name": "Large",
-              "id": "large",
-              "dimensions": "4.25\" × 5.5\"",
-              "price": 300
-            },
-          ]
-        },
-        {
-          "name": "Vintage",
-          "id": "vintage",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436963/p8_ahx1ih.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436963/p1_hdrdad.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436964/p7_bo6xnq.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436961/p3_krino8.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436961/p2_riycsj.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436963/p4_ynukcj.jpg",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436962/p5_axhtsh.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739436961/p3_krino8.jpg"
-          ],
-          "description": "Aged effect with subtle color shifts",
           "sizes": [
             {
               "name": "Mini",

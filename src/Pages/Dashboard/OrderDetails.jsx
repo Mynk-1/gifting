@@ -10,7 +10,7 @@ const OrderDetails = ({ order, onClose, updateOrderStatus, updateTrackingId, get
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Include credentials (cookies, auth headers) with the request
+        credentials: 'include',
         body: JSON.stringify({ status: newStatus }),
       });
 
@@ -20,7 +20,6 @@ const OrderDetails = ({ order, onClose, updateOrderStatus, updateTrackingId, get
 
       const data = await response.json();
       if (data.success) {
-        // Update the local state via the parent component's callback
         updateOrderStatus(order._id, newStatus);
       } else {
         throw new Error(data.message || 'Failed to update status');
@@ -43,7 +42,7 @@ const OrderDetails = ({ order, onClose, updateOrderStatus, updateTrackingId, get
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Include credentials (cookies, auth headers) with the request
+        credentials: 'include',
         body: JSON.stringify({ trackingId }),
       });
 
@@ -53,9 +52,8 @@ const OrderDetails = ({ order, onClose, updateOrderStatus, updateTrackingId, get
 
       const data = await response.json();
       if (data.success) {
-        // Update the local state via the parent component's callback
         updateTrackingId(order._id, trackingId);
-        setTrackingId(''); // Clear the input after successful update
+        setTrackingId('');
       } else {
         throw new Error(data.message || 'Failed to update tracking ID');
       }
@@ -138,9 +136,10 @@ const OrderDetails = ({ order, onClose, updateOrderStatus, updateTrackingId, get
                     <h4 className="font-medium text-gray-900 mb-2">Customer Information</h4>
                     <div className="bg-gray-50 p-3 rounded border text-sm">
                       <p><span className="font-medium">User ID:</span> {order.user._id}</p>
-                      <p><span className="font-medium">Name:</span> {order.address.name}</p>
-                      <p><span className="font-medium">Phone:</span> {order.address.phone}</p>
+                      <p><span className="font-medium">User Phone:</span> {order.user.phone}</p>
                       <p><span className="font-medium">Role:</span> {order.user.role}</p>
+                      <p><span className="font-medium">Shipping Name:</span> {order.address.name}</p>
+                      <p><span className="font-medium">Shipping Phone:</span> {order.address.phone}</p>
                       <p><span className="font-medium">Address:</span> {order.address.street}, {order.address.city}, {order.address.state} {order.address.postalCode}, {order.address.country}</p>
                       <p><span className="font-medium">Address Type:</span> {order.address.type}</p>
                       <p><span className="font-medium">Default Address:</span> {order.address.isDefault ? 'Yes' : 'No'}</p>

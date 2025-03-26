@@ -17,7 +17,7 @@ const UserProfile = () => {
   // Fetch or initialize user profile
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/user/profile", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/profile`, {
         method: "GET",
         credentials: "include", // Include cookies for authentication
       });
@@ -51,7 +51,7 @@ const UserProfile = () => {
   // Save updated profile data
   const handleSave = async () => {
     try {
-        await fetch("http://localhost:3001/api/user/profile", {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/user/profile`, {
         method: "PUT",
         credentials: "include",
         headers: {
