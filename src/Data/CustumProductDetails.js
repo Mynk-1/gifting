@@ -2,7 +2,7 @@ export const customizableProducts = {
 
   "mugs": {
     "id": "custom-mug-01",
-    "isCustomizable": true, // Added isCustomizable key
+    "isCustomizable": true, 
     "category": "mugs",
     "productType": "Customizable Mug",
     "name": "Personalized Photo Mug",
@@ -18,7 +18,7 @@ export const customizableProducts = {
         {
           "name": "Plain",
           "id": "plain",
-          "price": 200, // Added price
+          "price": 200, 
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/1_tstm8y.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739428679/3_dpzekb.jpg",
@@ -33,7 +33,7 @@ export const customizableProducts = {
         {
           "name": "Magic",
           "id": "magic",
-          "price": 400, // Added price
+          "price": 400, 
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435220/m1_u7kkio.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435220/m1_u7kkio.jpg",
@@ -49,7 +49,7 @@ export const customizableProducts = {
         {
           "name": "Heart Handle",
           "id": "color",
-          "price": 300, // Added price
+          "price": 300, 
           "previewImages": [
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435565/h1_hxdz7s.jpg",
             "https://res.cloudinary.com/dg3ftdduj/image/upload/v1739435565/h1_hxdz7s.jpg",
@@ -64,7 +64,7 @@ export const customizableProducts = {
         {
           "name": "Colour Handle",
           "id": "heart",
-          "price": 300, // Added price
+          "price": 300, 
           "colors": [{ id: "red", name: "Red" },{ id: "orange", name: "Orange" },{ id: "green", name: "Green" }],
           "previewImages": [
             "https://images.zoomin.com/colour_inside_mug/4.0.0/product_images/web/colour-inside-photo-mug-1.jpg",
@@ -115,7 +115,7 @@ export const customizableProducts = {
 
   "polaroid": {
     "id": "custom-polaroid-01",
-    "isCustomizable": true, // Added isCustomizable key
+    "isCustomizable": true, 
     "category": "polaroid",
     "productType": "Customizable Polaroid Prints",
     "name": "Custom Polaroid-Style Photos (Set of 12 photos)",
@@ -234,7 +234,7 @@ export const customizableProducts = {
 
   "wallet": {
     "id": "custom-wallet-card-01",
-    "isCustomizable": true, // Added isCustomizable key
+    "isCustomizable": true, 
     "category": "walletCard",
     "productType": "Customizable Wallet Card",
     "name": "Personalized Metal Wallet Card",
@@ -306,7 +306,7 @@ export const customizableProducts = {
 
   "tshirt": {
     "id": "custom-tshirt-01",
-    "isCustomizable": true, // Added isCustomizable key
+    "isCustomizable": true, 
     "category": "tshirt",
     "productType": "Customizable T-Shirt",
     "name": "Custom Photo T-Shirt",

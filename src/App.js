@@ -18,6 +18,8 @@ import { XCircle } from "lucide-react";
 import UpcomingEvents from "./Pages/About/UpcomingEvent.jsx";
 
 import OrdersTable from "./Pages/Dashboard/OrderTable.jsx";
+import AddProduct from "./Pages/Dashboard/AddProduct.jsx";
+
 
 
 
@@ -177,7 +179,7 @@ function App() {
             <Route path="/customize/:category" element={<CustomProductDetail />} />
            
             <Route path="/dashboard" element={<ProtectedRoute allowedRoles={["admin"]}><OrdersTable /></ProtectedRoute>} />
-            
+            <Route path="/addproduct" element={<ProtectedRoute><AddProduct/></ProtectedRoute>}/>
 
             {/* Error Routes */}
             <Route path="/error" element={<ErrorPage />} />

@@ -127,7 +127,8 @@ export const acrylics = [
         "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's clarity and finish."
       }
     ]
-  },
+  }
+  ,
   {
     "id": "custom-music-player-backlit-frame-01",
     "isCustomizable": true,
@@ -319,7 +320,8 @@ export const acrylics = [
         "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the clock's clarity and finish."
       }
     ]
-  },
+  }
+  ,
   {
     "id": "custom-anniversary-backlit-frame-01",
     "isCustomizable": true,
@@ -401,72 +403,74 @@ export const acrylics = [
         "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
       }
     ]
-  },
+  }
+  ,
 
-  {
-    "id": "promise-backlit-frame-01",
-    "isCustomizable": true,
-    "category": "acrylics",
-    "productType": "Promise Backlit Frame",
-    "name": "Promise Backlit Frame",
-    "description": "A beautiful backlit frame to celebrate promises and special moments, perfect for adding a personal touch to your home or office",
-    "shortDescription": "Illuminate your promises with our elegant backlit frame",
-    "price": 650,
-    "maxUploads": 0,
-    "customizationOptions": {
-      "allowText": true,
-      "maxTextLength": 50,
-      "textPlaceholder": "Add a special promise or message...",
-      "types": [
+    {
+      "id": "promise-backlit-frame-01",
+      "isCustomizable": true,
+      "category": "acrylics",
+      "productType": "Promise Backlit Frame",
+      "name": "Promise Backlit Frame",
+      "description": "A beautiful backlit frame to celebrate promises and special moments, perfect for adding a personal touch to your home or office",
+      "shortDescription": "Illuminate your promises with our elegant backlit frame",
+      "price": 650,
+      "maxUploads": 1,
+      "customizationOptions": {
+        "allowText": true,
+        "maxTextLength": 50,
+        "textPlaceholder": "Add a special promise or message...",
+        "types": [
+          {
+            "name": "Standard",
+            "id": "standard",
+            "previewImages": [
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
+              "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp"
+            ],
+            "sizes": [
+              {
+                "name": "8x10-inch",
+                "id": "8x10-inch",
+                "dimensions": "8\" × 10\"",
+                "price": 650
+              }],
+          }
+        ]
+      },
+      "productDetails": {
+        "material": "Premium Acrylic",
+        "features": [
+          "LED backlighting for a modern and elegant look",
+          "High-quality acrylic construction",
+          "Easy-to-use touch controls",
+          "Rechargeable battery with USB charging",
+          "Lightweight and easy to hang"
+        ]
+      },
+      "shipping": {
+        "processingTime": "5-7 business days",
+        "freeShippingThreshold": 1500,
+        "shippingNote": "Free shipping on orders over ₹ 1500"
+      },
+      "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
+      "sections": [
         {
-          "name": "Standard",
-          "id": "standard",
-          "previewImages": [
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp",
-            "https://res.cloudinary.com/dg3ftdduj/image/upload/v1741539840/promise_bh68sb.webp"
-          ],
-          "sizes": [
-            {
-              "name": "8x10-inch",
-              "id": "8x10-inch",
-              "dimensions": "8\" × 10\"",
-              "price": 650
-            }],
+          "title": "PRODUCT DETAILS",
+          "content": "Our Promise Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your promises and special moments in a modern and stylish way."
+        },
+        {
+          "title": "SHIPPING INFORMATION",
+          "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
+        },
+        {
+          "title": "CARE INSTRUCTIONS",
+          "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
         }
       ]
-    },
-    "productDetails": {
-      "material": "Premium Acrylic",
-      "features": [
-        "LED backlighting for a modern and elegant look",
-        "High-quality acrylic construction",
-        "Easy-to-use touch controls",
-        "Rechargeable battery with USB charging",
-        "Lightweight and easy to hang"
-      ]
-    },
-    "shipping": {
-      "processingTime": "5-7 business days",
-      "freeShippingThreshold": 1500,
-      "shippingNote": "Free shipping on orders over ₹ 1500"
-    },
-    "careInstructions": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials.",
-    "sections": [
-      {
-        "title": "PRODUCT DETAILS",
-        "content": "Our Promise Backlit Frame is made from premium acrylic and features elegant LED backlighting. It's perfect for showcasing your promises and special moments in a modern and stylish way."
-      },
-      {
-        "title": "SHIPPING INFORMATION",
-        "content": "Please allow 5-7 business days for your custom frame to be prepared and shipped."
-      },
-      {
-        "title": "CARE INSTRUCTIONS",
-        "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
-      }
-    ]
-  },
+    }
+  ,
   {
     "id": "custom-anniversary-backlit-frame-02",
     "isCustomizable": true,
@@ -531,7 +535,8 @@ export const acrylics = [
         "content": "Clean with a soft, dry cloth. Avoid using harsh chemicals or abrasive materials to maintain the frame's finish."
       }
     ]
-  },
+  }
+  ,
   {
     "id": "custom-anniversary-backlit-frame-03",
     "isCustomizable": true,
@@ -664,17 +669,6 @@ export const acrylics = [
       }
     ]
   }
-
-
-
-
-
-
-
-
-
-
-
 
 ];
 
